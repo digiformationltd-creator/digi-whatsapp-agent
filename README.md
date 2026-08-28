@@ -169,8 +169,13 @@ You can customize your business catalog, pricing, and FAQs either directly insid
 ## 🏢 Owner & Company Information
 
 <div align="center">
-  <img src="public/digiformation_logo.png" alt="Digiformation Ltd Logo" width="130" style="border-radius: 18px; margin-bottom: 10px;" />
-  <p><strong>Developed & Maintained by Digiformation Ltd</strong><br />
+  <a href="https://www.digiformation.co.uk/" target="_blank">
+    <img src="public/digiformation_logo.png" alt="Digiformation Ltd Logo" width="120" style="border-radius: 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); margin: 0 12px 12px 12px;" />
+  </a>
+  <a href="https://digibizos.co.uk/" target="_blank">
+    <img src="public/digibizos_logo.png" alt="DIGI BIZ OS Logo" width="120" style="border-radius: 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.25); margin: 0 12px 12px 12px;" />
+  </a>
+  <p><strong>Developed & Maintained by Digiformation Ltd & DigiBiz OS Ecosystem</strong><br />
   <em>Official UK Company Registration # 16994903 • Incorporated in England & Wales</em></p>
 </div>
 

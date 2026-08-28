@@ -40,6 +40,7 @@ import {
 } from "lucide-react";
 import type { LiveEvent } from "../shared/types";
 import digiformationLogo from "./assets/digiformation_logo.png";
+import digibizosLogo from "./assets/digibizos_logo.png";
 
 /** Brand mark — Official styled WhatsApp SVG with Glow */
 const WhatsAppLogo = ({ s = 28 }: { s?: number }) => {
@@ -1412,21 +1413,32 @@ function AboutPanel() {
         <div className="absolute top-0 right-0 w-64 h-64 bg-[#00A884]/10 rounded-full blur-3xl pointer-events-none" />
         
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
-          <div className="flex items-center gap-4">
-            <img
-              src={digiformationLogo}
-              alt="Digiformation Ltd Logo"
-              className="w-16 h-16 rounded-2xl object-contain bg-white p-1 border border-white/20 shadow-xl shadow-emerald-500/10 shrink-0"
-            />
+          <div className="flex items-center gap-3.5 flex-wrap">
+            <div className="flex items-center gap-2">
+              <a href="https://www.digiformation.co.uk/" target="_blank" rel="noreferrer" title="Digiformation Ltd">
+                <img
+                  src={digiformationLogo}
+                  alt="Digiformation Ltd Logo"
+                  className="w-14 h-14 rounded-2xl object-contain bg-white p-1 border border-white/20 shadow-xl shadow-emerald-500/10 hover:scale-105 transition shrink-0"
+                />
+              </a>
+              <a href="https://digibizos.co.uk/" target="_blank" rel="noreferrer" title="DIGI BIZ OS">
+                <img
+                  src={digibizosLogo}
+                  alt="DIGI BIZ OS Logo"
+                  className="w-14 h-14 rounded-2xl object-contain bg-[#04070E] p-1 border border-cyan-500/30 shadow-xl shadow-cyan-500/10 hover:scale-105 transition shrink-0"
+                />
+              </a>
+            </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-xl font-extrabold text-white tracking-tight">Digiformation Ltd</h2>
+              <div className="flex items-center gap-2 flex-wrap">
+                <h2 className="text-xl font-extrabold text-white tracking-tight">Digiformation Ltd &amp; DigiBiz OS</h2>
                 <span className="px-2.5 py-0.5 text-[10px] font-bold rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                   Official UK Entity
                 </span>
               </div>
               <p className="text-xs text-slate-400 mt-0.5">
-                UK Company Formation • Corporate Compliance • AI Automation &amp; Custom Software
+                UK Company Formation • Corporate Compliance • AI Automation &amp; Operating Systems
               </p>
             </div>
           </div>
@@ -1658,20 +1670,31 @@ export default function App() {
         {/* Footer Brand Card */}
         <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/70 border border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl">
           <div className="flex items-center gap-3.5 text-left w-full md:w-auto">
-            <img
-              src={digiformationLogo}
-              alt="Digiformation Ltd Logo"
-              className="w-12 h-12 rounded-xl object-contain bg-white p-1 border border-white/20 shadow-md shrink-0"
-            />
+            <div className="flex items-center gap-2">
+              <a href="https://www.digiformation.co.uk/" target="_blank" rel="noreferrer" title="Digiformation Ltd">
+                <img
+                  src={digiformationLogo}
+                  alt="Digiformation Ltd Logo"
+                  className="w-11 h-11 rounded-xl object-contain bg-white p-0.5 border border-white/20 shadow-md hover:scale-105 transition shrink-0"
+                />
+              </a>
+              <a href="https://digibizos.co.uk/" target="_blank" rel="noreferrer" title="DIGI BIZ OS">
+                <img
+                  src={digibizosLogo}
+                  alt="DIGI BIZ OS Logo"
+                  className="w-11 h-11 rounded-xl object-contain bg-[#04070E] p-0.5 border border-cyan-500/30 shadow-md hover:scale-105 transition shrink-0"
+                />
+              </a>
+            </div>
             <div>
               <div className="text-sm font-bold text-white flex items-center gap-2">
-                <span>Digiformation Ltd</span>
+                <span>Digiformation Ltd &amp; DigiBiz OS</span>
                 <span className="text-[10px] font-mono text-emerald-400 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25">
                   UK #16994903
                 </span>
               </div>
               <div className="text-xs text-slate-400">
-                Official UK Company Formation &amp; AI Automation Agency • Wolverhampton, UK
+                Official UK Company Formation &amp; AI Operating Systems • Wolverhampton, UK
               </div>
             </div>
           </div>
