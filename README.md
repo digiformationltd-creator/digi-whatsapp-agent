@@ -19,49 +19,6 @@
 
 ---
 
-## 🏗️ Architecture Overview
-
-```
-                      ┌────────────────────────────────────────┐
-                      │     Incoming WhatsApp Message (Text/Voice)   │
-                      └───────────────────┬────────────────────┘
-                                          │
-                        ┌─────────────────▼─────────────────┐
-                        │   1. Media & Whisper Transcriber  │
-                        └─────────────────┬─────────────────┘
-                                          │
-                        ┌─────────────────▼─────────────────┐
-                        │   2. SQLite Memory & Fact Store   │
-                        └─────────────────┬─────────────────┘
-                                          │
-                        ┌─────────────────▼─────────────────┐
-                        │   3. Deterministic State Machine  │
-                        └─────────────────┬─────────────────┘
-                                          │
-                    ┌─────────────────────┴─────────────────────┐
-                    │                                           │
-         [Factual Template Match?]                   [Conversational Reasoning]
-                    │                                           │
-                    ▼                                           ▼
-      ┌───────────────────────────┐               ┌───────────────────────────┐
-      │ 4. Deterministic Engine   │               │ 5. Scoped RAG Retriever   │
-      │    (0ms Instant Reply)    │               │    (Intent Domain Slice)  │
-      └─────────────┬─────────────┘               └─────────────┬─────────────┘
-                    │                                           │
-                    │                             ┌─────────────▼─────────────┐
-                    │                             │ 6. Cloud LLM Orchestrator │
-                    │                             │    (Groq 120B / OpenCode) │
-                    │                             └─────────────┬─────────────┘
-                    │                                           │
-                    └─────────────────────┬─────────────────────┘
-                                          │
-                        ┌─────────────────▼─────────────────┐
-                        │ 7. Sanitizer & Clean Outbound WA  │
-                        └───────────────────────────────────┘
-```
-
----
-
 ## 🚀 Installation & Quick Start Guide
 
 ### 🛠️ Method 1: Manual Installation (Step-by-Step)
@@ -196,6 +153,12 @@ You can customize your business catalog, pricing, and FAQs either directly insid
 
 ---
 
-## 📄 License
+## 📄 License & Fair-Use Terms
 
-This project is open-source and licensed under the [MIT License](LICENSE).
+This project is licensed under the **Digiformation & DigiBiz OS Fair-Source License** (Strict Attribution & Non-Rebranding Edition).
+
+* ✅ **Free Self-Hosting:** You are free to download, self-host, and use this software for your own business or personal use.
+* ❌ **Strict No Rebranding:** You may NOT remove, alter, or obscure any logos, branding, or copyright attributions of **Digiformation Ltd** or **DigiBiz OS** in the UI, headers, footers, or code.
+* ❌ **No White-Label Resale:** You may NOT resell, re-package, or distribute this software as your own commercial SaaS without written authorization.
+
+Please refer to the full [LICENSE](LICENSE) file for complete legal terms.
