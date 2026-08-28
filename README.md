@@ -62,10 +62,64 @@
 
 ---
 
-## 🚀 Quick Start Guide
+## 🚀 Installation & Quick Start Guide
 
-### 🤖 Option 0: 1-Prompt Automatic Setup (For Google Antigravity & AI Assistants)
-If you are using **Google Antigravity**, **Cursor**, **Windsurf**, or **Claude Code**, simply open this project folder in your AI editor, copy and paste this prompt into the chat, and let the AI do everything automatically:
+### 🛠️ Method 1: Manual Installation (Step-by-Step)
+
+#### Prerequisites
+- [Node.js](https://nodejs.org/) v20.x or v22.x+ (Recommended: Node v22 LTS with built-in `node:sqlite`)
+- A smartphone with WhatsApp installed for QR pairing
+
+#### Step 1: Clone the Repository
+```bash
+git clone https://github.com/digiformationltd-creator/OPEN-WHATSAPP-AGENT-BY-DIGIFORMATION-LTD-.git
+cd OPEN-WHATSAPP-AGENT-BY-DIGIFORMATION-LTD-
+```
+
+#### Step 2: Install Dependencies
+```bash
+npm install
+```
+
+#### Step 3: Environment Setup
+Copy the example environment file:
+```bash
+cp .env.example .env
+```
+*(Optional)* Add your free API keys in `.env` (or add them later directly in the Web UI):
+```env
+PORT=9010
+GROQ_API_KEY=gsk_your_groq_key_here
+WHATSAPP_AGENT_KEY=your_opencode_zen_key_here
+```
+
+#### Step 4: Launch the Agent
+
+**Option A (1-Click Windows Runner):**  
+Double-click **`start.bat`** or **`start-whatsapp-agent.bat`**. It will automatically build and open the browser for you!
+
+**Option B (Terminal Command):**  
+```bash
+# Development Mode (Hot Reloading)
+npm run dev
+
+# OR Production Mode (Compiled High Performance)
+npm run build && npm start
+```
+Open **[http://localhost:9010](http://localhost:9010)** in your browser.
+
+#### Step 5: Pair WhatsApp & Enter Keys
+1. On the dashboard at `http://localhost:9010`, click **API Keys & Models** and paste your free Groq / AI key.
+2. Click **Connect** on the dashboard and scan the pairing QR code with your phone (WhatsApp ➔ Linked Devices ➔ Link a Device).
+3. The agent is now active and ready to sell 24/7!
+
+---
+
+### 🤖 Method 2: Automatic 1-Prompt Setup (For Antigravity & AI Assistants)
+
+If you are using **Google Antigravity**, **Cursor**, **Windsurf**, or **Claude Code**, you don't even need to touch the terminal! 
+
+Simply download & unzip the repository, open this folder in your AI editor, and **copy & paste this prompt** into the chat:
 
 ```text
 Please setup and launch this WhatsApp AI Sales Agent project for me:
@@ -74,51 +128,10 @@ Please setup and launch this WhatsApp AI Sales Agent project for me:
 3. If .env does not exist, copy .env.example to .env.
 4. Run 'npm run build' to compile the backend and frontend.
 5. Start the server on port 9010 (node dist/backend/server.cjs) in the background.
-6. Verify that http://localhost:9010/api/health is responding.
+6. Verify that http://localhost:9010/api/health is responding with {"ok": true}.
 7. Open http://localhost:9010 in my default browser.
 8. Guide me on how to enter my free Groq API key and customize my business knowledge base in the UI!
 ```
-
----
-
-### Prerequisites
-- [Node.js](https://nodejs.org/) v20.x or v22.x+ (Recommended: Node v22 LTS with built-in `node:sqlite`)
-- A WhatsApp number for scanning and connecting
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/digiformationltd-creator/OPEN-WHATSAPP-AGENT-BY-DIGIFORMATION-LTD-.git
-cd OPEN-WHATSAPP-AGENT-BY-DIGIFORMATION-LTD-
-```
-
-### 2. Install Dependencies
-```bash
-npm install
-```
-
-### 3. Start the Agent
-
-#### Option A: 1-Click Startup (Windows)
-Simply double-click **`start.bat`** or **`start-whatsapp-agent.bat`**. It will automatically install dependencies, build, and open the browser!
-
-#### Option B: Terminal / Command Line
-```bash
-npm run dev
-# or for production:
-npm run build && npm start
-```
-Open **http://localhost:9010** in your browser.
-
-### 4. Enter Your Free API Keys in the UI
-On the web dashboard at `http://localhost:9010`, navigate to **API Keys & Models**:
-1. Paste your free **Groq Cloud API Key** (for fast Llama 3.3 70B & Whisper voice transcription) ➔ Click **Save Groq**.
-2. Paste your free **OpenCode Zen / AI Reasoning Key** ➔ Click **Save Key**.
-*(You can also set these in `.env`)*
-
-### 5. Pair WhatsApp
-1. On your phone, open WhatsApp ➔ **Linked Devices** ➔ **Link a device**.
-2. Click **Connect** on the dashboard and scan the generated QR code.
-3. The agent is now live and ready to handle customer inquiries 24/7!
 
 ---
 
