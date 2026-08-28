@@ -130,7 +130,9 @@ You can customize your business catalog, pricing, and FAQs either directly insid
     <img src="public/digiformation_logo.png" alt="Digiformation Ltd Logo" width="130" height="130" style="border-radius: 50%; box-shadow: 0 8px 24px rgba(0,0,0,0.3); margin-bottom: 12px; object-fit: contain;" />
   </a>
   <p><strong>Developed & Maintained by Digiformation Ltd</strong><br />
-  <em>Official UK Company Registration # 16994903 • Incorporated in England & Wales</em></p>
+  <em>Official UK Company Registration # 16994903 • Incorporated in England & Wales</em><br />
+  🏛️ <strong>Companies House (GOV.UK):</strong> <a href="https://find-and-update.company-information.service.gov.uk/company/16994903" target="_blank">Company #16994903 Verification</a><br />
+  📍 <strong>Registered Corporate Office:</strong> Office 1006, 85 Dunstall Hill, Wolverhampton, United Kingdom</p>
 </div>
 
 - 🌐 **Official Website:** [www.digiformation.co.uk](https://www.digiformation.co.uk/)
@@ -138,7 +140,7 @@ You can customize your business catalog, pricing, and FAQs either directly insid
 - ✉️ **Official Email:** [info@digiformation.co.uk](mailto:info@digiformation.co.uk)
 - 📱 **WhatsApp & Direct Call:** [+92 316 446 7464](https://wa.me/923164467464)
 - 🔗 **Linktree Hub:** [linktr.ee/digiformationltd](https://linktr.ee/digiformationltd)
-- 🏛️ **Companies House (GOV.UK):** [Company #16994903 Verification](https://find-and-update.company-information.service.gov.uk/company/16994903)
+
 - 👥 **LinkedIn:** [Muhammad Haroon (Founder)](https://www.linkedin.com/in/muhammad-haroon-9a9945366)
 - 📘 **Facebook:** [Digiformation Ltd](https://www.facebook.com/share/1D676UBQw5/)
 - 📸 **Instagram:** [@digiformationltd](https://www.instagram.com/digiformationltd)
@@ -146,7 +148,6 @@ You can customize your business catalog, pricing, and FAQs either directly insid
 - 🐦 **X (Twitter):** [@Digiformation00](https://x.com/Digiformation00)
 - 🧵 **Threads:** [@digiformationltd](https://www.threads.com/@digiformationltd)
 - 📌 **Pinterest:** [digiformation](https://pin.it/27w3dT5lp)
-- 📍 **Registered Corporate Office:** Office 1006, 85 Dunstall Hill, Wolverhampton, United Kingdom
 
 ---
 
