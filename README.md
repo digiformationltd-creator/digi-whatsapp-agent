@@ -168,7 +168,11 @@ You can customize your business catalog, pricing, and FAQs either directly insid
 
 ## 🏢 Owner & Company Information
 
-Developed and maintained by **Digiformation Ltd** (UK Company Registration # 16994903).
+<div align="center">
+  <img src="public/digiformation_logo.png" alt="Digiformation Ltd Logo" width="130" style="border-radius: 18px; margin-bottom: 10px;" />
+  <p><strong>Developed & Maintained by Digiformation Ltd</strong><br />
+  <em>Official UK Company Registration # 16994903 • Incorporated in England & Wales</em></p>
+</div>
 
 - 🌐 **Official Website:** [www.digiformation.co.uk](https://www.digiformation.co.uk/)
 - 🚀 **DigiBiz OS:** [digibizos.co.uk](https://digibizos.co.uk/)
