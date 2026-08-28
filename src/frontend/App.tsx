@@ -39,6 +39,7 @@ import {
   Info
 } from "lucide-react";
 import type { LiveEvent } from "../shared/types";
+import digiformationLogo from "./assets/digiformation_logo.png";
 
 /** Brand mark — Official styled WhatsApp SVG with Glow */
 const WhatsAppLogo = ({ s = 28 }: { s?: number }) => {
@@ -1412,9 +1413,11 @@ function AboutPanel() {
         
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[#00A884] to-emerald-400 p-0.5 shadow-lg shadow-emerald-500/20 flex items-center justify-center font-black text-2xl text-slate-950">
-              D
-            </div>
+            <img
+              src={digiformationLogo}
+              alt="Digiformation Ltd Logo"
+              className="w-16 h-16 rounded-2xl object-contain bg-white p-1 border border-white/20 shadow-xl shadow-emerald-500/10 shrink-0"
+            />
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-xl font-extrabold text-white tracking-tight">Digiformation Ltd</h2>
@@ -1655,9 +1658,11 @@ export default function App() {
         {/* Footer Brand Card */}
         <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/70 border border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl">
           <div className="flex items-center gap-3.5 text-left w-full md:w-auto">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#00A884] to-emerald-400 p-0.5 flex items-center justify-center font-black text-slate-950 text-lg shadow-lg">
-              D
-            </div>
+            <img
+              src={digiformationLogo}
+              alt="Digiformation Ltd Logo"
+              className="w-12 h-12 rounded-xl object-contain bg-white p-1 border border-white/20 shadow-md shrink-0"
+            />
             <div>
               <div className="text-sm font-bold text-white flex items-center gap-2">
                 <span>Digiformation Ltd</span>
