@@ -64,6 +64,23 @@
 
 ## 🚀 Quick Start Guide
 
+### 🤖 Option 0: 1-Prompt Automatic Setup (For Google Antigravity & AI Assistants)
+If you are using **Google Antigravity**, **Cursor**, **Windsurf**, or **Claude Code**, simply open this project folder in your AI editor, copy and paste this prompt into the chat, and let the AI do everything automatically:
+
+```text
+Please setup and launch this WhatsApp AI Sales Agent project for me:
+1. Check that Node.js is installed on my system.
+2. Run 'npm install' to install all dependencies.
+3. If .env does not exist, copy .env.example to .env.
+4. Run 'npm run build' to compile the backend and frontend.
+5. Start the server on port 9010 (node dist/backend/server.cjs) in the background.
+6. Verify that http://localhost:9010/api/health is responding.
+7. Open http://localhost:9010 in my default browser.
+8. Guide me on how to enter my free Groq API key and customize my business knowledge base in the UI!
+```
+
+---
+
 ### Prerequisites
 - [Node.js](https://nodejs.org/) v20.x or v22.x+ (Recommended: Node v22 LTS with built-in `node:sqlite`)
 - A WhatsApp number for scanning and connecting
@@ -79,22 +96,7 @@ cd OPEN-WHATSAPP-AGENT-BY-DIGIFORMATION-LTD-
 npm install
 ```
 
-### 3. Configure Environment Variables
-Copy `.env.example` to `.env`:
-```bash
-cp .env.example .env
-```
-Edit `.env` and add your free API keys:
-```env
-PORT=9010
-GROQ_API_KEY=gsk_your_groq_key_here
-WHATSAPP_AGENT_KEY=your_opencode_zen_key_here
-```
-> 💡 **Get Free Keys:**
-> - [Groq Console](https://console.groq.com/keys) (Free ultra-fast Llama & Whisper models)
-> - [OpenCode Zen](https://opencode.ai) (Free backup reasoning models)
-
-### 4. Start the Agent
+### 3. Start the Agent
 
 #### Option A: 1-Click Startup (Windows)
 Simply double-click **`start.bat`** or **`start-whatsapp-agent.bat`**. It will automatically install dependencies, build, and open the browser!
@@ -107,6 +109,12 @@ npm run build && npm start
 ```
 Open **http://localhost:9010** in your browser.
 
+### 4. Enter Your Free API Keys in the UI
+On the web dashboard at `http://localhost:9010`, navigate to **API Keys & Models**:
+1. Paste your free **Groq Cloud API Key** (for fast Llama 3.3 70B & Whisper voice transcription) ➔ Click **Save Groq**.
+2. Paste your free **OpenCode Zen / AI Reasoning Key** ➔ Click **Save Key**.
+*(You can also set these in `.env`)*
+
 ### 5. Pair WhatsApp
 1. On your phone, open WhatsApp ➔ **Linked Devices** ➔ **Link a device**.
 2. Click **Connect** on the dashboard and scan the generated QR code.
@@ -116,15 +124,15 @@ Open **http://localhost:9010** in your browser.
 
 ## 📁 Customizing for Your Business
 
-You can customize the entire business personality and product catalog simply by editing the Markdown files in the `knowledge/` directory (refer to `sample_knowledge/` for examples):
+You can customize your business catalog, pricing, and FAQs either directly inside the **Knowledge Base Studio** on the Web UI, or by editing the Markdown files in the `knowledge/` folder:
 
 | Knowledge File | Purpose & Contents |
 | :--- | :--- |
-| **`knowledge/company-profile.md`** | Company name, official office address, timings, and contact details |
-| **`knowledge/packages-pricing.md`** | Pricing tables, package tiers, inclusions, and timelines |
-| **`knowledge/services.md`** | Overview of all business offerings and specialties |
-| **`knowledge/faq.md`** | Common customer questions and verified answers |
-| **`knowledge/documents-kyc.md`** | Onboarding requirements, ID verification links, and checklists |
+| **`knowledge/company-profile.md`** | Business name, official address, operating hours, and contact details |
+| **`knowledge/packages-pricing.md`** | Products & services pricing table, tiers, inclusions, and timelines |
+| **`knowledge/services.md`** | Overview of all business offerings, packages, and specialties |
+| **`knowledge/faq.md`** | Common customer questions and verified factual answers |
+| **`knowledge/documents-kyc.md`** | Order requirements, delivery specifications, and onboarding checklist |
 
 ---
 

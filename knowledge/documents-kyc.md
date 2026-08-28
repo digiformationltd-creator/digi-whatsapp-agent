@@ -1,11 +1,7 @@
-# Required Documents & KYC Verification — Digiformation Ltd
+# Order Requirements & Onboarding Checklist
 
-## Official Verification Links
-- **Direct ID Verification Portal:** https://verify.didit.me/u/LGgiVLwzSbGmvipLTgim-A
-
-## Standard UK LTD Client Checklist
-1. Valid Passport or National ID Card (Photo/Scan)
-2. Proof of Address (Utility bill or bank statement within 90 days)
-3. Proposed Company Name (and 1–2 backup names)
-4. Director & Shareholder Full Legal Name, Email, and Phone Number
-5. Business Activity Description (SIC Code area)
+## Required Details to Place an Order
+1. Full Name / Company Name
+2. Contact Email & WhatsApp Phone Number
+3. Delivery Address / Service Specifications
+4. Preferred Payment Method (Bank Transfer / Card)
