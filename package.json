@@ -4,18 +4,16 @@
   "description": "Standalone WhatsApp Agent with QR pairing, auto-reply, and knowledge base",
   "author": "Digiformation Ltd",
   "type": "module",
-  "main": "electron/main.cjs",
+  "main": "dist/backend/server.cjs",
   "scripts": {
     "dev": "tsx src/backend/server.ts",
     "build": "tsc --noEmit && vite build && esbuild src/backend/server.ts --bundle --platform=node --format=cjs --packages=external --outfile=dist/backend/server.cjs && esbuild src/backend/server.ts --bundle --platform=node --format=esm --packages=external --outfile=dist/backend/server.js",
-    "start": "node dist/backend/server.js",
-    "electron:dev": "electron electron/main.cjs",
-    "electron:build": "npm run build && electron-builder --win",
+    "start": "node dist/backend/server.cjs",
     "frontend:dev": "vite",
     "frontend:build": "vite build",
     "test": "npx tsx scripts/test_master_10_phases.ts",
     "lint": "tsc --noEmit",
-    "clean": "rm -rf dist dist_electron"
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -43,53 +41,9 @@
     "tailwindcss": "^3.4.17",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
-    "vite": "^6.2.3",
-    "electron": "33.2.1",
-    "electron-builder": "^26.15.3"
+    "vite": "^6.2.3"
   },
   "allowScripts": {
     "tesseract.js@7.0.0": true
-  },
-  "build": {
-    "appId": "com.digiformation.whatsapp.agent",
-    "productName": "WhatsApp AI Sales Agent",
-    "electronVersion": "33.2.1",
-    "directories": {
-      "output": "dist_electron"
-    },
-    "files": [
-      "dist/**/*",
-      "electron/**/*",
-      "knowledge/**/*",
-      "sample_knowledge/**/*",
-      "node_modules/**/*",
-      "package.json"
-    ],
-    "extraResources": [
-      {
-        "from": "knowledge",
-        "to": "knowledge",
-        "filter": ["**/*"]
-      }
-    ],
-    "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": ["x64"]
-        },
-        {
-          "target": "portable",
-          "arch": ["x64"]
-        }
-      ]
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "shortcutName": "WhatsApp AI Sales Agent"
-    }
   }
 }
