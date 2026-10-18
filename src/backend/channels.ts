@@ -5,15 +5,14 @@ import { emit as emitLive } from "../shared/live_events";
 import type { ChannelState, ChannelStatus, WhatsAppAccount, WhatsAppListResponse } from "../shared/types";
 import { parseAndNormalizeKnowledge, SUPPORTED_EXTENSIONS } from "./knowledge_parser";
 import { sanitizeWhatsAppReply } from "./sanitizer";
+import { matchSectionFromKb } from "./engine/deterministic";
 
-const WA_MAX = 3;
-const WA_IDS = ["0", "1", "2"];
+const WA_MAX = 1;
+const WA_IDS = ["0"];
 
 type WaAccount = { socket: any; stopping: boolean };
 const waAcc: Record<string, WaAccount> = {
   "0": { socket: null, stopping: false },
-  "1": { socket: null, stopping: false },
-  "2": { socket: null, stopping: false },
 };
 
 export type ChannelStateType = ChannelState;
@@ -55,11 +54,53 @@ function sessionDir(name: string): string {
 function knowledgeFile(id = "0"): string {
   const base = process.env.MYRAA_DATA_DIR || process.env.DIGI_DATA_DIR || path.join(process.cwd(), "data");
   try { fs.mkdirSync(base, { recursive: true }); } catch { }
-  return path.join(base, id === "0" ? "whatsapp_knowledge.md" : `whatsapp_knowledge_${id}.md`);
+  const filename = id === "0" ? "whatsapp_knowledge.md" : `whatsapp_knowledge_${id}.md`;
+  const target = path.join(base, filename);
+  if (!fs.existsSync(target)) {
+    let modDir = "";
+    try { if (typeof __dirname !== "undefined" && __dirname) modDir = __dirname; } catch { }
+
+    const candidates = [
+      path.join(process.cwd(), "data", filename),
+      path.join(process.cwd(), "data", "whatsapp_knowledge.md"),
+      (process as any).resourcesPath ? path.join((process as any).resourcesPath, "data", filename) : null,
+      (process as any).resourcesPath ? path.join((process as any).resourcesPath, "data", "whatsapp_knowledge.md") : null,
+      modDir ? path.join(modDir, "..", "..", "data", filename) : null,
+      modDir ? path.join(modDir, "..", "data", filename) : null,
+    ].filter(Boolean) as string[];
+
+    for (const c of candidates) {
+      if (fs.existsSync(c)) {
+        try { fs.copyFileSync(c, target); break; } catch { }
+      }
+    }
+  }
+
+  return target;
 }
 
 export function getWhatsappKnowledge(id = "0"): string {
-  try { return fs.readFileSync(knowledgeFile(id), "utf-8"); } catch { return ""; }
+  try {
+    const p = knowledgeFile(id);
+    if (fs.existsSync(p)) {
+      const text = fs.readFileSync(p, "utf-8").trim();
+      if (text) return text;
+    }
+  } catch { }
+
+  const rootCandidates = [
+    path.join(process.cwd(), "data", id === "0" ? "whatsapp_knowledge.md" : `whatsapp_knowledge_${id}.md`),
+    path.join(process.cwd(), "data", "whatsapp_knowledge.md"),
+  ];
+  for (const rc of rootCandidates) {
+    if (fs.existsSync(rc)) {
+      try {
+        const text = fs.readFileSync(rc, "utf-8").trim();
+        if (text) return text;
+      } catch { }
+    }
+  }
+  return "";
 }
 
 export function setWhatsappKnowledge(content: string, id = "0", filenameOrFormat = "md"): { ok: boolean; error?: string } {
@@ -67,7 +108,15 @@ export function setWhatsappKnowledge(content: string, id = "0", filenameOrFormat
   if (!result.ok) {
     return { ok: false, error: result.error };
   }
-  fs.writeFileSync(knowledgeFile(id), String(result.normalizedText ?? ""), "utf-8");
+  const text = String(result.normalizedText ?? "");
+  fs.writeFileSync(knowledgeFile(id), text, "utf-8");
+
+  // Also sync to cwd/data so both paths stay in sync
+  try {
+    const rootTarget = path.join(process.cwd(), "data", id === "0" ? "whatsapp_knowledge.md" : `whatsapp_knowledge_${id}.md`);
+    fs.writeFileSync(rootTarget, text, "utf-8");
+  } catch { }
+
   return { ok: true };
 }
 
@@ -83,6 +132,52 @@ export function getWhatsappAgentActive(id = "0"): boolean {
 
 export function setWhatsappAgentActive(active: boolean, id = "0"): void {
   fs.writeFileSync(agentFlagFile(id), active ? "1" : "0", "utf-8");
+}
+
+function blocklistFile(id = "0"): string {
+  const base = process.env.MYRAA_DATA_DIR || process.env.DIGI_DATA_DIR || path.join(process.cwd(), "data");
+  try { fs.mkdirSync(base, { recursive: true }); } catch { }
+  return path.join(base, id === "0" ? "whatsapp_blocklist.json" : `whatsapp_blocklist_${id}.json`);
+}
+
+export function getWhatsappBlocklist(id = "0"): string[] {
+  try {
+    const arr = JSON.parse(fs.readFileSync(blocklistFile(id), "utf-8"));
+    return Array.isArray(arr) ? arr.map((s) => String(s).replace(/\D/g, "")).filter(Boolean) : [];
+  } catch { return []; }
+}
+
+export function setWhatsappBlocklist(numbers: string[], id = "0"): void {
+  const clean = Array.from(new Set((numbers || []).map((s) => String(s).replace(/\D/g, "")).filter(Boolean)));
+  fs.writeFileSync(blocklistFile(id), JSON.stringify(clean), "utf-8");
+}
+
+export function isBlocked(senderDigits: string, id = "0"): boolean {
+  if (!senderDigits) return false;
+  const list = getWhatsappBlocklist(id);
+  return list.some((b) => b && (senderDigits.includes(b) || b.includes(senderDigits)));
+}
+
+function modeFlagFile(id = "0"): string {
+  const base = process.env.MYRAA_DATA_DIR || process.env.DIGI_DATA_DIR || path.join(process.cwd(), "data");
+  try { fs.mkdirSync(base, { recursive: true }); } catch { }
+  return path.join(base, id === "0" ? "whatsapp_mode.flag" : `whatsapp_mode_${id}.flag`);
+}
+
+export function getWhatsappMode(id = "0"): "agent" | "commander" {
+  try {
+    const m = fs.readFileSync(modeFlagFile(id), "utf-8").trim().toLowerCase();
+    if (m === "agent") return "agent";
+    if (m === "commander") {
+      if (getWhatsappKnowledge(id).trim() && getWhatsappAgentActive(id)) return "agent";
+      return "commander";
+    }
+  } catch { }
+  return getWhatsappKnowledge(id).trim() ? "agent" : "commander";
+}
+
+export function setWhatsappMode(mode: "agent" | "commander", id = "0"): void {
+  try { fs.writeFileSync(modeFlagFile(id), mode, "utf-8"); } catch { }
 }
 
 /**
@@ -112,6 +207,8 @@ import {
   resolveCustomerId,
 } from "./memory";
 import { AIOrchestrator } from "./engine/ai_orchestrator";
+import { LangGraphEngine } from "./engine/langgraph_agent";
+import { waCrmRecordContact } from "./crm/wa_crm";
 import { HumanHandoff } from "./handoff";
 import { processVoiceReply } from "./voice";
 
@@ -146,7 +243,7 @@ async function transcribeVoice(buffer: Buffer, mimeType = "audio/ogg"): Promise<
 }
 
 const WA_FALLBACK =
-  "Thanks so much for your message! 😊 Our team is on it and will get back to you very shortly with the details.";
+  "Aapka message receive ho chuka hai! DIGI BIZ OS (Lifetime Licence: PKR 14,900) ke baare mein mazeed details ya immediate setup ke liye aap direct hamari official team se WhatsApp +92 316 446 7464 ya info@digiformation.co.uk par bhi rabta kar saktay hain.";
 
 export async function generateSalesReply(framedPrompt: string): Promise<string> {
   const clean = (framedPrompt || "").trim();
@@ -154,22 +251,49 @@ export async function generateSalesReply(framedPrompt: string): Promise<string> 
 
   let zenKey = (process.env.WHATSAPP_AGENT_KEY || "").trim();
   let groqKey = (process.env.GROQ_API_KEY || "").trim();
-  if (!zenKey || !groqKey) {
-    try {
-      const envPath = path.join(process.cwd(), ".env");
-      if (fs.existsSync(envPath)) {
-        const envTxt = fs.readFileSync(envPath, "utf-8");
-        const zm = envTxt.match(/^WHATSAPP_AGENT_KEY=(.*)$/m);
-        if (zm && zm[1] && !zenKey) zenKey = zm[1].trim().replace(/^["']|["']$/g, "");
-        const gm = envTxt.match(/^GROQ_API_KEY=(.*)$/m);
-        if (gm && gm[1] && !groqKey) groqKey = gm[1].trim().replace(/^["']|["']$/g, "");
-      }
-    } catch { }
+  let geminiKey = (process.env.GEMINI_WHATSAPP_KEY || process.env.GEMINI_API_KEY || "").trim();
+  let openaiKey = (process.env.OPENAI_API_KEY || process.env.OPENROUTER_API_KEY || "").trim();
+
+  // 1) Google Gemini (Primary Reasoning Provider)
+  if (geminiKey) {
+    const geminiModels = [
+      process.env.GEMINI_MODEL,
+      "gemini-2.5-flash",
+      "gemini-2.0-flash",
+      "gemini-1.5-flash",
+      "gemini-flash-latest",
+      "gemini-3.8-flash",
+    ].filter(Boolean) as string[];
+
+    for (const model of geminiModels) {
+      try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(geminiKey)}`;
+        const r = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ role: "user", parts: [{ text: clean }] }],
+            generationConfig: {
+              maxOutputTokens: 450,
+              temperature: 0.3,
+            },
+          }),
+          signal: AbortSignal.timeout(15000),
+        });
+        if (!r.ok) continue;
+        const d: any = await r.json();
+        const text = String((d?.candidates?.[0]?.content?.parts || []).map((p: any) => p?.text || "").join("")).trim();
+        if (text && !text.toLowerCase().startsWith("error:")) {
+          console.log(`[Sales Brain] Answer generated via Google Gemini (${model})`);
+          return sanitizeWhatsAppReply(text);
+        }
+      } catch { }
+    }
   }
 
-  // 1) Groq Ultra-Fast Cloud Models (1.1s - 1.6s Response Time)
+  // 2) Groq Ultra-Fast Cloud Models (~300ms, max_tokens: 450)
   if (groqKey) {
-    const groqModels = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "allam-2-7b"];
+    const groqModels = ["qwen/qwen3.8-27b", "openai/gpt-oss-120b", "openai/gpt-oss-20b", "allam-2-7b"];
     for (const model of groqModels) {
       try {
         const r = await fetch("https://api.groq.com/openai/v1/chat/completions", {
@@ -177,9 +301,11 @@ export async function generateSalesReply(framedPrompt: string): Promise<string> 
           headers: { "Content-Type": "application/json", Authorization: `Bearer ${groqKey}` },
           body: JSON.stringify({
             model,
+            max_tokens: 450,
+            temperature: 0.3,
             messages: [{ role: "user", content: clean }],
           }),
-          signal: AbortSignal.timeout(15000),
+          signal: AbortSignal.timeout(12000),
         });
         if (r.ok) {
           const d: any = await r.json();
@@ -195,27 +321,201 @@ export async function generateSalesReply(framedPrompt: string): Promise<string> 
     }
   }
 
-  // 2) OpenCode Zen Backup
-  try {
-    const r = await fetch("https://opencode.ai/zen/v1/chat/completions", {
-      method: "POST",
-      headers: zenKey ? { "Content-Type": "application/json", Authorization: `Bearer ${zenKey}` } : { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "nemotron-3-ultra-free",
-        messages: [{ role: "user", content: clean }],
-      }),
-      signal: AbortSignal.timeout(45000),
-    });
-    if (r.ok) {
-      const d: any = await r.json();
-      const text = String(d?.choices?.[0]?.message?.content || "").trim();
-      if (text && !text.toLowerCase().startsWith("error:")) {
-        console.log(`[Sales Brain] Answer generated via OpenCode Zen (nemotron-3-ultra-free)`);
-        return sanitizeWhatsAppReply(text);
+  // 3) Cloudflare Workers AI (Serverless Edge Inference)
+  const cfAccountId = (process.env.CLOUDFLARE_ACCOUNT_ID || "").trim();
+  const cfToken = (process.env.CLOUDFLARE_API_TOKEN || process.env.CLOUDFLARE_API_KEY || "").trim();
+  if (cfAccountId && cfToken) {
+    const preferredModel = (process.env.CLOUDFLARE_MODEL || "@cf/meta/llama-3.3-70b-instruct").trim();
+    const cfModels = [
+      preferredModel,
+      "@cf/meta/llama-3.3-70b-instruct",
+      "@cf/meta/llama-3.1-8b-instruct",
+      "@cf/deepseek-ai/deepseek-r1-distill-qwen-32b",
+      "@cf/qwen/qwen2.5-7b-instruct",
+    ].filter((v, i, a) => a.indexOf(v) === i);
+
+    for (const model of cfModels) {
+      try {
+        const r = await fetch(`https://api.cloudflare.com/client/v4/accounts/${cfAccountId}/ai/run/${model}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${cfToken}`,
+          },
+          body: JSON.stringify({
+            messages: [{ role: "user", content: clean }],
+            max_tokens: 450,
+          }),
+          signal: AbortSignal.timeout(15000),
+        });
+        if (r.ok) {
+          const d: any = await r.json();
+          const text = String(d?.result?.response || d?.result || "").trim();
+          if (text && !text.toLowerCase().startsWith("error:")) {
+            console.log(`[Sales Brain] Answer generated via Cloudflare Workers AI (${model})`);
+            return sanitizeWhatsAppReply(text);
+          }
+        }
+      } catch (e: any) {
+        console.error(`[Sales Brain] Cloudflare (${model}) error:`, e?.message);
       }
     }
-  } catch (e: any) {
-    console.error("[Sales Brain] OpenCode Zen error:", e?.message);
+  }
+
+  // 4) Mistral AI (1 Billion Tokens/Month Free Experiment Tier)
+  const mistralKey = (process.env.MISTRAL_API_KEY || "").trim();
+  if (mistralKey) {
+    const mistralModels = [
+      process.env.MISTRAL_MODEL,
+      "mistral-small-latest",
+      "open-mistral-7b",
+      "codestral-latest",
+    ].filter(Boolean) as string[];
+
+    for (const model of mistralModels) {
+      try {
+        const r = await fetch("https://api.mistral.ai/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${mistralKey}`,
+          },
+          body: JSON.stringify({
+            model,
+            messages: [{ role: "user", content: clean }],
+            max_tokens: 450,
+          }),
+          signal: AbortSignal.timeout(15000),
+        });
+        if (r.ok) {
+          const d: any = await r.json();
+          const text = String(d?.choices?.[0]?.message?.content || "").trim();
+          if (text && !text.toLowerCase().startsWith("error:")) {
+            console.log(`[Sales Brain] Answer generated via Mistral AI (${model})`);
+            return sanitizeWhatsAppReply(text);
+          }
+        }
+      } catch (e: any) {
+        console.error(`[Sales Brain] Mistral AI (${model}) error:`, e?.message);
+      }
+    }
+  }
+
+  // 5) GitHub Models (100% Free AI Tier via GitHub Token)
+  const ghToken = (process.env.GITHUB_TOKEN || process.env.GITHUB_MODELS_TOKEN || "").trim();
+  if (ghToken) {
+    const ghModels = [
+      process.env.GITHUB_MODEL,
+      "gpt-4o-mini",
+      "Meta-Llama-3.1-70B-Instruct",
+      "Phi-3.5-mini-instruct",
+    ].filter(Boolean) as string[];
+
+    for (const model of ghModels) {
+      try {
+        const r = await fetch("https://models.inference.ai.azure.com/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${ghToken}`,
+          },
+          body: JSON.stringify({
+            model,
+            max_tokens: 450,
+            temperature: 0.3,
+            messages: [{ role: "user", content: clean }],
+          }),
+          signal: AbortSignal.timeout(15000),
+        });
+        if (r.ok) {
+          const d: any = await r.json();
+          const text = String(d?.choices?.[0]?.message?.content || "").trim();
+          if (text && !text.toLowerCase().startsWith("error:")) {
+            console.log(`[Sales Brain] Answer generated via GitHub Models (${model})`);
+            return sanitizeWhatsAppReply(text);
+          }
+        }
+      } catch (e: any) {
+        console.error(`[Sales Brain] GitHub Models (${model}) error:`, e?.message);
+      }
+    }
+  }
+
+  // 6) SambaNova Cloud (100% Free Developer Tier 400 T/s)
+  const sambanovaKey = (process.env.SAMBANOVA_API_KEY || "").trim();
+  if (sambanovaKey) {
+    const snModels = [
+      process.env.SAMBANOVA_MODEL,
+      "Meta-Llama-3.1-70B-Instruct",
+      "Meta-Llama-3.1-8B-Instruct",
+      "Qwen2.5-72B-Instruct",
+    ].filter(Boolean) as string[];
+
+    for (const model of snModels) {
+      try {
+        const r = await fetch("https://api.sambanova.ai/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sambanovaKey}`,
+          },
+          body: JSON.stringify({
+            model,
+            messages: [{ role: "user", content: clean }],
+            max_tokens: 450,
+          }),
+          signal: AbortSignal.timeout(15000),
+        });
+        if (r.ok) {
+          const d: any = await r.json();
+          const text = String(d?.choices?.[0]?.message?.content || "").trim();
+          if (text && !text.toLowerCase().startsWith("error:")) {
+            console.log(`[Sales Brain] Answer generated via SambaNova Cloud (${model})`);
+            return sanitizeWhatsAppReply(text);
+          }
+        }
+      } catch (e: any) {
+        console.error(`[Sales Brain] SambaNova Cloud (${model}) error:`, e?.message);
+      }
+    }
+  }
+
+  // 7) Together AI (Open-Source Free Models)
+  const togetherKey = (process.env.TOGETHER_API_KEY || "").trim();
+  if (togetherKey) {
+    const togetherModels = [
+      process.env.TOGETHER_MODEL,
+      "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
+      "mistralai/Mixtral-8x7B-Instruct-v0.1",
+    ].filter(Boolean) as string[];
+
+    for (const model of togetherModels) {
+      try {
+        const r = await fetch("https://api.together.xyz/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${togetherKey}`,
+          },
+          body: JSON.stringify({
+            model,
+            messages: [{ role: "user", content: clean }],
+            max_tokens: 450,
+          }),
+          signal: AbortSignal.timeout(15000),
+        });
+        if (r.ok) {
+          const d: any = await r.json();
+          const text = String(d?.choices?.[0]?.message?.content || "").trim();
+          if (text && !text.toLowerCase().startsWith("error:")) {
+            console.log(`[Sales Brain] Answer generated via Together AI (${model})`);
+            return sanitizeWhatsAppReply(text);
+          }
+        }
+      } catch (e: any) {
+        console.error(`[Sales Brain] Together AI (${model}) error:`, e?.message);
+      }
+    }
   }
 
   return "";
@@ -362,11 +662,23 @@ export async function whatsappConnect(id: string = "0"): Promise<ChannelStatusTy
             continue; // Immediate hard stop
           }
 
-          const allow = (process.env.WHATSAPP_ALLOWED || "").split(",").map((s) => s.trim()).filter(Boolean);
-          const allowed = allow.length === 0 || allow.some((a) => jid.includes(a));
+          const waMode = getWhatsappMode(id);
+          const allow = (process.env.WHATSAPP_ALLOWED || "").split(",").map((s) => s.replace(/\D/g, "")).filter(Boolean);
+          const senderDigits = jid.replace(/\D/g, "");
+          const allowed = waMode === "agent"
+            ? !isBlocked(senderDigits, id)
+            : (allow.length > 0 && allow.some((a) => senderDigits.includes(a) || a.includes(senderDigits)));
+
+          const rawMsg = msg.message || {};
+          const msgContent =
+            rawMsg.ephemeralMessage?.message ||
+            rawMsg.viewOnceMessage?.message ||
+            rawMsg.viewOnceMessageV2?.message ||
+            rawMsg.documentWithCaptionMessage?.message ||
+            rawMsg;
 
           // Multi-format document upload for Business Knowledge Base
-          const doc = msg.message.documentMessage;
+          const doc = msgContent?.documentMessage || rawMsg?.documentMessage;
           if (doc && /\.(md|markdown|txt|json|yaml|yml|csv)$/i.test(String(doc.fileName || ""))) {
             if (!allowed) continue;
             try {
@@ -376,7 +688,7 @@ export async function whatsappConnect(id: string = "0"): Promise<ChannelStatusTy
               if (parsed.ok && parsed.normalizedText) {
                 fs.writeFileSync(knowledgeFile(id), parsed.normalizedText, "utf-8");
                 emitLive("file_action", { message: `Knowledge Base updated via WhatsApp from ${doc.fileName}` });
-                await whatsappSend(jid, `Your business knowledge base has been updated from ${doc.fileName}. I will use it to answer customer queries.`, id);
+                await whatsappSend(jid, `✅ Business Knowledge Base update ho chuka hai (${doc.fileName})! Ab main aapke naye prices aur data ke mutabiq customers ko jawab doonga.`, id);
               } else {
                 await whatsappSend(jid, `Could not process ${doc.fileName}: ${parsed.error || "Invalid file"}. Supported: MD, TXT, JSON, YAML, CSV.`, id);
               }
@@ -385,13 +697,6 @@ export async function whatsappConnect(id: string = "0"): Promise<ChannelStatusTy
             }
             continue;
           }
-
-          const msgContent =
-            msg.message?.ephemeralMessage?.message ||
-            msg.message?.viewOnceMessage?.message ||
-            msg.message?.viewOnceMessageV2?.message ||
-            msg.message?.documentWithCaptionMessage?.message ||
-            msg.message;
 
           let text = String(
             msgContent?.conversation ||
@@ -431,7 +736,13 @@ export async function whatsappConnect(id: string = "0"): Promise<ChannelStatusTy
           }
 
           if (!text) continue;
-          if (!allowed) continue;
+          if (!allowed) {
+            emitLive("channel_message", {
+              message: `WhatsApp[${id}] Inbound from ${senderDigits} blocked (${waMode === "agent" ? "in blocklist" : "not in allowlist"})`,
+              detail: `Phone: ${jid}`,
+            });
+            continue;
+          }
 
           if (!getWhatsappAgentActive(id)) {
             rememberFact(text, "customer", `whatsapp:${jid}`, 2, "message");
@@ -442,8 +753,13 @@ export async function whatsappConnect(id: string = "0"): Promise<ChannelStatusTy
           console.log(`[WhatsApp Inbound] Message received from ${jid}: "${text}"`);
           emitLive("channel_message", { message: `WhatsApp[${id}] AI reasoning...`, detail: text.slice(0, 120) });
           
+          // WhatsApp CRM contact recording
+          try {
+            waCrmRecordContact(jid, (msg.pushName as string) || undefined);
+          } catch { /* best-effort */ }
+
           // Phase 1 & 2: Record inbound message into Memory & State Foundation
-          recordInboundMessage(jid, text);
+          recordInboundMessage(jid, text, (msg.pushName as string) || undefined);
           rememberFact(text, "customer", `whatsapp:${jid}`, 2, "message");
 
           // Phase 8: Check Human Handoff trigger
@@ -457,12 +773,37 @@ export async function whatsappConnect(id: string = "0"): Promise<ChannelStatusTy
 
           recallMemoryContext(`whatsapp:${jid}`, text).then(async (mem) => {
             const custId = resolveCustomerId(jid);
-            // Phase 7: AI Orchestrator (Deterministic + Scoped AI Reasoning)
-            let reply = await AIOrchestrator.generateReply(text, jid, custId);
             
+            // 1. Primary LangGraph StateGraph Execution
+            let reply = "";
+            const kbContent = getWhatsappKnowledge(id);
+            try {
+              const graphResult = await LangGraphEngine.run(text, jid, custId, {
+                kbContent,
+              });
+              reply = graphResult.response || "";
+            } catch (graphErr: any) {
+              console.warn("[WhatsApp] LangGraph execution warning:", graphErr?.message);
+            }
+
+            // 2. Deterministic AI Orchestrator Fallback (with Knowledge Base)
+            if (!reply) {
+              reply = await AIOrchestrator.generateReply(text, jid, custId, kbContent);
+            }
+            
+            // 3. Fallback to sales prompt LLM chain
             if (!reply) {
               const framed = frameSalesPrompt(text, mem, id, jid);
               reply = await generateSalesReply(framed);
+            }
+
+            // 4. Resilient Knowledge Base Section Matching Fallback
+            if (!reply && kbContent) {
+              const matchedSec = matchSectionFromKb(text, kbContent);
+              if (matchedSec) {
+                console.log(`[WhatsApp] Matched section from Knowledge Base directly`);
+                reply = sanitizeWhatsAppReply(matchedSec);
+              }
             }
             
             const fellBack = !reply;

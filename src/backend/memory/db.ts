@@ -1,5 +1,10 @@
 import fs from "fs";
 import path from "path";
+import { createRequire } from "module";
+
+const esmRequire = typeof require !== "undefined"
+  ? require
+  : (typeof import.meta !== "undefined" && import.meta.url ? createRequire(import.meta.url) : () => null);
 
 export interface PreparedStatement {
   get(...args: any[]): any;
@@ -91,7 +96,7 @@ class UniversalJsonDb implements ISyncDatabase {
     const s = sql.trim().replace(/\s+/g, " ");
 
     // 1. customers table
-    if (/SELECT \* FROM customers WHERE customer_id = \?/i.test(s)) {
+    if (/SELECT .* FROM customers WHERE customer_id = \?/i.test(s)) {
       return {
         get: (cid: string) => this.data.customers[cid] || undefined,
         all: (cid: string) => (this.data.customers[cid] ? [this.data.customers[cid]] : []),
@@ -103,8 +108,12 @@ class UniversalJsonDb implements ISyncDatabase {
       return {
         get: () => undefined,
         all: () => [],
-        run: (cid: string, jid: string, now1: number, now2: number) => {
-          this.data.customers[cid] = {
+        run: (...args: any[]) => {
+          const cid = args[0];
+          const jid = args[1];
+          const colsMatch = s.match(/customers\s*\(([^)]+)\)/i);
+          const cols = colsMatch ? colsMatch[1].split(",").map(c => c.trim()) : [];
+          const record: Record<string, any> = {
             customer_id: cid,
             phone_jid: jid,
             name: null,
@@ -117,9 +126,15 @@ class UniversalJsonDb implements ISyncDatabase {
             order_number: null,
             past_objections: null,
             kyc_progress: null,
-            created_at: now1,
-            updated_at: now2
+            created_at: Date.now(),
+            updated_at: Date.now()
           };
+          cols.forEach((col, idx) => {
+            if (idx < args.length) {
+              record[col] = args[idx];
+            }
+          });
+          this.data.customers[cid] = record;
           this.persist();
           return { changes: 1, lastInsertRowid: 0 };
         }
@@ -273,7 +288,7 @@ export function getDatabase(): ISyncDatabase {
   // Try native node:sqlite (Node 22+)
   try {
     // Dynamic require to prevent bundling errors in older Node / Electron environments
-    const sqliteModule = (Function('return require("node:sqlite")')()) as any;
+    const sqliteModule = esmRequire("node:sqlite") as any;
     if (sqliteModule && sqliteModule.DatabaseSync) {
       const dbPath = getDbPath();
       const nativeDb = new sqliteModule.DatabaseSync(dbPath);

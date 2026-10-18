@@ -15,10 +15,33 @@ export interface DynamicBusinessProfile {
   highlights: string[];
 }
 
+function safeModuleDir(): string {
+  try {
+    if (typeof __dirname !== "undefined" && __dirname) return __dirname;
+  } catch {}
+  return process.cwd();
+}
+
 export class MarkdownKnowledgeLoader {
   static getKnowledgeDir(): string {
     const custom = process.env.KNOWLEDGE_DIR;
     if (custom && fs.existsSync(custom)) return custom;
+
+    const modDir = safeModuleDir();
+    const candidates = [
+      process.env.MYRAA_DATA_DIR ? path.join(process.env.MYRAA_DATA_DIR, "knowledge") : null,
+      process.env.DIGI_DATA_DIR ? path.join(process.env.DIGI_DATA_DIR, "knowledge") : null,
+      (process as any).resourcesPath ? path.join((process as any).resourcesPath, "knowledge") : null,
+      path.join(process.cwd(), "knowledge"),
+      path.join(process.cwd(), "data", "knowledge"),
+      path.join(modDir, "..", "..", "..", "knowledge"),
+      path.join(modDir, "..", "knowledge"),
+    ].filter(Boolean) as string[];
+
+    for (const c of candidates) {
+      if (fs.existsSync(c)) return c;
+    }
+
     return path.join(process.cwd(), "knowledge");
   }
 
@@ -26,13 +49,28 @@ export class MarkdownKnowledgeLoader {
    * Lists all available .md knowledge files in the knowledge directory
    */
   static listKnowledgeFiles(): string[] {
+    const files = new Set<string>();
     try {
       const dir = this.getKnowledgeDir();
-      if (!fs.existsSync(dir)) return [];
-      return fs.readdirSync(dir).filter(f => f.endsWith(".md"));
-    } catch {
-      return [];
+      if (fs.existsSync(dir)) {
+        fs.readdirSync(dir).filter(f => f.endsWith(".md")).forEach(f => files.add(f));
+      }
+    } catch {}
+
+    const waKbCandidates = [
+      process.env.MYRAA_DATA_DIR ? path.join(process.env.MYRAA_DATA_DIR, "whatsapp_knowledge.md") : null,
+      path.join(process.cwd(), "data", "whatsapp_knowledge.md"),
+      path.join(process.cwd(), "whatsapp_knowledge.md"),
+    ].filter(Boolean) as string[];
+
+    for (const cand of waKbCandidates) {
+      if (fs.existsSync(cand)) {
+        files.add("whatsapp_knowledge.md");
+        break;
+      }
     }
+
+    return Array.from(files);
   }
 
   /**
@@ -40,9 +78,24 @@ export class MarkdownKnowledgeLoader {
    */
   static readDomainFile(filename: string): string {
     try {
-      const filePath = path.join(this.getKnowledgeDir(), filename);
-      if (fs.existsSync(filePath)) {
-        return fs.readFileSync(filePath, "utf-8").trim();
+      const dir = this.getKnowledgeDir();
+      const primaryPath = path.join(dir, filename);
+      if (fs.existsSync(primaryPath)) {
+        return fs.readFileSync(primaryPath, "utf-8").trim();
+      }
+
+      const fallbacks = [
+        process.env.MYRAA_DATA_DIR ? path.join(process.env.MYRAA_DATA_DIR, filename) : null,
+        path.join(process.cwd(), "data", filename),
+        path.join(process.cwd(), filename),
+        (process as any).resourcesPath ? path.join((process as any).resourcesPath, "data", filename) : null,
+        (process as any).resourcesPath ? path.join((process as any).resourcesPath, "knowledge", filename) : null,
+      ].filter(Boolean) as string[];
+
+      for (const fb of fallbacks) {
+        if (fs.existsSync(fb)) {
+          return fs.readFileSync(fb, "utf-8").trim();
+        }
       }
     } catch (e: any) {
       console.error(`[KnowledgeLoader] Error reading ${filename}:`, e?.message);
@@ -65,9 +118,12 @@ export class MarkdownKnowledgeLoader {
    * Extracts a structured DynamicBusinessProfile from company-profile.md or any profile markdown
    */
   static getBusinessProfile(): DynamicBusinessProfile {
-    const profileMd = this.readDomainFile("company-profile.md");
+    let profileMd = this.readDomainFile("company-profile.md");
+    if (!profileMd) {
+      profileMd = this.readDomainFile("whatsapp_knowledge.md");
+    }
     const profile: DynamicBusinessProfile = {
-      name: "Enterprise Business",
+      name: "DIGI BIZ OS",
       highlights: []
     };
 

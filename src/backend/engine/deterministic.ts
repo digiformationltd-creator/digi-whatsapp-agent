@@ -16,24 +16,30 @@ import { sanitizeWhatsAppReply } from "../sanitizer";
 function parseMarkdownTables(md: string): Array<Record<string, string>> {
   if (!md) return [];
   const lines = md.split(/\r?\n/).map(l => l.trim()).filter(l => l.startsWith("|") && l.endsWith("|"));
-  if (lines.length < 3) return [];
+  if (lines.length < 2) return [];
 
   const allRows: Array<Record<string, string>> = [];
   let currentHeaders: string[] = [];
 
   for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const rawCells = line.split("|").map(c => c.trim());
+    const rawCells = lines[i].split("|").map(c => c.trim());
     const cells = rawCells.slice(1, rawCells.length - 1);
 
-    // Separator line (e.g. |---|---|)
-    if (cells.every(c => /^[-:\s]+$/.test(c))) {
-      // previous line was headers
+    const isSep = cells.every(c => /^[-:\s]+$/.test(c));
+    if (isSep) {
       if (i > 0) {
         const prevRaw = lines[i - 1].split("|").map(c => c.trim());
         currentHeaders = prevRaw.slice(1, prevRaw.length - 1).map(h => h.toLowerCase());
       }
       continue;
+    }
+
+    // If next line is a separator line, this line is a header row, NOT data
+    if (i + 1 < lines.length) {
+      const nextCells = lines[i + 1].split("|").map(c => c.trim()).slice(1, -1);
+      if (nextCells.length > 0 && nextCells.every(c => /^[-:\s]+$/.test(c))) {
+        continue;
+      }
     }
 
     if (currentHeaders.length > 0 && cells.length === currentHeaders.length) {
@@ -102,9 +108,16 @@ function parseFAQEntries(md: string): Array<{ question: string; answer: string }
 /**
  * Evaluates whether a customer message can be answered deterministically from runtime knowledge files
  */
-export function getDeterministicReply(customerText: string): string | null {
+export function getDeterministicReply(customerText: string, customKb?: string): string | null {
   const t = (customerText || "").toLowerCase().trim();
   if (!t) return null;
+
+  if (customKb) {
+    const customSec = matchSectionFromKb(t, customKb);
+    if (customSec) {
+      return sanitizeWhatsAppReply(customSec);
+    }
+  }
 
   const profile = MarkdownKnowledgeLoader.getBusinessProfile();
 
@@ -179,6 +192,32 @@ export function getDeterministicReply(customerText: string): string | null {
   }
 
   // ---------------------------------------------------------------------------
+  // 3b. How to Buy / Order Placement / Purchasing Steps
+  // ---------------------------------------------------------------------------
+  if (/\b(how to buy|how to order|buy kaise|order kaise|khareedna|khareedne ka tarika|purchase kaise|kese khareed|kaise khareed|payment method|account details|payment kahan|order karna hai)\b/i.test(t)) {
+    const faqMd = MarkdownKnowledgeLoader.readDomainFile("faq.md");
+    if (faqMd) {
+      const buyFaq = parseFAQEntries(faqMd).find(f => /how do i buy|buy|order|purchase/i.test(f.question));
+      if (buyFaq) {
+        return sanitizeWhatsAppReply(buyFaq.answer);
+      }
+    }
+    const kycMd = MarkdownKnowledgeLoader.readDomainFile("documents-kyc.md");
+    if (kycMd) {
+      const items = kycMd.split("\n")
+        .map(l => l.trim())
+        .filter(l => /^(?:\d+[\.\)]|[-*])\s+/.test(l))
+        .map(l => "• " + l.replace(/^(?:\d+[\.\)]|[-*])\s+/, ""));
+
+      return sanitizeWhatsAppReply(
+        `DIGI BIZ OS buy karne ke liye:\n\n` +
+        (items.length > 0 ? items.join("\n") + "\n\n" : "") +
+        `Aap apni details aur preferred payment method share karein, hum aap ko payment details provide kar dete hain.`
+      );
+    }
+  }
+
+  // ---------------------------------------------------------------------------
   // 4. Dynamic Pricing / Packages / Menu / Products Table Matching
   // ---------------------------------------------------------------------------
   const allKnowledgeFiles = MarkdownKnowledgeLoader.listKnowledgeFiles();
@@ -199,12 +238,22 @@ export function getDeterministicReply(customerText: string): string | null {
       const inclusions = row["inclusions"] || row["features & notes"] || row["notes"] || row["setup coverage"] || "";
       const isPopular = (row["most popular"] || "").includes("✓");
 
-      if (itemName && itemName.length >= 3) {
-        const itemWords = itemName.toLowerCase().split(/\s+/).filter(w => w.length > 2);
-        const matchesItem = itemWords.some(w => t.includes(w));
-        const asksForPrice = /price|cost|charges|rate|kitne|kya|package|menu|fee|details/i.test(t);
+      if (itemName && itemName.length >= 3 && price) {
+        // Skip SaaS comparison competitor items like Salesforce, Zapier, Canva unless explicitly queried
+        const isComparison = /salesforce|hubspot|zapier|make|canva|hootsuite|chatgpt/i.test(itemName);
+        if (isComparison && !t.includes(itemName.toLowerCase())) continue;
 
-        if (matchesItem && asksForPrice) {
+        const cleanItem = itemName.replace(/[^\w\s-]/g, "").toLowerCase().trim();
+        const itemWords = cleanItem.split(/\s+/).filter(w => w.length > 2 && !/^(the|and|for|with|you|normally|buy|tier|package|tool|cost|module)$/i.test(w));
+
+        const fullMatch = t.includes(cleanItem);
+        const significantMatch = itemWords.length > 0 && itemWords.some(w => {
+          return /lifetime|whitelabel|white-label|agency|starter|silver|gold|platinum|enterprise/i.test(w) && t.includes(w);
+        });
+        const matchesItem = fullMatch || significantMatch || (itemWords.length >= 2 && itemWords.filter(w => t.includes(w)).length >= 2);
+        const asksForPrice = /price|cost|charges|rate|kitne|kitna|fee|pricing|package/i.test(t);
+
+        if (matchesItem && asksForPrice && !/how to buy|order kaise|tarika|khareedna/i.test(t)) {
           return sanitizeWhatsAppReply(
             `${itemName} ka price ${price} hai${timeline ? ` (${timeline})` : ""}${isPopular ? " — Most Popular option" : ""}.\n\n` +
             (inclusions ? `Is mein yeh shamil hai:\n• ${inclusions.replace(/,/g, "\n•")}\n\n` : "\n") +
@@ -285,5 +334,99 @@ export function getDeterministicReply(customerText: string): string | null {
     );
   }
 
+  // ---------------------------------------------------------------------------
+  // 8. General Knowledge Markdown Section Matching (LANGHRAF reference engine)
+  // ---------------------------------------------------------------------------
+  const allFiles = MarkdownKnowledgeLoader.readAllFiles();
+  const allKb = allFiles.map(f => f.content).join("\n\n");
+  if (allKb && t.length >= 4) {
+    const sectionReply = matchSectionFromKb(t, allKb);
+    if (sectionReply) {
+      return sanitizeWhatsAppReply(sectionReply);
+    }
+  }
+
+  return null;
+}
+
+const STOP_WORDS = new Set([
+  "the", "a", "an", "is", "are", "am", "was", "were", "be", "to", "of", "for",
+  "and", "or", "in", "on", "at", "it", "this", "that", "i", "you", "we", "my",
+  "your", "me", "do", "does", "can", "could", "would", "will", "what", "how",
+  "please", "hi", "hello", "hey", "ok", "okay",
+  "hai", "ho", "ka", "ki", "ke", "ko", "se", "me", "mein", "kya", "kia",
+  "aap", "ap", "mujhe", "muje", "kar", "karo", "kaise", "kitna", "kitne", "hain",
+]);
+
+function stemWord(w: string): string {
+  let x = w;
+  if (x.length > 4 && x.endsWith("es")) x = x.slice(0, -2);
+  else if (x.length > 3 && x.endsWith("s")) x = x.slice(0, -1);
+  if (x.length > 4 && x.endsWith("ing")) x = x.slice(0, -3);
+  if (x.length > 3 && x.endsWith("e")) x = x.slice(0, -1);
+  return x;
+}
+
+function tokenizeText(s: string): string[] {
+  return (s.toLowerCase().match(/[a-z0-9؀-ۿ]+/gi) || [])
+    .map(w => w.trim())
+    .filter(w => w.length >= 2 && !STOP_WORDS.has(w))
+    .map(stemWord);
+}
+
+export function matchSectionFromKb(customerQuery: string, kbText: string): string | null {
+  const qTokens = tokenizeText(customerQuery);
+  if (qTokens.length < 2) return null; // Only match multi-word queries for section fallback
+  const qSet = new Set(qTokens);
+
+  const lines = kbText.split(/\r?\n/);
+  const sections: Array<{ heading: string; body: string; tokens: Set<string> }> = [];
+  let heading = "";
+  let buf: string[] = [];
+
+  const flush = () => {
+    const body = buf.join("\n").trim();
+    if (heading && body && !/instructions?|rules?|system prompt/i.test(heading)) {
+      sections.push({
+        heading,
+        body,
+        tokens: new Set(tokenizeText(`${heading} ${body}`))
+      });
+    }
+    buf = [];
+  };
+
+  for (const line of lines) {
+    const h = line.match(/^\s*#{1,4}\s+(.*)$/);
+    if (h) {
+      flush();
+      heading = h[1].trim();
+    } else {
+      buf.push(line);
+    }
+  }
+  flush();
+
+  let best: { heading: string; body: string; score: number } | null = null;
+  for (const s of sections) {
+    let overlap = 0;
+    for (const t of qSet) {
+      if (s.tokens.has(t)) overlap++;
+    }
+    const hTokens = new Set(tokenizeText(s.heading));
+    let hOverlap = 0;
+    for (const t of qSet) {
+      if (hTokens.has(t)) hOverlap++;
+    }
+    const score = overlap + hOverlap * 2;
+    if (score >= 3 && (!best || score > best.score)) {
+      best = { heading: s.heading, body: s.body, score };
+    }
+  }
+
+  if (best && best.body) {
+    const out = `${best.heading}\n${best.body}`;
+    return out.length > 600 ? out.slice(0, 580) + "…" : out;
+  }
   return null;
 }

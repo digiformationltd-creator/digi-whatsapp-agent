@@ -2,50 +2,273 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-base: #060709;
+  --bg-deep: #07080B;
+
+  --glass-surface: rgba(18, 21, 30, 0.72);
+  --glass-elevated: rgba(26, 32, 46, 0.65);
+  --glass-card: rgba(255, 255, 255, 0.035);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-border-hover: rgba(37, 211, 102, 0.35);
+  --glass-shine: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.85), 0 0 1px 1px rgba(255, 255, 255, 0.06);
+
+  --accent-cyan: #25D366;
+  --accent-glow: rgba(37, 211, 102, 0.35);
+  --accent-glow-strong: rgba(37, 211, 102, 0.55);
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+
+  --badge-bg: rgba(255, 255, 255, 0.05);
+  --badge-cyan: rgba(37, 211, 102, 0.12);
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  --font-urdu: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', var(--font-sans);
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
   
-  body {
-    @apply bg-[#070B0E] text-slate-100 antialiased selection:bg-[#00A884]/30 selection:text-white;
-    font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
-    min-height: 100vh;
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: transparent;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
 
   code, pre, .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
   }
 
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 4px;
+    height: 4px;
   }
   ::-webkit-scrollbar-track {
-    background: rgba(11, 16, 21, 0.8);
+    background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(51, 65, 85, 0.8);
+    background: rgba(255, 255, 255, 0.12);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(100, 116, 139, 1);
+    background: rgba(37, 211, 102, 0.35);
   }
+}
+
+/* ── Shell (Curved Window Frame from DIGI LABS) ─────────────────────────── */
+.shell {
+  height: 100vh;
+  border-radius: 16px;
+  overflow: hidden;
+  background:
+    radial-gradient(1200px 700px at 15% -10%, rgba(255, 255, 255, 0.04), transparent 55%),
+    radial-gradient(900px 600px at 95% 10%, rgba(37, 211, 102, 0.04), transparent 55%),
+    var(--bg-base);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Topbar ─────────────────────────────────────────────────────────────── */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  -webkit-app-region: drag;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  background: var(--glass-surface);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--glass-border);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: #020805;
+  box-shadow: 0 0 0 1px var(--glass-border), 0 0 16px -4px var(--accent-glow);
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+}
+
+.brand-title {
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.brand-sub {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin-top: 1px;
+}
+
+/* ── Tabs (DIGI LABS Pill Design) ────────────────────────────────────────── */
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  -webkit-app-region: no-drag;
+}
+
+.tab {
+  appearance: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  padding: 6px 16px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+}
+
+.tab:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab.active,
+.tab[aria-selected="true"] {
+  background: rgba(37, 211, 102, 0.12);
+  color: #25D366;
+  border-color: rgba(37, 211, 102, 0.28);
+  box-shadow: 0 0 12px -2px rgba(37, 211, 102, 0.2);
+}
+
+.tabs, .status-pill, .win-controls, .brand-mark, button, input, select, textarea, a {
+  -webkit-app-region: no-drag;
+}
+
+/* Window controls */
+.win-controls {
+  display: flex;
+  gap: 2px;
+  margin-left: 4px;
+}
+
+.wc {
+  width: 32px;
+  height: 26px;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  transition: background .15s, color .15s;
+}
+
+.wc:hover {
+  background: var(--glass-card);
+  color: var(--text-primary);
+}
+
+.wc-close:hover {
+  background: var(--error);
+  color: #fff;
+}
+
+/* App Footer */
+.appfoot {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 16px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid var(--glass-border);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  -webkit-app-region: drag;
+}
+
+.appfoot a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  -webkit-app-region: no-drag;
+}
+
+.appfoot a:hover {
+  text-decoration: underline;
 }
 
 @layer utilities {
   .glass-card {
-    background: rgba(17, 27, 33, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(18, 22, 32, 0.65);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 25px -5px rgba(56, 189, 248, 0.35);
   }
 
   .glow-green {
-    box-shadow: 0 0 25px -5px rgba(37, 211, 102, 0.25);
-  }
-
-  .glow-teal {
-    box-shadow: 0 0 25px -5px rgba(0, 168, 132, 0.25);
+    box-shadow: 0 0 25px -5px rgba(37, 211, 102, 0.3);
   }
 }

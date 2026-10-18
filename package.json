@@ -1,19 +1,24 @@
 {
-  "name": "whatsapp-agent",
+  "name": "digi-whatsapp-agent",
+  "productName": "Digi WhatsApp Agent",
   "version": "1.0.0",
-  "description": "Standalone WhatsApp Agent with QR pairing, auto-reply, and knowledge base",
-  "author": "Digiformation Ltd",
+  "description": "Autonomous WhatsApp Sales Agent by DigiFormation Ltd",
+  "author": "DigiFormation Ltd",
   "type": "module",
-  "main": "dist/backend/server.cjs",
+  "main": "electron/main.cjs",
   "scripts": {
     "dev": "tsx src/backend/server.ts",
     "build": "tsc --noEmit && vite build && esbuild src/backend/server.ts --bundle --platform=node --format=cjs --packages=external --outfile=dist/backend/server.cjs && esbuild src/backend/server.ts --bundle --platform=node --format=esm --packages=external --outfile=dist/backend/server.js",
     "start": "node dist/backend/server.cjs",
+    "electron:start": "electron .",
+    "dist": "electron-builder --win nsis",
+    "dist:unpacked": "electron-builder --win --dir",
+    "dist:all": "electron-builder --win nsis --dir",
     "frontend:dev": "vite",
     "frontend:build": "vite build",
     "test": "npx tsx scripts/test_master_10_phases.ts",
     "lint": "tsc --noEmit",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist release"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -36,12 +41,55 @@
     "@types/ws": "^8.18.1",
     "@vitejs/plugin-react": "^5.0.4",
     "autoprefixer": "^10.4.20",
+    "electron": "^43.1.0",
+    "electron-builder": "^25.1.8",
     "esbuild": "^0.25.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.3"
+  },
+  "build": {
+    "appId": "uk.co.digiformation.digiwhatsappagent",
+    "productName": "Digi WhatsApp Agent",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**",
+      "electron/**",
+      "assets/**",
+      "data/**",
+      "knowledge/**",
+      "sample_knowledge/**",
+      ".env*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "dir",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Digi WhatsApp Agent"
+    }
   },
   "allowScripts": {
     "tesseract.js@7.0.0": true

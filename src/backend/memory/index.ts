@@ -46,10 +46,12 @@ export function getConversationMemory(jid: string): string {
   return sections.join("\n\n");
 }
 
+import { waMemoryRecord } from "./wa_memory";
+
 /**
  * Records an inbound customer message, extracts facts, updates state, and saves to Short-Term history
  */
-export function recordInboundMessage(jid: string, text: string): string {
+export function recordInboundMessage(jid: string, text: string, name?: string): string {
   if (!jid || !text) return "";
   const customerId = resolveCustomerId(jid);
 
@@ -58,6 +60,9 @@ export function recordInboundMessage(jid: string, text: string): string {
     extractCustomerFacts(customerId, text);
     StateMachine.processInboundMessage(customerId, jid, text);
     saveMessage(customerId, "customer", text);
+    try {
+      waMemoryRecord({ jid, name, text, fromMe: false, ts: Date.now() });
+    } catch { /* best-effort */ }
   }
 
   return customerId;
@@ -70,6 +75,9 @@ export function recordOutboundMessage(jid: string, replyText: string): void {
   if (!jid || !replyText || !isMemoryEnabled()) return;
   const customerId = resolveCustomerId(jid);
   saveMessage(customerId, "assistant", replyText);
+  try {
+    waMemoryRecord({ jid, text: replyText, fromMe: true, ts: Date.now() });
+  } catch { /* best-effort */ }
 }
 
 export {

@@ -20,6 +20,8 @@ import {
   VolumeX, 
   Radio, 
   Zap, 
+  Cpu,
+  Cloud,
   Plus, 
   Smartphone,
   Check,
@@ -36,7 +38,18 @@ import {
   Share2,
   ShieldCheck,
   Building2,
-  Info
+  Info,
+  Users,
+  DollarSign,
+  Flame,
+  ArrowUpRight,
+  Ban,
+  TrendingUp,
+  Clock,
+  Target,
+  Send,
+  MessageSquare,
+  User
 } from "lucide-react";
 import type { LiveEvent } from "../shared/types";
 import digiformationLogo from "./assets/digiformation_logo.png";
@@ -212,54 +225,51 @@ function KnowledgeBase({ accountId = "0" }: { accountId?: string }) {
   const lineCount = text.trim() ? text.split("\n").length : 0;
 
   return (
-    <div className="glass-card rounded-2xl p-5 border border-white/10 space-y-4 shadow-xl">
+    <div className="glass-card rounded-2xl p-3 border border-emerald-500/20 flex flex-col h-full min-h-0 shadow-xl overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between gap-3 flex-wrap">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 shadow-inner">
-            <BookOpen size={18} />
+      <div className="flex items-center justify-between gap-2 flex-wrap pb-1 border-b border-white/5">
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
+            <BookOpen size={14} />
           </div>
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider">
-                Business Knowledge Base Studio
+                Knowledge Base Studio
               </h3>
-              <span className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 font-bold border border-amber-500/20">
-                BUSINESS FACTS ONLY
+              <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/20">
+                FACTS ONLY
               </span>
             </div>
-            <p className="text-[11px] text-slate-400">
-              Upload your business knowledge (products, services, pricing, policies, FAQs). Agent &amp; safety rules are enforced separately.
-            </p>
           </div>
         </div>
 
         {/* View Toggle & Counters */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center bg-[#070B0E] p-1 rounded-xl border border-white/10">
+          <div className="flex items-center bg-[#020a05] p-0.5 rounded-lg border border-white/10">
             <button
               onClick={() => setActiveTab("edit")}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition ${
+              className={`flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold transition ${
                 activeTab === "edit"
-                  ? "bg-slate-800 text-white shadow"
+                  ? "bg-emerald-950/90 text-emerald-300 shadow border border-emerald-500/30"
                   : "text-slate-400 hover:text-slate-200"
               }`}
             >
-              <Edit3 size={12} /> Edit
+              <Edit3 size={11} /> Edit
             </button>
             <button
               onClick={() => setActiveTab("preview")}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition ${
+              className={`flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-semibold transition ${
                 activeTab === "preview"
-                  ? "bg-slate-800 text-white shadow"
+                  ? "bg-emerald-950/90 text-emerald-300 shadow border border-emerald-500/30"
                   : "text-slate-400 hover:text-slate-200"
               }`}
             >
-              <Eye size={12} /> Preview
+              <Eye size={11} /> Preview
             </button>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 text-[10px] font-mono text-slate-400 bg-slate-900/80 px-2.5 py-1.5 rounded-xl border border-white/5">
+          <div className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono text-slate-400 bg-slate-900/60 px-2 py-0.5 rounded-lg border border-white/5">
             <span>{lineCount} lines</span>
             <span>•</span>
             <span>{wordCount} words</span>
@@ -267,78 +277,63 @@ function KnowledgeBase({ accountId = "0" }: { accountId?: string }) {
         </div>
       </div>
 
-      {/* Supported Formats & Template Chips */}
-      <div className="p-2.5 rounded-xl bg-[#06090D] border border-white/10 space-y-2">
-        <div className="flex items-center justify-between gap-2 flex-wrap text-[10px]">
-          <div className="flex items-center gap-1.5 text-slate-400 font-mono">
-            <span className="text-amber-400 font-bold uppercase tracking-wider">Supported Formats:</span>
-            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-semibold">MD</span>
-            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-semibold">TXT</span>
-            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-semibold">JSON</span>
-            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-semibold">YAML</span>
-            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-semibold">YML</span>
-            <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-semibold">CSV</span>
-          </div>
-
-          <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="text-slate-500 font-bold uppercase tracking-wider flex items-center gap-1">
-              <Sparkles size={11} className="text-amber-400" /> Presets:
-            </span>
-            {KB_TEMPLATES.map((tmpl) => {
-              const Icon = tmpl.icon;
-              return (
-                <button
-                  key={tmpl.name}
-                  onClick={() => applyTemplate(tmpl.template)}
-                  className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-slate-900/90 hover:bg-amber-500/10 border border-white/5 hover:border-amber-500/30 text-slate-400 hover:text-amber-300 text-[10px] font-medium transition"
-                >
-                  <Icon size={11} />
-                  {tmpl.name}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+      {/* Template Chips */}
+      <div className="py-1 flex items-center gap-1.5 flex-wrap text-[10px]">
+        <span className="text-slate-500 font-bold uppercase tracking-wider flex items-center gap-1">
+          <Sparkles size={10} className="text-emerald-400" /> Presets:
+        </span>
+        {KB_TEMPLATES.map((tmpl) => {
+          const Icon = tmpl.icon;
+          return (
+            <button
+              key={tmpl.name}
+              onClick={() => applyTemplate(tmpl.template)}
+              className="flex items-center gap-1 px-2 py-0.5 rounded bg-slate-900/90 hover:bg-emerald-500/10 border border-white/5 hover:border-emerald-500/30 text-slate-400 hover:text-emerald-300 text-[10px] font-medium transition"
+            >
+              <Icon size={10} />
+              {tmpl.name}
+            </button>
+          );
+        })}
       </div>
 
       {parseNotice && (
-        <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-mono flex items-center gap-2">
-          <Check size={14} className="text-emerald-400 shrink-0" />
+        <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-[11px] font-mono flex items-center gap-1.5">
+          <Check size={12} className="text-emerald-400 shrink-0" />
           <span>{parseNotice}</span>
         </div>
       )}
 
       {errorNotice && (
-        <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-mono flex items-center gap-2">
-          <XCircle size={14} className="text-rose-400 shrink-0" />
+        <div className="p-1.5 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-300 text-[11px] font-mono flex items-center gap-1.5">
+          <XCircle size={12} className="text-rose-400 shrink-0" />
           <span>{errorNotice}</span>
         </div>
       )}
 
-      {/* Editor / Preview Area */}
-      {activeTab === "edit" ? (
-        <div className="relative group">
+      {/* Editor / Preview Area — Dynamically Fills Height */}
+      <div className="flex-1 min-h-0 relative my-1">
+        {activeTab === "edit" ? (
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            rows={18}
             placeholder={
               loaded
                 ? "# Company Name & Services\n- Product A: $99 (In Stock)\n- Product B: $149\n\n## Return Policy\n7-day money-back guarantee.\n\n## FAQs\n- Where is my order? Ask customer for Order ID."
                 : "Loading business knowledge base..."
             }
-            className="w-full bg-[#06090D] border border-white/10 rounded-xl px-4 py-3.5 text-xs text-slate-200 font-mono leading-relaxed resize-y min-h-[350px] lg:min-h-[520px] focus:outline-none focus:border-[#00A884] focus:ring-1 focus:ring-[#00A884]/30 placeholder-slate-600 transition"
+            className="w-full h-full bg-[#020a06] border border-white/10 rounded-xl p-3 text-xs text-slate-200 font-mono leading-relaxed resize-none focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/30 placeholder-slate-600 transition"
           />
-        </div>
-      ) : (
-        <div className="w-full bg-[#06090D] border border-white/10 rounded-xl px-4 py-3.5 text-xs text-slate-300 font-sans leading-relaxed min-h-[350px] lg:min-h-[520px] max-h-[600px] overflow-y-auto whitespace-pre-wrap">
-          {text.trim() ? (
-            text
-          ) : (
-            <span className="text-slate-600 italic">Business Knowledge Base is currently empty.</span>
-          )}
-        </div>
-      )}
+        ) : (
+          <div className="w-full h-full bg-[#020a06] border border-white/10 rounded-xl p-3 text-xs text-slate-300 font-sans leading-relaxed overflow-y-auto whitespace-pre-wrap">
+            {text.trim() ? (
+              text
+            ) : (
+              <span className="text-slate-600 italic">Business Knowledge Base is currently empty.</span>
+            )}
+          </div>
+        )}
+      </div>
 
       {/* Footer Controls */}
       <div className="flex items-center justify-between pt-1 flex-wrap gap-2">
@@ -353,31 +348,491 @@ function KnowledgeBase({ accountId = "0" }: { accountId?: string }) {
           <button
             onClick={() => fileRef.current?.click()}
             disabled={parsing}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-white/10 text-slate-300 hover:text-white text-xs font-semibold transition disabled:opacity-50"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-white/10 text-slate-300 hover:text-white text-xs font-semibold transition disabled:opacity-50"
           >
-            {parsing ? <Loader2 size={13} className="animate-spin text-amber-400" /> : <Upload size={13} className="text-amber-400" />}
-            Upload Document (MD, TXT, JSON, YAML, CSV)
+            {parsing ? <Loader2 size={12} className="animate-spin text-emerald-400" /> : <Upload size={12} className="text-emerald-400" />}
+            Upload Document (MD, TXT, JSON, CSV)
           </button>
         </div>
 
         <button
           onClick={save}
           disabled={saving || parsing}
-          className={`flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-bold text-white transition shadow-lg ${
+          className={`flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-bold text-white transition shadow-lg ${
             saved
-              ? "bg-emerald-600 hover:bg-emerald-500 shadow-emerald-900/30"
-              : "bg-gradient-to-r from-amber-600 to-amber-500 hover:brightness-110 shadow-amber-900/30"
+              ? "bg-emerald-600 hover:bg-emerald-500 shadow-emerald-950/40"
+              : "bg-gradient-to-r from-emerald-600 to-teal-600 hover:brightness-110 shadow-emerald-950/40"
           } disabled:opacity-50`}
         >
           {saving ? (
-            <Loader2 size={14} className="animate-spin" />
+            <Loader2 size={13} className="animate-spin" />
           ) : saved ? (
-            <Check size={14} className="text-white" />
+            <Check size={13} className="text-white" />
           ) : (
-            <Save size={14} />
+            <Save size={13} />
           )}
           {saved ? "Saved to Memory ✓" : "Save Knowledge"}
         </button>
+      </div>
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* BLOCKLIST (IGNORE LIST) COMPONENT                                          */
+/* ────────────────────────────────────────────────────────────────────────── */
+function BlocklistCard({ accountId = "0" }: { accountId?: string }) {
+  const [numbers, setNumbers] = useState<string[]>([]);
+  const [inputVal, setInputVal] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [savedMsg, setSavedMsg] = useState(false);
+
+  useEffect(() => {
+    fetch(`/api/whatsapp/blocklist?id=${accountId}`)
+      .then((r) => r.json())
+      .then((d) => {
+        if (d?.ok && Array.isArray(d.blocklist)) setNumbers(d.blocklist);
+      })
+      .catch(() => {});
+  }, [accountId]);
+
+  const saveBlocklist = async (list: string[]) => {
+    setSaving(true);
+    try {
+      await fetch("/api/whatsapp/blocklist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: accountId, numbers: list }),
+      });
+      setSavedMsg(true);
+      setTimeout(() => setSavedMsg(false), 2000);
+    } catch {
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const addNumber = () => {
+    const clean = inputVal.replace(/\D/g, "");
+    if (!clean || numbers.includes(clean)) return;
+    const next = [...numbers, clean];
+    setNumbers(next);
+    setInputVal("");
+    saveBlocklist(next);
+  };
+
+  const removeNumber = (num: string) => {
+    const next = numbers.filter((n) => n !== num);
+    setNumbers(next);
+    saveBlocklist(next);
+  };
+
+  return (
+    <div className="glass-card rounded-2xl p-3 border border-white/10 space-y-2 shadow-xl">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-1.5 text-xs font-bold text-slate-200 uppercase tracking-wider">
+          <Ban size={13} className="text-rose-400" />
+          <span>Excluded Numbers (No Auto-Reply)</span>
+        </div>
+        {savedMsg && <span className="text-[10px] text-emerald-400 font-mono">Saved ✓</span>}
+      </div>
+
+      <div className="flex gap-1.5">
+        <input
+          type="text"
+          value={inputVal}
+          onChange={(e) => setInputVal(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && addNumber()}
+          placeholder="e.g. 447123456789 or 03001234567"
+          className="flex-1 bg-[#020a06] border border-white/10 rounded-xl px-2.5 py-1 text-xs text-slate-200 placeholder-slate-600 focus:outline-none focus:border-rose-500"
+        />
+        <button
+          onClick={addNumber}
+          disabled={saving || !inputVal.trim()}
+          className="px-3 py-1 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 text-xs font-semibold disabled:opacity-40 transition"
+        >
+          Add
+        </button>
+      </div>
+
+      {numbers.length > 0 ? (
+        <div className="flex flex-wrap gap-1 pt-0.5 max-h-16 overflow-y-auto">
+          {numbers.map((num) => (
+            <span
+              key={num}
+              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-slate-900 border border-white/5 text-[10px] font-mono text-slate-300"
+            >
+              +{num}
+              <button
+                onClick={() => removeNumber(num)}
+                className="text-slate-500 hover:text-rose-400 transition"
+                title="Remove"
+              >
+                ×
+              </button>
+            </span>
+          ))}
+        </div>
+      ) : (
+        <div className="text-[10px] text-slate-500 italic">No numbers excluded (bot will reply to all inbound).</div>
+      )}
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* SINGLE WHATSAPP CHANNEL                                                    */
+/* ────────────────────────────────────────────────────────────────────────── */
+/* ────────────────────────────────────────────────────────────────────────── */
+/* LIVE WHATSAPP CHAT & TRACKING STUDIO                                       */
+/* ────────────────────────────────────────────────────────────────────────── */
+function LiveChatTracking({ accountId = "0" }: { accountId?: string }) {
+  const [chats, setChats] = useState<any[]>([]);
+  const [selectedJid, setSelectedJid] = useState<string | null>(null);
+  const [messages, setMessages] = useState<any[]>([]);
+  const [loadingChats, setLoadingChats] = useState(true);
+  const [loadingMessages, setLoadingMessages] = useState(false);
+  const [search, setSearch] = useState("");
+  const [replyText, setReplyText] = useState("");
+  const [sending, setSending] = useState(false);
+  const [contactsMap, setContactsMap] = useState<Record<string, any>>({});
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  // Load chats & CRM contacts periodically
+  const loadChats = useCallback(() => {
+    fetch("/api/whatsapp/chats?limit=60")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d?.ok && Array.isArray(d.chats)) {
+          setChats(d.chats);
+          setSelectedJid((prev) => {
+            if (prev && d.chats.some((c: any) => c.chat_jid === prev)) return prev;
+            return d.chats.length > 0 ? d.chats[0].chat_jid : null;
+          });
+        }
+      })
+      .catch(() => {})
+      .finally(() => setLoadingChats(false));
+
+    fetch("/api/whatsapp/crm")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d?.ok && Array.isArray(d.contacts)) {
+          const map: Record<string, any> = {};
+          for (const c of d.contacts) {
+            map[c.number] = c;
+          }
+          setContactsMap(map);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    loadChats();
+    const interval = setInterval(loadChats, 2500);
+    return () => clearInterval(interval);
+  }, [loadChats]);
+
+  // Load messages for selected chat
+  const loadMessages = useCallback((jid: string, spin = false) => {
+    if (!jid) return;
+    if (spin) setLoadingMessages(true);
+    fetch(`/api/whatsapp/chat/messages?jid=${encodeURIComponent(jid)}&limit=100`)
+      .then((r) => r.json())
+      .then((d) => {
+        if (d?.ok && Array.isArray(d.messages)) {
+          setMessages(d.messages);
+        }
+      })
+      .catch(() => {})
+      .finally(() => setLoadingMessages(false));
+  }, []);
+
+  useEffect(() => {
+    if (selectedJid) {
+      loadMessages(selectedJid, true);
+      const interval = setInterval(() => loadMessages(selectedJid, false), 2000);
+      return () => clearInterval(interval);
+    } else {
+      setMessages([]);
+    }
+  }, [selectedJid, loadMessages]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  // Send manual reply
+  const handleSend = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const text = replyText.trim();
+    if (!text || !selectedJid || sending) return;
+
+    setSending(true);
+    try {
+      const res = await fetch("/api/whatsapp/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ to: selectedJid, text, id: accountId }),
+      });
+      const data = await res.json();
+      if (data?.ok) {
+        setReplyText("");
+        setMessages((prev) => [
+          ...prev,
+          { from_me: 1, text, ts: Date.now(), sender: "You" }
+        ]);
+        setTimeout(() => loadMessages(selectedJid, false), 400);
+      }
+    } catch {
+    } finally {
+      setSending(false);
+    }
+  };
+
+  // Change lead status in CRM
+  const handleStatusChange = async (number: string, newStatus: string) => {
+    try {
+      await fetch("/api/whatsapp/crm/status", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ number, status: newStatus }),
+      });
+      loadChats();
+    } catch {}
+  };
+
+  // Filter conversations
+  const filteredChats = chats.filter((c) => {
+    const q = search.toLowerCase();
+    const num = (c.chat_jid || "").replace(/\D/g, "");
+    const name = (c.name || "").toLowerCase();
+    const text = (c.last_text || "").toLowerCase();
+    return num.includes(q) || name.includes(q) || text.includes(q);
+  });
+
+  const activeChat = chats.find((c) => c.chat_jid === selectedJid);
+  const cleanPhone = (selectedJid || "").replace(/@.*$/, "").replace(/\D/g, "");
+  const activeCrm = contactsMap[cleanPhone];
+  const dealStatus = activeCrm?.dealStatus || "engaged";
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 h-full min-h-0 overflow-hidden">
+      {/* ── LEFT PANE: Conversation & Client List (35%) ── */}
+      <div className="lg:col-span-4 glass-card rounded-2xl p-3 border border-white/10 flex flex-col h-full min-h-0 shadow-xl overflow-hidden">
+        {/* Search & Header */}
+        <div className="space-y-2 pb-2.5 border-b border-white/10 shrink-0">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-white uppercase tracking-wider">
+              <MessageSquare size={13} className="text-emerald-400" />
+              <span>Client Conversations</span>
+            </div>
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">
+              {chats.length} active
+            </span>
+          </div>
+
+          <div className="relative">
+            <Search size={13} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search by phone or name..."
+              className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-slate-900/80 border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500/50"
+            />
+          </div>
+        </div>
+
+        {/* Chats List */}
+        <div className="flex-1 overflow-y-auto space-y-1.5 pt-2 pr-0.5 min-h-0">
+          {loadingChats && chats.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-12 text-slate-500 space-y-2">
+              <Loader2 size={18} className="animate-spin text-emerald-400" />
+              <div className="text-xs">Loading conversations...</div>
+            </div>
+          ) : filteredChats.length === 0 ? (
+            <div className="text-center py-10 px-3 text-slate-500 space-y-2">
+              <Smartphone size={24} className="mx-auto text-slate-600" />
+              <div className="text-xs font-semibold text-slate-400">No conversations found</div>
+              <div className="text-[11px] text-slate-500">
+                When a customer messages this number on WhatsApp, their chat will automatically appear here.
+              </div>
+            </div>
+          ) : (
+            filteredChats.map((c) => {
+              const isSelected = c.chat_jid === selectedJid;
+              const phoneDigits = (c.chat_jid || "").replace(/@.*$/, "").replace(/\D/g, "");
+              const crm = contactsMap[phoneDigits];
+              const stage = crm?.dealStatus || "engaged";
+              const lastTime = c.last_ts ? new Date(c.last_ts).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "";
+
+              return (
+                <div
+                  key={c.chat_jid}
+                  onClick={() => setSelectedJid(c.chat_jid)}
+                  className={`p-2.5 rounded-xl cursor-pointer transition-all border ${
+                    isSelected
+                      ? "bg-emerald-500/15 border-emerald-500/40 shadow-[0_0_15px_-3px_rgba(37,211,102,0.25)]"
+                      : "bg-slate-900/50 hover:bg-slate-800/60 border-white/5"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-1 mb-1">
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px] font-bold shrink-0">
+                        {c.name ? c.name.charAt(0).toUpperCase() : <User size={11} />}
+                      </div>
+                      <span className="text-xs font-bold text-white truncate">
+                        {c.name || `+${phoneDigits}`}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-slate-500 font-mono shrink-0">{lastTime}</span>
+                  </div>
+
+                  <div className="text-[11px] text-slate-400 truncate mb-1.5">
+                    {c.last_from_me === 1 && <span className="text-emerald-400 font-semibold mr-1">You:</span>}
+                    {c.last_text || "Started conversation"}
+                  </div>
+
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-mono text-slate-500">+{phoneDigits}</span>
+                    <span
+                      className={`px-1.5 py-0.2 rounded font-semibold capitalize ${
+                        stage === "won"
+                          ? "bg-teal-500/20 text-teal-300 border border-teal-500/30"
+                          : stage === "lost"
+                          ? "bg-rose-500/20 text-rose-300 border border-rose-500/30"
+                          : stage === "new"
+                          ? "bg-blue-500/20 text-blue-300 border border-blue-500/30"
+                          : "bg-amber-500/20 text-amber-300 border border-amber-500/30"
+                      }`}
+                    >
+                      {stage}
+                    </span>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+      </div>
+
+      {/* ── RIGHT PANE: Live Conversation Stream & Manual Reply (65%) ── */}
+      <div className="lg:col-span-8 glass-card rounded-2xl p-3 border border-white/10 flex flex-col h-full min-h-0 shadow-xl overflow-hidden">
+        {selectedJid ? (
+          <>
+            {/* Active Chat Header */}
+            <div className="flex items-center justify-between pb-2.5 border-b border-white/10 shrink-0">
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold shrink-0">
+                  {activeChat?.name ? activeChat.name.charAt(0).toUpperCase() : <User size={14} />}
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-white">
+                      {activeChat?.name || `Customer (+${cleanPhone})`}
+                    </span>
+                    <span className="font-mono text-[11px] text-emerald-400 bg-emerald-950/60 px-1.5 py-0.2 rounded border border-emerald-500/20">
+                      +{cleanPhone}
+                    </span>
+                  </div>
+                  <div className="text-[10px] text-slate-400 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping inline-block" />
+                    <span>LangGraph Autonomous Agent Active</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Deal Status Selector */}
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] text-slate-400 font-semibold">Deal Stage:</span>
+                <select
+                  value={dealStatus}
+                  onChange={(e) => handleStatusChange(cleanPhone, e.target.value)}
+                  className="bg-slate-900/90 text-xs rounded-xl px-2.5 py-1 border border-white/10 text-white font-semibold focus:outline-none focus:border-emerald-500/50"
+                >
+                  <option value="new">New Lead</option>
+                  <option value="engaged">Engaged / In Discussion</option>
+                  <option value="won">Won Deal (Closed)</option>
+                  <option value="lost">Lost</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Messages Thread Feed */}
+            <div className="flex-1 overflow-y-auto space-y-2.5 py-3 pr-1 min-h-0">
+              {loadingMessages && messages.length === 0 ? (
+                <div className="flex items-center justify-center py-16 text-slate-500">
+                  <Loader2 size={18} className="animate-spin text-emerald-400 mr-2" />
+                  <span className="text-xs">Loading message history...</span>
+                </div>
+              ) : messages.length === 0 ? (
+                <div className="text-center py-16 text-slate-500 text-xs">
+                  No messages recorded in this chat yet.
+                </div>
+              ) : (
+                messages.map((m, idx) => {
+                  const isMe = Boolean(m.from_me);
+                  const time = m.ts ? new Date(m.ts).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) : "";
+
+                  return (
+                    <div
+                      key={idx}
+                      className={`flex flex-col ${isMe ? "items-end" : "items-start"}`}
+                    >
+                      <div
+                        className={`max-w-[80%] rounded-2xl p-2.5 px-3.5 text-xs shadow-md ${
+                          isMe
+                            ? "bg-gradient-to-r from-emerald-600/30 to-teal-700/30 border border-emerald-500/35 text-white rounded-tr-sm"
+                            : "bg-slate-800/80 border border-white/10 text-slate-100 rounded-tl-sm"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between gap-3 mb-1 text-[10px] opacity-75">
+                          <span className="font-bold">
+                            {isMe ? "Digi AI Agent" : activeChat?.name || `+${cleanPhone}`}
+                          </span>
+                          <span className="font-mono text-[9px]">{time}</span>
+                        </div>
+                        <div className="whitespace-pre-wrap leading-relaxed select-text font-sans">
+                          {m.text}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Quick Reply Form */}
+            <form onSubmit={handleSend} className="pt-2 border-t border-white/10 flex items-center gap-2 shrink-0">
+              <input
+                type="text"
+                value={replyText}
+                onChange={(e) => setReplyText(e.target.value)}
+                placeholder={`Type a manual reply to +${cleanPhone}...`}
+                className="flex-1 px-3.5 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500/50"
+              />
+              <button
+                type="submit"
+                disabled={sending || !replyText.trim()}
+                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:brightness-110 disabled:opacity-50 text-white text-xs font-bold shadow-md transition shrink-0"
+              >
+                {sending ? <Loader2 size={13} className="animate-spin" /> : <Send size={13} />}
+                <span>Send</span>
+              </button>
+            </form>
+          </>
+        ) : (
+          <div className="flex flex-col items-center justify-center h-full text-slate-500 space-y-2">
+            <MessageSquare size={32} className="text-slate-600" />
+            <div className="text-sm font-semibold text-slate-300">Select a conversation</div>
+            <div className="text-xs text-slate-500 max-w-sm text-center">
+              Choose a customer conversation from the list to view live message history and send manual replies.
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -390,6 +845,7 @@ function WhatsAppChannel({ accountId = "0" }: { accountId?: string }) {
   const [status, setStatus] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
+  const [view, setView] = useState<"chat" | "kb" | "engine">("chat");
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const fetchStatus = useCallback((spin = true) => {
@@ -398,14 +854,14 @@ function WhatsAppChannel({ accountId = "0" }: { accountId?: string }) {
       .then((r) => r.json())
       .then(setStatus)
       .catch(() =>
-        setStatus({ connected: false, status: "error", message: "Failed to reach server" })
+        setStatus({ connected: false, state: "error", status: "error", message: "Failed to reach server" })
       )
       .finally(() => setLoading(false));
   }, [accountId]);
 
   useEffect(() => {
     fetchStatus();
-    pollRef.current = setInterval(() => fetchStatus(false), 3000);
+    pollRef.current = setInterval(() => fetchStatus(false), 2500);
     return () => {
       if (pollRef.current) clearInterval(pollRef.current);
     };
@@ -462,310 +918,580 @@ function WhatsAppChannel({ accountId = "0" }: { accountId?: string }) {
     }
   };
 
-  const state = status?.state || "disconnected";
-  const connected = state === "connected";
+  const state = status?.state || status?.status || "disconnected";
+  const connected = Boolean(status?.connected || state === "connected" || (status?.phone && state !== "disconnected"));
   const connecting = state === "connecting";
-  const qr = status?.qr || status?.status?.qr || null;
+  const qr = (!connected && (status?.qr || null)) || null;
 
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-      {/* ── LEFT COLUMN: Connection, Auto-Reply, QR Pairing, Engine Stats ── */}
-      <div className="lg:col-span-5 space-y-5">
-        {/* Device Status Card */}
-        <div className="glass-card rounded-2xl p-5 border border-white/10 space-y-4 shadow-xl">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <div
-                className={`w-11 h-11 rounded-2xl flex items-center justify-center border transition-all ${
-                  connected
-                    ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400 glow-green"
-                    : connecting || state === "qr_ready"
-                    ? "bg-amber-500/10 border-amber-500/30 text-amber-400"
-                    : "bg-slate-800/80 border-white/5 text-slate-500"
-                }`}
-              >
-                {connected ? (
-                  <CheckCircle2 size={24} className="text-emerald-400" />
-                ) : connecting || state === "qr_ready" ? (
-                  <Loader2 size={24} className="text-amber-400 animate-spin" />
-                ) : (
-                  <XCircle size={24} className="text-slate-500" />
-                )}
+  // ── Render When NOT Connected: QR Pairing View ──
+  if (!connected) {
+    return (
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 h-full min-h-0 overflow-hidden">
+        {/* Left Column: QR Pairing Card */}
+        <div className="lg:col-span-5 flex flex-col gap-3 h-full min-h-0 overflow-y-auto pr-0.5">
+          <div className="glass-card rounded-2xl p-4 border border-white/10 space-y-3.5 shadow-xl">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                <QrCode size={18} />
               </div>
-
               <div>
-                <div className="flex items-center gap-2">
-                  <span
-                    className={`text-sm font-extrabold tracking-tight ${
-                      connected
-                        ? "text-emerald-400"
-                        : connecting || state === "qr_ready"
-                        ? "text-amber-400"
-                        : "text-slate-300"
-                    }`}
-                  >
-                    {connected
-                      ? "Device Linked & Live"
-                      : state === "qr_ready"
-                      ? "Ready for QR Pairing"
-                      : connecting
-                      ? "Initializing Session..."
-                      : "Session Disconnected"}
-                  </span>
-                  <span
-                    className={`inline-block w-2.5 h-2.5 rounded-full ${
-                      connected ? "bg-emerald-400 animate-ping" : "bg-slate-600"
-                    }`}
-                  />
-                </div>
-                <div className="text-xs text-slate-400 mt-0.5">
-                  {status?.phone ? (
-                    <span className="font-mono text-emerald-300 font-semibold bg-emerald-950/60 px-2 py-0.5 rounded-md border border-emerald-500/20">
-                      {status.phone}
-                    </span>
-                  ) : (
-                    <span>Scan QR code with WhatsApp mobile app.</span>
-                  )}
-                </div>
+                <h3 className="text-sm font-bold text-white">WhatsApp Mobile Pairing</h3>
+                <p className="text-[11px] text-slate-400">Scan QR code from your phone's WhatsApp</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => fetchStatus()}
-                title="Refresh status"
-                className="p-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white border border-white/5 transition shadow"
-              >
-                <RefreshCw size={14} />
-              </button>
-              {connected && (
-                <button
-                  onClick={disconnect}
-                  disabled={busy}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 text-xs font-semibold transition disabled:opacity-50 shadow"
-                >
-                  {busy ? <Loader2 size={13} className="animate-spin" /> : <Link2Off size={13} />}
-                  Unlink
-                </button>
+            {/* QR box */}
+            <div className="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900/60 border border-white/5 space-y-3">
+              {qr ? (
+                <div className="p-2 bg-white rounded-xl shadow-2xl border-2 border-emerald-500/40">
+                  <img src={qr} alt="WhatsApp QR Code" className="w-44 h-44 rounded" />
+                </div>
+              ) : (
+                <div className="py-7 flex flex-col items-center text-center space-y-2">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                    <Smartphone size={24} />
+                  </div>
+                  <div className="text-xs font-bold text-slate-200">Ready to Pair Device</div>
+                  <div className="text-[11px] text-slate-500 max-w-xs">
+                    Click the button below to generate a pairing QR code for your WhatsApp number.
+                  </div>
+                </div>
               )}
+
+              <button
+                onClick={connect}
+                disabled={busy || connecting || state === "qr_ready"}
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:brightness-110 disabled:opacity-50 text-white text-xs font-bold shadow-lg transition"
+              >
+                {busy || connecting ? <Loader2 size={14} className="animate-spin" /> : <QrCode size={14} />}
+                {qr ? "Regenerate QR Code" : "Start & Connect WhatsApp"}
+              </button>
+            </div>
+
+            {/* Instructions */}
+            <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 space-y-1.5 text-xs text-slate-400">
+              <div className="font-bold text-slate-200">How to link your WhatsApp:</div>
+              <ol className="list-decimal list-inside space-y-1 text-[11px] text-slate-400">
+                <li>Open WhatsApp on your mobile phone</li>
+                <li>Tap <strong className="text-slate-300">Settings</strong> (or 3 dots) → <strong className="text-slate-300">Linked Devices</strong></li>
+                <li>Tap <strong className="text-emerald-400">Link a Device</strong> and point your camera here</li>
+              </ol>
+            </div>
+          </div>
+
+          {/* Try DIGI BIZ OS Flagship Promo Card */}
+          <a
+            href="https://www.digibizos.co.uk/pricing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block p-3.5 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-teal-950/30 to-slate-900 border border-emerald-500/30 hover:border-emerald-400/60 shadow-lg transition-all group no-underline"
+            title="Try DIGI BIZ OS - Claim 3-Day Free Trial"
+          >
+            <div className="flex items-center justify-between gap-3">
+              <div className="space-y-0.5">
+                <div className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>⚡ Flagship Platform</span>
+                  <span className="px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-300 text-[8px] border border-emerald-500/30">3-Day Free Trial</span>
+                </div>
+                <div className="text-xs font-bold text-white group-hover:text-emerald-300 transition">Try DIGI BIZ OS</div>
+                <div className="text-[10px] text-slate-400">All-in-One Business Suite &bull; Local CRM &bull; Offline Tools</div>
+              </div>
+              <span className="px-2.5 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-500/30 group-hover:bg-emerald-500/30 group-hover:scale-105 transition shrink-0 flex items-center gap-1">
+                <span>Explore</span>
+                <ExternalLink size={10} />
+              </span>
+            </div>
+          </a>
+
+          {/* Engine Highlights */}
+          <div className="glass-card rounded-2xl p-3 border border-white/10 space-y-2 shadow-xl">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-200 uppercase tracking-wider">
+              <Zap size={13} className="text-emerald-400" />
+              <span>Universal Sales Engine</span>
+            </div>
+            <div className="grid grid-cols-2 gap-1.5 text-[11px]">
+              <div className="p-2 rounded-lg bg-slate-900/60 border border-white/5 space-y-0.5">
+                <div className="text-slate-400 text-[10px]">Zero-AI Fallback</div>
+                <div className="text-emerald-400 font-bold font-mono text-[11px]">0ms Active</div>
+              </div>
+              <div className="p-2 rounded-lg bg-slate-900/60 border border-white/5 space-y-0.5">
+                <div className="text-slate-400 text-[10px]">Language Mode</div>
+                <div className="text-teal-300 font-bold font-mono text-[11px]">Roman Urdu / EN</div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* AI Auto-Reply Switch */}
-        <div
-          className={`p-5 rounded-2xl border transition-all shadow-xl ${
-            agentActive
-              ? "bg-[#00A884]/10 border-[#00A884]/35 glow-teal"
-              : "glass-card border-white/5"
-          }`}
-        >
-          <div className="flex items-start justify-between gap-3">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <Bot size={18} className={agentActive ? "text-[#25D366]" : "text-slate-400"} />
-                <span className={`text-sm font-bold ${agentActive ? "text-slate-100" : "text-slate-400"}`}>
-                  AI Auto-Reply Sales Agent
+        {/* Right Column: Knowledge Base Studio */}
+        <div className="lg:col-span-7 h-full min-h-0 flex flex-col">
+          <KnowledgeBase accountId={accountId} />
+        </div>
+      </div>
+    );
+  }
+
+  // ── Render When CONNECTED: Dedicated Live Chat & Tracking Feed, No QR Code, No Connect Buttons ──
+  return (
+    <div className="flex flex-col h-full min-h-0 overflow-hidden space-y-2.5">
+      {/* ── Top Status Bar (Only Connected Status, Number, Mode Selector, Auto-reply, Unlink) ── */}
+      <div className="glass-card rounded-2xl p-2.5 px-4 border border-white/10 flex items-center justify-between gap-4 shadow-xl shrink-0">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 glow-green">
+            <CheckCircle2 size={16} />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-extrabold tracking-tight text-emerald-400">
+                Connected &amp; Online
+              </span>
+              <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+              {status?.phone && (
+                <span className="font-mono text-emerald-300 text-xs font-bold bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/20">
+                  +{status.phone}
                 </span>
-                {agentActive && (
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono">
-                    24/7 ACTIVE
-                  </span>
-                )}
-              </div>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                {agentActive
-                  ? "AI automatically responds to incoming customer chats using factual knowledge and sales playbooks."
-                  : "Paused. The bot will not auto-reply; you can chat manually on your phone."}
-              </p>
+              )}
             </div>
+            <div className="text-[10px] text-slate-400">
+              LangGraph Autonomous Sales Agent actively handling client inquiries
+            </div>
+          </div>
+        </div>
+
+        {/* Sub-tabs: Live Chat & Tracking / Knowledge Base / Engine */}
+        <div className="flex items-center gap-1.5 bg-slate-900/80 p-1 rounded-xl border border-white/5">
+          <button
+            onClick={() => setView("chat")}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+              view === "chat"
+                ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            <MessageSquare size={13} />
+            <span>Live Chat &amp; Tracking</span>
+          </button>
+          <button
+            onClick={() => setView("kb")}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+              view === "kb"
+                ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            <BookOpen size={13} />
+            <span>Knowledge Base</span>
+          </button>
+          <button
+            onClick={() => setView("engine")}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 ${
+              view === "engine"
+                ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            <Settings2 size={13} />
+            <span>Engine &amp; Blocklist</span>
+          </button>
+        </div>
+
+        {/* AI Auto-Reply Switch & Unlink */}
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 px-2.5 py-1 rounded-xl bg-slate-900/60 border border-white/5">
+            <Bot size={14} className={agentActive ? "text-[#25D366]" : "text-slate-500"} />
+            <span className="text-xs font-semibold text-slate-300">Auto-Reply</span>
             <button
               onClick={toggleAgent}
               disabled={togglingAgent}
               aria-pressed={agentActive}
-              className={`relative shrink-0 h-6 w-11 rounded-full transition-colors mt-1 ${
+              className={`relative shrink-0 h-5 w-9 rounded-full transition-colors ${
                 agentActive ? "bg-[#25D366]" : "bg-slate-700"
               }`}
             >
               <span
-                className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-md transition-all ${
-                  agentActive ? "left-[22px]" : "left-0.5"
+                className={`absolute top-0.5 h-4 w-4 rounded-full bg-white shadow transition-all ${
+                  agentActive ? "left-[18px]" : "left-0.5"
                 }`}
               />
             </button>
           </div>
-        </div>
 
-        {/* QR Pairing Section (If Disconnected) */}
-        {!connected && (
-          <div className="glass-card rounded-2xl p-6 border border-white/10 flex flex-col items-center text-center space-y-4 shadow-2xl">
-            {qr ? (
-              <div className="space-y-4 flex flex-col items-center">
-                <div className="p-3.5 bg-white rounded-2xl shadow-2xl shadow-emerald-950/60 border-4 border-[#00A884]/40 animate-pulse-subtle">
-                  <img src={qr} alt="WhatsApp QR Code" className="w-60 h-60 rounded-lg" />
-                </div>
-                <div className="space-y-1 max-w-sm">
-                  <h4 className="text-sm font-bold text-white">Scan with WhatsApp Mobile</h4>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    Open WhatsApp → <span className="text-slate-200 font-semibold">Settings</span> → <span className="text-slate-200 font-semibold">Linked Devices</span> → <span className="text-emerald-400 font-semibold">Link a Device</span>.
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-2 py-4 flex flex-col items-center">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#25D366]/20 to-[#128C7E]/20 border border-[#25D366]/30 flex items-center justify-center text-[#25D366] shadow-xl">
-                  <Smartphone size={32} />
-                </div>
-                <h4 className="text-sm font-bold text-white pt-2">Connect WhatsApp Number</h4>
-                <p className="text-xs text-slate-400 max-w-sm">
-                  Generate a pairing QR code to connect your personal or business WhatsApp number in seconds.
-                </p>
-              </div>
-            )}
+          <button
+            onClick={() => fetchStatus()}
+            title="Refresh status"
+            className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white border border-white/5 transition"
+          >
+            <RefreshCw size={12} />
+          </button>
 
-            {/* Ban Risk Alert */}
-            <div className="w-full p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-left flex items-start gap-2.5">
-              <ShieldAlert size={16} className="text-amber-400 shrink-0 mt-0.5" />
-              <div className="text-[11px] text-amber-200/90 leading-snug">
-                <span className="font-semibold text-amber-300">Safety Tip: </span>
-                Use an established WhatsApp number. Official Baileys Web protocol keeps your connection authentic.
-              </div>
-            </div>
-
-            <button
-              onClick={connect}
-              disabled={busy || connecting || state === "qr_ready"}
-              className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:brightness-110 disabled:opacity-50 text-white text-xs font-bold shadow-lg shadow-emerald-950/40 transition"
-            >
-              {busy || connecting ? (
-                <Loader2 size={15} className="animate-spin" />
-              ) : (
-                <QrCode size={15} />
-              )}
-              {qr ? "Regenerate QR Code" : "Start & Connect WhatsApp"}
-            </button>
-          </div>
-        )}
-
-        {/* Engine Highlights Card */}
-        <div className="glass-card rounded-2xl p-5 border border-white/10 space-y-3 shadow-xl">
-          <div className="flex items-center gap-2 text-xs font-bold text-slate-200 uppercase tracking-wider">
-            <Zap size={14} className="text-amber-400" /> Universal Sales Engine Status
-          </div>
-          <div className="grid grid-cols-2 gap-2 text-[11px]">
-            <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-0.5">
-              <div className="text-slate-400">Zero-AI Fallback</div>
-              <div className="text-emerald-400 font-bold font-mono">0ms Active</div>
-            </div>
-            <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-0.5">
-              <div className="text-slate-400">Language Mode</div>
-              <div className="text-teal-300 font-bold font-mono">Roman Urdu / EN</div>
-            </div>
-            <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-0.5">
-              <div className="text-slate-400">Sales Pipeline</div>
-              <div className="text-amber-300 font-bold font-mono">8-Stage FSM</div>
-            </div>
-            <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 space-y-0.5">
-              <div className="text-slate-400">Memory Storage</div>
-              <div className="text-purple-300 font-bold font-mono">SQLite Local</div>
-            </div>
-          </div>
+          <button
+            onClick={disconnect}
+            disabled={busy}
+            className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 text-xs font-semibold transition disabled:opacity-50"
+          >
+            {busy ? <Loader2 size={11} className="animate-spin" /> : <Link2Off size={11} />}
+            Unlink
+          </button>
         </div>
       </div>
 
-      {/* ── RIGHT COLUMN: Full-Height Knowledge Base Studio ── */}
-      <div className="lg:col-span-7">
-        <KnowledgeBase accountId={accountId} />
+      {/* ── Main Connected Workspace ── */}
+      <div className="flex-1 min-h-0 overflow-hidden">
+        {view === "chat" ? (
+          <LiveChatTracking accountId={accountId} />
+        ) : view === "kb" ? (
+          <KnowledgeBase accountId={accountId} />
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 h-full min-h-0 overflow-y-auto">
+            <BlocklistCard accountId={accountId} />
+            <div className="glass-card rounded-2xl p-4 border border-white/10 space-y-3">
+              <div className="flex items-center gap-2 text-xs font-bold text-white uppercase tracking-wider">
+                <Zap size={14} className="text-emerald-400" />
+                <span>LangGraph Sales Engine Architecture</span>
+              </div>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Autonomous 8-stage state graph operating on client interactions: Discovery → Clarification → Pitching → Objection Handling → Closing.
+              </p>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5">
+                  <div className="text-slate-400 text-[10px]">Fallback Protocol</div>
+                  <div className="text-emerald-400 font-bold font-mono">0ms Zero-AI Hardcoded</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5">
+                  <div className="text-slate-400 text-[10px]">Memory Engine</div>
+                  <div className="text-purple-300 font-bold font-mono">SQLite Local DB</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5">
+                  <div className="text-slate-400 text-[10px]">Language Mode</div>
+                  <div className="text-teal-300 font-bold font-mono">Roman Urdu + English</div>
+                </div>
+                <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5">
+                  <div className="text-slate-400 text-[10px]">Group Protection</div>
+                  <div className="text-rose-300 font-bold font-mono">Groups Blocked 100%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
-/* MULTI ACCOUNT CONTAINER                                                    */
+/* SINGLE ACCOUNT CONTAINER (Simple 1 WhatsApp Slot)                         */
 /* ────────────────────────────────────────────────────────────────────────── */
 function WhatsAppMulti() {
-  const [accounts, setAccounts] = useState<Array<{ id: string; status: any; hasSession: boolean; hasKnowledge: boolean }>>([]);
-  const [active, setActive] = useState("0");
-  const [max, setMax] = useState(3);
-  const [shown, setShown] = useState(1);
+  return <WhatsAppChannel accountId="0" />;
+}
 
-  const load = useCallback(() => {
-    fetch("/api/whatsapp/list", { cache: "no-store" })
-      .then((r) => r.json())
-      .then((d) => {
-        const accs = d?.accounts || [];
-        setAccounts(accs);
-        setMax(d?.max || 3);
-        const used = accs.filter((a: any) => a.hasSession || a.hasKnowledge || a.status?.connected).length;
-        setShown((s) => Math.max(1, used, s));
+/* ────────────────────────────────────────────────────────────────────────── */
+/* CRM & WEBSITE LEADS PANEL                                                  */
+/* ────────────────────────────────────────────────────────────────────────── */
+function CrmLeadsPanel() {
+  const [subTab, setSubTab] = useState<"contacts" | "website" | "followups">("contacts");
+  const [crmData, setCrmData] = useState<{ summary: any; contacts: any[] }>({
+    summary: { totalCustomers: 0, engaged: 0, won: 0, lost: 0, revenue: 0, currency: "GBP" },
+    contacts: [],
+  });
+  const [webLeads, setWebLeads] = useState<any[]>([]);
+  const [followups, setFollowups] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [updatingNum, setUpdatingNum] = useState<string | null>(null);
+
+  const loadData = useCallback(() => {
+    Promise.all([
+      fetch("/api/whatsapp/crm").then((r) => r.json()).catch(() => ({})),
+      fetch("/api/crm/web_whatsapp").then((r) => r.json()).catch(() => ({})),
+      fetch("/api/whatsapp/followups").then((r) => r.json()).catch(() => ({})),
+    ])
+      .then(([crmRes, webRes, folRes]) => {
+        if (crmRes?.ok) {
+          setCrmData({
+            summary: crmRes.summary || {},
+            contacts: crmRes.contacts || [],
+          });
+        }
+        if (webRes?.ok && Array.isArray(webRes.leads)) {
+          setWebLeads(webRes.leads);
+        }
+        if (folRes?.ok && Array.isArray(folRes.followups)) {
+          setFollowups(folRes.followups);
+        }
       })
-      .catch(() => {});
+      .finally(() => setLoading(false));
   }, []);
 
   useEffect(() => {
-    load();
-    const t = setInterval(load, 4000);
+    loadData();
+    const t = setInterval(loadData, 5000);
     return () => clearInterval(t);
-  }, [load]);
+  }, [loadData]);
 
-  const label = (id: string) => `Account ${Number(id) + 1}`;
-  const stateOf = (id: string) => accounts.find((a) => a.id === id)?.status?.state || "disconnected";
+  const updateDeal = async (number: string, status: string, saleAmount?: number) => {
+    setUpdatingNum(number);
+    try {
+      await fetch("/api/whatsapp/crm/status", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ number, status, saleAmount }),
+      });
+      loadData();
+    } catch {
+    } finally {
+      setUpdatingNum(null);
+    }
+  };
+
+  const sum = crmData.summary || {};
 
   return (
     <div className="space-y-6">
-      {/* Account Navigation Bar */}
-      <div className="flex items-center justify-between gap-4 flex-wrap bg-slate-900/60 p-2 rounded-2xl border border-white/10">
-        <div className="flex items-center gap-2 flex-wrap">
-          {Array.from({ length: shown }, (_, i) => String(i)).map((id) => {
-            const st = stateOf(id);
-            const on = st === "connected";
-            const isSelected = active === id;
-            return (
-              <button
-                key={id}
-                onClick={() => setActive(id)}
-                className={`flex items-center gap-2.5 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-                  isSelected
-                    ? "bg-gradient-to-r from-[#00A884] to-[#128C7E] text-white shadow-lg shadow-emerald-950/30"
-                    : "bg-slate-950/70 border border-white/5 text-slate-400 hover:text-slate-200 hover:bg-slate-800"
-                }`}
-              >
-                <span
-                  className={`w-2 h-2 rounded-full ${
-                    on ? "bg-emerald-300 shadow-[0_0_8px_#34d399]" : "bg-slate-600"
-                  }`}
-                />
-                {label(id)}
-                {on && (
-                  <span className="text-[9px] uppercase px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 font-mono">
-                    Live
-                  </span>
-                )}
-              </button>
-            );
-          })}
-
-          {shown < max && (
-            <button
-              onClick={() => {
-                const n = Math.min(shown + 1, max);
-                setShown(n);
-                setActive(String(n - 1));
-              }}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-dashed border-white/15 text-xs font-semibold text-slate-400 hover:border-[#25D366]/40 hover:text-[#25D366] bg-slate-900/30 transition"
-            >
-              <Plus size={14} /> Add Number Slot
-            </button>
-          )}
+      {/* ── Top KPI Banner (4 Stat Cards) ── */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Total Contacts */}
+        <div className="glass-card rounded-2xl p-5 border border-white/10 shadow-xl space-y-2">
+          <div className="flex items-center justify-between text-xs text-slate-400">
+            <span className="font-semibold uppercase tracking-wider">Total Pipeline Leads</span>
+            <Users size={16} className="text-emerald-400" />
+          </div>
+          <div className="text-2xl font-bold text-white font-mono">{sum.totalCustomers ?? 0}</div>
+          <div className="text-[11px] text-slate-500">Live contacts recorded by agent</div>
         </div>
 
-        <div className="text-[11px] font-mono text-slate-400">
-          Connected Slots: <span className="text-emerald-400 font-bold">{shown}/{max}</span>
+        {/* Engaged Leads */}
+        <div className="glass-card rounded-2xl p-5 border border-white/10 shadow-xl space-y-2">
+          <div className="flex items-center justify-between text-xs text-slate-400">
+            <span className="font-semibold uppercase tracking-wider">Engaged Prospects</span>
+            <Flame size={16} className="text-amber-400" />
+          </div>
+          <div className="text-2xl font-bold text-amber-300 font-mono">{sum.engaged ?? 0}</div>
+          <div className="text-[11px] text-slate-500">Active multi-turn discussions</div>
+        </div>
+
+        {/* Won Deals */}
+        <div className="glass-card rounded-2xl p-5 border border-white/10 shadow-xl space-y-2">
+          <div className="flex items-center justify-between text-xs text-slate-400">
+            <span className="font-semibold uppercase tracking-wider">Won Deals</span>
+            <CheckCircle2 size={16} className="text-teal-400" />
+          </div>
+          <div className="text-2xl font-bold text-teal-300 font-mono">{sum.won ?? 0}</div>
+          <div className="text-[11px] text-slate-500">Completed client conversions</div>
+        </div>
+
+        {/* Sales Revenue */}
+        <div className="glass-card rounded-2xl p-5 border border-white/10 shadow-xl space-y-2">
+          <div className="flex items-center justify-between text-xs text-slate-400">
+            <span className="font-semibold uppercase tracking-wider">Verified Revenue</span>
+            <DollarSign size={16} className="text-sky-400" />
+          </div>
+          <div className="text-2xl font-bold text-sky-300 font-mono">
+            {sum.currency || "£"} {Number(sum.revenue || 0).toLocaleString()}
+          </div>
+          <div className="text-[11px] text-slate-500">Recorded deal sales value</div>
         </div>
       </div>
 
-      <WhatsAppChannel key={active} accountId={active} />
+      {/* ── Sub-navigation Tabs ── */}
+      <div className="flex items-center gap-2 bg-slate-900/60 p-1.5 rounded-2xl border border-white/10 w-fit">
+        <button
+          onClick={() => setSubTab("contacts")}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
+            subTab === "contacts"
+              ? "bg-[#38BDF8]/15 text-[#38BDF8] border border-[#38BDF8]/30 shadow"
+              : "text-slate-400 hover:text-white"
+          }`}
+        >
+          Customer Book ({crmData.contacts.length})
+        </button>
+        <button
+          onClick={() => setSubTab("website")}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
+            subTab === "website"
+              ? "bg-[#38BDF8]/15 text-[#38BDF8] border border-[#38BDF8]/30 shadow"
+              : "text-slate-400 hover:text-white"
+          }`}
+        >
+          From Website Leads ({webLeads.length})
+        </button>
+        <button
+          onClick={() => setSubTab("followups")}
+          className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
+            subTab === "followups"
+              ? "bg-[#38BDF8]/15 text-[#38BDF8] border border-[#38BDF8]/30 shadow"
+              : "text-slate-400 hover:text-white"
+          }`}
+        >
+          Follow-up Intelligence ({followups.length})
+        </button>
+      </div>
+
+      {/* ── SUB-TAB 1: Contacts & Deal Book ── */}
+      {subTab === "contacts" && (
+        <div className="glass-card rounded-2xl p-6 border border-white/10 shadow-2xl space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-sm font-bold text-white">WhatsApp Sales Pipeline Book</h3>
+              <p className="text-xs text-slate-400">All customer conversations tracked with automatic deal stage updates.</p>
+            </div>
+            <button
+              onClick={loadData}
+              className="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white transition"
+              title="Refresh"
+            >
+              <RefreshCw size={14} className={loading ? "animate-spin" : ""} />
+            </button>
+          </div>
+
+          {crmData.contacts.length === 0 ? (
+            <div className="text-center py-12 text-slate-500 text-xs italic">
+              No contacts recorded yet. When customers message your WhatsApp agent, they will automatically appear here.
+            </div>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs">
+                <thead>
+                  <tr className="border-b border-white/10 text-slate-400 text-[11px] font-semibold uppercase">
+                    <th className="pb-3 px-3">Contact</th>
+                    <th className="pb-3 px-3">Phone</th>
+                    <th className="pb-3 px-3">Messages</th>
+                    <th className="pb-3 px-3">Deal Status</th>
+                    <th className="pb-3 px-3">Deal Value</th>
+                    <th className="pb-3 px-3">Last Active</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {crmData.contacts.map((c) => (
+                    <tr key={c.number} className="hover:bg-slate-800/40 transition">
+                      <td className="py-3 px-3 font-semibold text-white">{c.name || "Customer"}</td>
+                      <td className="py-3 px-3 font-mono text-emerald-400">+{c.number}</td>
+                      <td className="py-3 px-3 font-mono text-slate-300">{c.messages} msgs</td>
+                      <td className="py-3 px-3">
+                        <select
+                          value={c.dealStatus || c.deal_status || "new"}
+                          disabled={updatingNum === c.number}
+                          onChange={(e) => updateDeal(c.number, e.target.value)}
+                          className="bg-slate-900 border border-white/10 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-200 focus:outline-none focus:border-sky-500"
+                        >
+                          <option value="new">New Lead</option>
+                          <option value="engaged">Engaged</option>
+                          <option value="won">Won Deal</option>
+                          <option value="lost">Lost</option>
+                        </select>
+                      </td>
+                      <td className="py-3 px-3 font-mono text-slate-200">
+                        {c.currency || "£"} {c.saleAmount || c.deal_value || 0}
+                      </td>
+                      <td className="py-3 px-3 text-slate-400 text-[11px]">
+                        {new Date(c.lastContact || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ── SUB-TAB 2: From Website Leads ── */}
+      {subTab === "website" && (
+        <div className="glass-card rounded-2xl p-6 border border-white/10 shadow-2xl space-y-4">
+          <div>
+            <h3 className="text-sm font-bold text-white">Website WhatsApp Widget Leads</h3>
+            <p className="text-xs text-slate-400">Visitors who clicked or initiated chats from your website widget.</p>
+          </div>
+
+          {webLeads.length === 0 ? (
+            <div className="text-center py-12 text-slate-500 text-xs italic">
+              No website leads recorded yet.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {webLeads.map((w) => (
+                <div key={w.id} className="p-4 rounded-xl bg-slate-950/60 border border-white/10 flex items-center justify-between">
+                  <div className="space-y-1">
+                    <div className="text-xs font-bold text-white flex items-center gap-2">
+                      <Globe size={13} className="text-sky-400" />
+                      <span>{w.customer}</span>
+                    </div>
+                    <div className="text-[11px] text-slate-400">{w.source}</div>
+                  </div>
+                  <div className="text-right space-y-1">
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300 font-mono">
+                      {w.status?.toUpperCase() || "ACTIVE"}
+                    </span>
+                    <div className="text-[10px] text-slate-500">
+                      {new Date(w.timestamp).toLocaleTimeString()}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ── SUB-TAB 3: Follow-up Intelligence ── */}
+      {subTab === "followups" && (
+        <div className="glass-card rounded-2xl p-6 border border-white/10 shadow-2xl space-y-4">
+          <div>
+            <h3 className="text-sm font-bold text-white">Deterministic Follow-up Intelligence</h3>
+            <p className="text-xs text-slate-400">Commercial opportunities identified by intent rules with evidence trails.</p>
+          </div>
+
+          {followups.length === 0 ? (
+            <div className="text-center py-12 text-slate-500 text-xs italic">
+              No pending follow-ups. All customer chats are either resolved or have no outstanding asks.
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {followups.map((f, i) => (
+                <div key={i} className="p-4 rounded-xl bg-slate-950/70 border border-white/10 space-y-2">
+                  <div className="flex items-center justify-between flex-wrap gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-white">{f.name}</span>
+                      {f.service && (
+                        <span className="text-[10px] px-2 py-0.5 rounded bg-sky-500/20 text-sky-300 font-mono">
+                          {f.service}
+                        </span>
+                      )}
+                      <span
+                        className={`text-[10px] px-2 py-0.5 rounded font-bold uppercase font-mono ${
+                          f.priority === "HIGH"
+                            ? "bg-rose-500/20 text-rose-300 border border-rose-500/30"
+                            : f.priority === "MEDIUM"
+                            ? "bg-amber-500/20 text-amber-300 border border-amber-500/30"
+                            : "bg-slate-700 text-slate-300"
+                        }`}
+                      >
+                        {f.priority} Priority
+                      </span>
+                    </div>
+                    <span className="text-[11px] text-slate-400">{f.when}</span>
+                  </div>
+
+                  <p className="text-xs text-slate-200 bg-slate-900/60 p-2.5 rounded-lg border border-white/5">
+                    {f.owner_question}
+                  </p>
+
+                  {f.evidence && f.evidence.length > 0 && (
+                    <div className="space-y-1 text-[11px]">
+                      {f.evidence.map((ev: any, j: number) => (
+                        <div key={j} className="flex items-start gap-1.5 text-slate-400">
+                          <span className="font-mono text-[9px] px-1 py-0.2 rounded bg-slate-800 text-slate-300">
+                            {ev.kind}
+                          </span>
+                          <span>{ev.text}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -949,24 +1675,72 @@ function LogsPanel() {
 /* SETTINGS PANEL                                                             */
 /* ────────────────────────────────────────────────────────────────────────── */
 function SettingsPanel() {
-  const [key, setKey] = useState("");
-  const [hint, setHint] = useState("");
-  const [set, setSet] = useState(false);
-  const [busy, setBusy] = useState(false);
-  const [msg, setMsg] = useState<{ ok: boolean; text: string } | null>(null);
+  // Google Gemini AI Key
+  const [geminiKey, setGeminiKey] = useState("");
+  const [geminiHint, setGeminiHint] = useState("");
+  const [geminiSet, setGeminiSet] = useState(false);
+  const [geminiBusy, setGeminiBusy] = useState(false);
+  const [geminiMsg, setGeminiMsg] = useState<{ ok: boolean; text: string } | null>(null);
 
+  // Groq Cloud High-Speed LPU & Whisper STT Key
   const [groqKey, setGroqKey] = useState("");
   const [groqHint, setGroqHint] = useState("");
   const [groqSet, setGroqSet] = useState(false);
   const [groqBusy, setGroqBusy] = useState(false);
   const [groqMsg, setGroqMsg] = useState<{ ok: boolean; text: string } | null>(null);
 
+  // Model selectors state
+  const [geminiModel, setGeminiModel] = useState("gemini-2.5-flash");
+  const [groqModel, setGroqModel] = useState("qwen/qwen3.8-27b");
+
+  // GitHub Models Key (100% Free via GitHub Personal Access Token)
+  const [ghToken, setGhToken] = useState("");
+  const [ghModel, setGhModel] = useState("gpt-4o-mini");
+  const [ghHint, setGhHint] = useState("");
+  const [ghSet, setGhSet] = useState(false);
+  const [ghBusy, setGhBusy] = useState(false);
+  const [ghMsg, setGhMsg] = useState<{ ok: boolean; text: string } | null>(null);
+
+  // Cloudflare Workers AI
+  const [cfAccountId, setCfAccountId] = useState("");
+  const [cfToken, setCfToken] = useState("");
+  const [cfModel, setCfModel] = useState("@cf/meta/llama-3.3-70b-instruct");
+  const [cfSet, setCfSet] = useState(false);
+  const [cfAccountHint, setCfAccountHint] = useState("");
+  const [cfBusy, setCfBusy] = useState(false);
+  const [cfMsg, setCfMsg] = useState<{ ok: boolean; text: string } | null>(null);
+
+  // Mistral AI (1B tokens free tier)
+  const [mistralKey, setMistralKey] = useState("");
+  const [mistralHint, setMistralHint] = useState("");
+  const [mistralModel, setMistralModel] = useState("mistral-small-latest");
+  const [mistralSet, setMistralSet] = useState(false);
+  const [mistralBusy, setMistralBusy] = useState(false);
+  const [mistralMsg, setMistralMsg] = useState<{ ok: boolean; text: string } | null>(null);
+
+  // SambaNova Cloud (100% Free Developer Tier 400 T/s)
+  const [sambaKey, setSambaKey] = useState("");
+  const [sambaHint, setSambaHint] = useState("");
+  const [sambaModel, setSambaModel] = useState("Meta-Llama-3.1-70B-Instruct");
+  const [sambaSet, setSambaSet] = useState(false);
+  const [sambaBusy, setSambaBusy] = useState(false);
+  const [sambaMsg, setSambaMsg] = useState<{ ok: boolean; text: string } | null>(null);
+
+  // Together AI (Open-Source Free Models)
+  const [togetherKey, setTogetherKey] = useState("");
+  const [togetherHint, setTogetherHint] = useState("");
+  const [togetherModel, setTogetherModel] = useState("meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo");
+  const [togetherSet, setTogetherSet] = useState(false);
+  const [togetherBusy, setTogetherBusy] = useState(false);
+  const [togetherMsg, setTogetherMsg] = useState<{ ok: boolean; text: string } | null>(null);
+
   const load = () => {
-    fetch("/api/config/agent-key", { cache: "no-store" })
+    fetch("/api/config/gemini-key", { cache: "no-store" })
       .then((r) => r.json())
       .then((d) => {
-        setSet(Boolean(d.set));
-        setHint(d.hint || "");
+        setGeminiSet(Boolean(d.set));
+        setGeminiHint(d.hint || "");
+        if (d.model) setGeminiModel(d.model);
       })
       .catch(() => {});
 
@@ -975,65 +1749,105 @@ function SettingsPanel() {
       .then((d) => {
         setGroqSet(Boolean(d.set));
         setGroqHint(d.hint || "");
+        if (d.model) setGroqModel(d.model);
+      })
+      .catch(() => {});
+
+    fetch("/api/config/cloudflare-key", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((d) => {
+        setCfSet(Boolean(d.set));
+        setCfAccountHint(d.accountIdHint || "");
+        if (d.model) setCfModel(d.model);
+      })
+      .catch(() => {});
+
+    fetch("/api/config/mistral-key", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((d) => {
+        setMistralSet(Boolean(d.set));
+        setMistralHint(d.hint || "");
+        if (d.model) setMistralModel(d.model);
+      })
+      .catch(() => {});
+
+    fetch("/api/config/github-key", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((d) => {
+        setGhSet(Boolean(d.set));
+        setGhHint(d.hint || "");
+        if (d.model) setGhModel(d.model);
+      })
+      .catch(() => {});
+
+    fetch("/api/config/sambanova-key", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((d) => {
+        setSambaSet(Boolean(d.set));
+        setSambaHint(d.hint || "");
+        if (d.model) setSambaModel(d.model);
+      })
+      .catch(() => {});
+
+    fetch("/api/config/together-key", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((d) => {
+        setTogetherSet(Boolean(d.set));
+        setTogetherHint(d.hint || "");
+        if (d.model) setTogetherModel(d.model);
       })
       .catch(() => {});
   };
 
   useEffect(load, []);
 
-  const save = async (customKey?: string) => {
-    setBusy(true);
-    setMsg(null);
-    const keyToSave = customKey !== undefined ? customKey : key.trim();
+  const saveGemini = async (clear?: boolean) => {
+    setGeminiBusy(true);
+    setGeminiMsg(null);
     try {
-      const r = await fetch("/api/config/agent-key", {
+      const r = await fetch("/api/config/gemini-key", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ key: keyToSave }),
+        body: JSON.stringify({ key: clear ? "" : geminiKey.trim(), model: geminiModel }),
       });
       const d = await r.json();
-      setSet(Boolean(d.set));
-      setMsg({
+      setGeminiSet(Boolean(d.set));
+      setGeminiMsg({
         ok: Boolean(d.ok),
         text: d.ok
-          ? keyToSave
-            ? "API Key saved successfully! AI replies are fully active."
-            : "Key cleared. Using default free tier."
+          ? (clear ? "Gemini key cleared." : "Google Gemini saved successfully!")
           : d.error || "Save failed",
       });
       if (d.ok) {
-        setKey("");
+        if (!clear) setGeminiKey("");
         load();
       }
     } catch {
-      setMsg({ ok: false, text: "Network error saving API key" });
+      setGeminiMsg({ ok: false, text: "Network error saving Gemini key" });
     } finally {
-      setBusy(false);
+      setGeminiBusy(false);
     }
   };
 
-  const saveGroq = async (customKey?: string) => {
+  const saveGroq = async (clear?: boolean) => {
     setGroqBusy(true);
     setGroqMsg(null);
-    const keyToSave = customKey !== undefined ? customKey : groqKey.trim();
     try {
       const r = await fetch("/api/config/groq-key", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ key: keyToSave }),
+        body: JSON.stringify({ key: clear ? "" : groqKey.trim(), model: groqModel }),
       });
       const d = await r.json();
       setGroqSet(Boolean(d.set));
       setGroqMsg({
         ok: Boolean(d.ok),
         text: d.ok
-          ? keyToSave
-            ? "Groq Whisper Key saved! Voice notes will transcribe instantly."
-            : "Groq key cleared. Using local open-source Whisper."
+          ? (clear ? "Groq key cleared." : "Groq LPU saved successfully!")
           : d.error || "Save failed",
       });
       if (d.ok) {
-        setGroqKey("");
+        if (!clear) setGroqKey("");
         load();
       }
     } catch {
@@ -1043,193 +1857,765 @@ function SettingsPanel() {
     }
   };
 
+  const saveCloudflare = async (clear?: boolean) => {
+    setCfBusy(true);
+    setCfMsg(null);
+    try {
+      const r = await fetch("/api/config/cloudflare-key", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          accountId: clear ? "" : cfAccountId.trim(),
+          token: clear ? "" : cfToken.trim(),
+          model: cfModel.trim(),
+        }),
+      });
+      const d = await r.json();
+      setCfSet(Boolean(d.set));
+      setCfMsg({
+        ok: Boolean(d.ok),
+        text: d.ok
+          ? (!clear && cfAccountId && cfToken)
+            ? "Cloudflare Workers AI saved!"
+            : "Cloudflare credentials cleared."
+          : d.error || "Save failed",
+      });
+      if (d.ok) {
+        if (!clear) {
+          setCfAccountId("");
+          setCfToken("");
+        }
+        load();
+      }
+    } catch {
+      setCfMsg({ ok: false, text: "Network error saving Cloudflare credentials" });
+    } finally {
+      setCfBusy(false);
+    }
+  };
+
+  const saveMistral = async (clear?: boolean) => {
+    setMistralBusy(true);
+    setMistralMsg(null);
+    try {
+      const r = await fetch("/api/config/mistral-key", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ key: clear ? "" : mistralKey.trim(), model: mistralModel }),
+      });
+      const d = await r.json();
+      setMistralSet(Boolean(d.set));
+      setMistralMsg({
+        ok: Boolean(d.ok),
+        text: d.ok
+          ? (clear ? "Mistral key cleared." : "Mistral AI saved! 1B tokens free tier active.")
+          : d.error || "Save failed",
+      });
+      if (d.ok) {
+        if (!clear) setMistralKey("");
+        load();
+      }
+    } catch {
+      setMistralMsg({ ok: false, text: "Network error saving Mistral key" });
+    } finally {
+      setMistralBusy(false);
+    }
+  };
+
+  const saveGitHub = async (clear?: boolean) => {
+    setGhBusy(true);
+    setGhMsg(null);
+    try {
+      const r = await fetch("/api/config/github-key", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          token: clear ? "" : ghToken.trim(),
+          model: ghModel.trim(),
+        }),
+      });
+      const d = await r.json();
+      setGhSet(Boolean(d.set));
+      setGhMsg({
+        ok: Boolean(d.ok),
+        text: d.ok
+          ? (!clear && ghToken.trim())
+            ? "GitHub Models token saved! 100% Free GPT-4o-mini active."
+            : "GitHub token cleared."
+          : d.error || "Save failed",
+      });
+      if (d.ok) {
+        if (!clear) setGhToken("");
+        load();
+      }
+    } catch {
+      setGhMsg({ ok: false, text: "Network error saving GitHub token" });
+    } finally {
+      setGhBusy(false);
+    }
+  };
+
+  const saveSambaNova = async (clear?: boolean) => {
+    setSambaBusy(true);
+    setSambaMsg(null);
+    try {
+      const r = await fetch("/api/config/sambanova-key", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          key: clear ? "" : sambaKey.trim(),
+          model: sambaModel.trim(),
+        }),
+      });
+      const d = await r.json();
+      setSambaSet(Boolean(d.set));
+      setSambaMsg({
+        ok: Boolean(d.ok),
+        text: d.ok
+          ? (clear ? "SambaNova key cleared." : "SambaNova saved! 400 T/s free inference active.")
+          : d.error || "Save failed",
+      });
+      if (d.ok) {
+        if (!clear) setSambaKey("");
+        load();
+      }
+    } catch {
+      setSambaMsg({ ok: false, text: "Network error saving SambaNova key" });
+    } finally {
+      setSambaBusy(false);
+    }
+  };
+
+  const saveTogether = async (clear?: boolean) => {
+    setTogetherBusy(true);
+    setTogetherMsg(null);
+    try {
+      const r = await fetch("/api/config/together-key", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          key: clear ? "" : togetherKey.trim(),
+          model: togetherModel.trim(),
+        }),
+      });
+      const d = await r.json();
+      setTogetherSet(Boolean(d.set));
+      setTogetherMsg({
+        ok: Boolean(d.ok),
+        text: d.ok
+          ? (clear ? "Together AI key cleared." : "Together AI saved successfully!")
+          : d.error || "Save failed",
+      });
+      if (d.ok) {
+        if (!clear) setTogetherKey("");
+        load();
+      }
+    } catch {
+      setTogetherMsg({ ok: false, text: "Network error saving Together key" });
+    } finally {
+      setTogetherBusy(false);
+    }
+  };
+
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-      {/* 1. OpenCode Zen AI Reasoning Engine Key */}
-      <div className="glass-card rounded-2xl p-5 sm:p-6 border border-white/10 space-y-4 shadow-xl">
-        <div className="flex items-center justify-between gap-3 flex-wrap">
-          <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 shadow-inner">
-              <KeyRound size={20} />
-            </div>
-            <div>
-              <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider">
-                OpenCode Zen AI Engine Key
-              </h3>
-              <p className="text-[11px] text-slate-400">
-                Primary free AI reasoning engine powering customer chat auto-replies.
-              </p>
-            </div>
+    <div className="space-y-5">
+      {/* Cascade Overview Banner */}
+      <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-blue-950/40 via-purple-950/30 to-emerald-950/30 border border-blue-500/20 shadow-lg flex items-center justify-between gap-4 flex-wrap">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+            <Sparkles size={18} />
           </div>
-
-          <div
-            className={`flex items-center gap-1.5 text-[10px] font-mono font-bold px-3 py-1 rounded-full border ${
-              set
-                ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/25 glow-green"
-                : "bg-slate-800 text-slate-400 border-white/5"
-            }`}
-          >
-            <span className={`w-1.5 h-1.5 rounded-full ${set ? "bg-emerald-400 animate-pulse" : "bg-slate-500"}`} />
-            {set ? `Active (${hint})` : "Keyless Free Tier"}
-          </div>
-        </div>
-
-        {/* Quick Get API Key Banner */}
-        <div className="p-3.5 rounded-xl bg-gradient-to-r from-[#00A884]/15 via-slate-900/80 to-slate-900/80 border border-[#00A884]/30 flex items-center justify-between gap-3 flex-wrap">
-          <div className="space-y-0.5">
-            <div className="text-xs font-bold text-slate-100 flex items-center gap-1.5">
-              <Sparkles size={14} className="text-[#25D366]" /> Need an OpenCode Zen API Key?
+          <div>
+            <div className="text-xs font-bold text-slate-100 flex items-center gap-2">
+              7-Tier Resilient Free AI Reasoning Cascade (100% Free Quotas)
             </div>
-            <p className="text-[11px] text-slate-400">
-              Get your 100% free API key instantly without credit card.
+            <p className="text-[11px] text-slate-400 mt-0.5">
+              <span className="text-blue-400 font-semibold">Gemini Flash (#1)</span> &rarr; <span className="text-amber-400 font-semibold">Groq (12ms)</span> &rarr; <span className="text-cyan-400 font-semibold">Cloudflare</span> &rarr; <span className="text-orange-400 font-semibold">Mistral</span> &rarr; <span className="text-purple-400 font-semibold">GitHub Models</span> &rarr; <span className="text-emerald-400 font-semibold">SambaNova</span> &rarr; <span className="text-pink-400 font-semibold">Together AI</span>
             </p>
           </div>
-
-          <a
-            href="https://opencode.ai/auth"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:brightness-110 text-white text-xs font-bold shadow-lg shadow-emerald-950/40 transition shrink-0"
-          >
-            <ExternalLink size={13} />
-            Get Key Free
-          </a>
         </div>
-
-        {/* Input & Save Area */}
-        <div className="p-4 rounded-xl bg-[#06090D] border border-white/10 space-y-3">
-          <div className="flex gap-2 flex-wrap sm:flex-nowrap">
-            <input
-              type="password"
-              value={key}
-              onChange={(e) => setKey(e.target.value)}
-              placeholder="sk-... Paste your OpenCode Zen API key here"
-              className="flex-1 min-w-[200px] rounded-xl bg-slate-900/90 border border-white/10 px-3.5 py-2.5 text-xs text-slate-200 outline-none focus:border-[#00A884] focus:ring-1 focus:ring-[#00A884]/30 font-mono placeholder-slate-600 transition"
-            />
-            <button
-              onClick={() => save()}
-              disabled={busy || !key.trim()}
-              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#00A884] to-[#128C7E] hover:brightness-110 disabled:opacity-40 px-4 py-2.5 text-xs font-bold text-white shadow-lg transition shrink-0"
-            >
-              {busy ? <Loader2 size={13} className="animate-spin" /> : <Save size={13} />} Save Key
-            </button>
-            {set && (
-              <button
-                onClick={() => save("")}
-                disabled={busy}
-                title="Clear current key"
-                className="flex items-center justify-center gap-1.5 rounded-xl bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-3 py-2.5 text-xs font-semibold text-slate-400 hover:text-rose-300 transition shrink-0"
-              >
-                <Trash2 size={13} />
-              </button>
-            )}
-          </div>
-
-          {msg && (
-            <div
-              className={`text-xs font-mono px-3 py-2 rounded-lg border ${
-                msg.ok
-                  ? "bg-emerald-500/10 text-emerald-300 border-emerald-500/20"
-                  : "bg-rose-500/10 text-rose-300 border-rose-500/20"
-              }`}
-            >
-              {msg.text}
-            </div>
-          )}
+        <div className="flex items-center gap-2 text-[11px] font-mono px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
+          <CheckCircle2 size={13} />
+          Zero-Cost Cascade Active
         </div>
       </div>
 
-      {/* 2. Groq Cloud Whisper STT Key */}
-      <div className="glass-card rounded-2xl p-5 sm:p-6 border border-white/10 space-y-4 shadow-xl">
-        <div className="flex items-center justify-between gap-3 flex-wrap">
-          <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 shadow-inner">
-              <Zap size={20} />
-            </div>
-            <div>
-              <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider">
-                Groq Cloud Whisper STT Key
-              </h3>
-              <p className="text-[11px] text-slate-400">
-                Ultra-fast voice note audio transcription &amp; fallback brain.
-              </p>
-            </div>
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 items-stretch">
+        {/* 1. Google Gemini AI Engine (#1 Recommended) */}
+        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
+          <div className="space-y-2">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
+                  <Sparkles size={16} />
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+                    Google Gemini
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-blue-500/20 text-blue-300 font-mono">#1 Free</span>
+                  </h3>
+                  <p className="text-[10px] text-slate-400">15 RPM &bull; Multilingual Roman Urdu/Urdu</p>
+                </div>
+              </div>
 
-          <div
-            className={`flex items-center gap-1.5 text-[10px] font-mono font-bold px-3 py-1 rounded-full border ${
-              groqSet
-                ? "bg-amber-500/10 text-amber-400 border-amber-500/25"
-                : "bg-slate-800 text-slate-400 border-white/5"
-            }`}
-          >
-            <span className={`w-1.5 h-1.5 rounded-full ${groqSet ? "bg-amber-400 animate-pulse" : "bg-slate-500"}`} />
-            {groqSet ? `Active (${groqHint})` : "Using Local Whisper"}
-          </div>
-        </div>
-
-        {/* Quick Get Groq Key Banner */}
-        <div className="p-3.5 rounded-xl bg-gradient-to-r from-amber-500/15 via-slate-900/80 to-slate-900/80 border border-amber-500/30 flex items-center justify-between gap-3 flex-wrap">
-          <div className="space-y-0.5">
-            <div className="text-xs font-bold text-slate-100 flex items-center gap-1.5">
-              <Zap size={14} className="text-amber-400" /> Need a Free Groq Cloud Key?
-            </div>
-            <p className="text-[11px] text-slate-400">
-              Free sub-second speech-to-text audio transcribing.
-            </p>
-          </div>
-
-          <a
-            href="https://console.groq.com/keys"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:brightness-110 text-slate-950 text-xs font-bold shadow-lg shadow-amber-950/40 transition shrink-0"
-          >
-            <ExternalLink size={13} />
-            Get Groq Key
-          </a>
-        </div>
-
-        {/* Input & Save Area */}
-        <div className="p-4 rounded-xl bg-[#06090D] border border-white/10 space-y-3">
-          <div className="flex gap-2 flex-wrap sm:flex-nowrap">
-            <input
-              type="password"
-              value={groqKey}
-              onChange={(e) => setGroqKey(e.target.value)}
-              placeholder="gsk_... Paste your Groq API key here"
-              className="flex-1 min-w-[200px] rounded-xl bg-slate-900/90 border border-white/10 px-3.5 py-2.5 text-xs text-slate-200 outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30 font-mono placeholder-slate-600 transition"
-            />
-            <button
-              onClick={() => saveGroq()}
-              disabled={groqBusy || !groqKey.trim()}
-              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:brightness-110 disabled:opacity-40 px-4 py-2.5 text-xs font-bold text-slate-950 shadow-lg transition shrink-0"
-            >
-              {groqBusy ? <Loader2 size={13} className="animate-spin" /> : <Save size={13} />} Save Groq
-            </button>
-            {groqSet && (
-              <button
-                onClick={() => saveGroq("")}
-                disabled={groqBusy}
-                title="Clear Groq key"
-                className="flex items-center justify-center gap-1.5 rounded-xl bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-3 py-2.5 text-xs font-semibold text-slate-400 hover:text-rose-300 transition shrink-0"
+              <a
+                href="https://aistudio.google.com/api-keys"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:brightness-110 text-white text-[10px] font-bold shadow-md transition shrink-0"
               >
-                <Trash2 size={13} />
+                <ExternalLink size={11} />
+                GET KEY
+              </a>
+            </div>
+
+            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
+              <span className="text-slate-400">Status:</span>
+              <span className={`px-2 py-0.5 rounded-full border ${geminiSet ? "bg-blue-500/10 text-blue-400 border-blue-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+                {geminiSet ? `Active (${geminiHint})` : "Not Configured"}
+              </span>
+            </div>
+
+            <select
+              value={geminiModel}
+              onChange={(e) => setGeminiModel(e.target.value)}
+              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-blue-400 font-mono transition"
+            >
+              <option value="gemini-2.5-flash">gemini-2.5-flash (Smart &amp; Fast - Recommended)</option>
+              <option value="gemini-2.0-flash">gemini-2.0-flash (Ultra-Fast 2.0)</option>
+              <option value="gemini-1.5-flash">gemini-1.5-flash (1M High Context)</option>
+            </select>
+          </div>
+
+          <div className="space-y-1.5 pt-1 border-t border-white/5">
+            <div className="flex gap-1.5">
+              <input
+                type="password"
+                value={geminiKey}
+                onChange={(e) => setGeminiKey(e.target.value)}
+                placeholder="AIzaSy... Paste Gemini Key"
+                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-blue-400 font-mono placeholder-slate-600 transition"
+              />
+              <button
+                onClick={() => saveGemini()}
+                disabled={geminiBusy || !geminiKey.trim()}
+                className="flex items-center justify-center gap-1 rounded-lg bg-blue-600 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-white shadow transition shrink-0"
+              >
+                {geminiBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
               </button>
+              {geminiSet && (
+                <button
+                  onClick={() => saveGemini("")}
+                  disabled={geminiBusy}
+                  title="Clear Gemini key"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                >
+                  <Trash2 size={12} />
+                </button>
+              )}
+            </div>
+            {geminiMsg && (
+              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${geminiMsg.ok ? "bg-blue-500/10 text-blue-300 border-blue-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+                {geminiMsg.text}
+              </div>
             )}
           </div>
+        </div>
 
-          {groqMsg && (
-            <div
-              className={`text-xs font-mono px-3 py-2 rounded-lg border ${
-                groqMsg.ok
-                  ? "bg-emerald-500/10 text-emerald-300 border-emerald-500/20"
-                  : "bg-rose-500/10 text-rose-300 border-rose-500/20"
-              }`}
-            >
-              {groqMsg.text}
+        {/* 2. Groq LPU High-Speed Cloud */}
+        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
+          <div className="space-y-2">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 shrink-0">
+                  <Zap size={16} />
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+                    Groq Cloud LPU
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-amber-500/20 text-amber-300 font-mono">12ms Speed</span>
+                  </h3>
+                  <p className="text-[10px] text-slate-400">Sub-second inference &amp; Whisper STT</p>
+                </div>
+              </div>
+
+              <a
+                href="https://console.groq.com/keys"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:brightness-110 text-slate-950 text-[10px] font-bold shadow-md transition shrink-0"
+              >
+                <ExternalLink size={11} />
+                GET KEY
+              </a>
             </div>
-          )}
+
+            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
+              <span className="text-slate-400">Status:</span>
+              <span className={`px-2 py-0.5 rounded-full border ${groqSet ? "bg-amber-500/10 text-amber-400 border-amber-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+                {groqSet ? `Active (${groqHint})` : "Whisper Fallback"}
+              </span>
+            </div>
+
+            <select
+              value={groqModel}
+              onChange={(e) => setGroqModel(e.target.value)}
+              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-amber-400 font-mono transition"
+            >
+              <option value="qwen/qwen3.8-27b">qwen/qwen3.8-27b (12ms Ultra-Fast - Recommended)</option>
+              <option value="openai/gpt-oss-120b">openai/gpt-oss-120b (Deep Reasoning 120B)</option>
+              <option value="openai/gpt-oss-20b">openai/gpt-oss-20b (Lightweight Fast)</option>
+              <option value="allam-2-7b">allam-2-7b (Urdu/Arabic Multilingual)</option>
+            </select>
+          </div>
+
+          <div className="space-y-1.5 pt-1 border-t border-white/5">
+            <div className="flex gap-1.5">
+              <input
+                type="password"
+                value={groqKey}
+                onChange={(e) => setGroqKey(e.target.value)}
+                placeholder="gsk_... Paste Groq API Key"
+                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-amber-400 font-mono placeholder-slate-600 transition"
+              />
+              <button
+                onClick={() => saveGroq()}
+                disabled={groqBusy || !groqKey.trim()}
+                className="flex items-center justify-center gap-1 rounded-lg bg-amber-500 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-slate-950 shadow transition shrink-0"
+              >
+                {groqBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
+              </button>
+              {groqSet && (
+                <button
+                  onClick={() => saveGroq("")}
+                  disabled={groqBusy}
+                  title="Clear Groq key"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                >
+                  <Trash2 size={12} />
+                </button>
+              )}
+            </div>
+            {groqMsg && (
+              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${groqMsg.ok ? "bg-amber-500/10 text-amber-300 border-amber-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+                {groqMsg.text}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 3. Cloudflare Workers AI */}
+        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
+          <div className="space-y-2">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
+                  <Globe size={16} />
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+                    Cloudflare AI
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-cyan-500/20 text-cyan-300 font-mono">10k Neurons</span>
+                  </h3>
+                  <p className="text-[10px] text-slate-400">10,000 free daily neurons on global edge</p>
+                </div>
+              </div>
+
+              <a
+                href="https://dash.cloudflare.com/?to=/:account/ai/workers-ai"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:brightness-110 text-white text-[10px] font-bold shadow-md transition shrink-0"
+              >
+                <ExternalLink size={11} />
+                GET KEY
+              </a>
+            </div>
+
+            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
+              <span className="text-slate-400">Status:</span>
+              <span className={`px-2 py-0.5 rounded-full border ${cfSet ? "bg-cyan-500/10 text-cyan-400 border-cyan-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+                {cfSet ? `Active (${cfAccountHint || "Connected"})` : "Not Configured"}
+              </span>
+            </div>
+
+            <select
+              value={cfModel}
+              onChange={(e) => setCfModel(e.target.value)}
+              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-cyan-400 font-mono transition"
+            >
+              <option value="@cf/meta/llama-3.3-70b-instruct">@cf/meta/llama-3.3-70b-instruct (Recommended)</option>
+              <option value="@cf/deepseek-ai/deepseek-r1-distill-qwen-32b">@cf/deepseek-ai/deepseek-r1-distill-qwen-32b</option>
+              <option value="@cf/meta/llama-3.1-8b-instruct">@cf/meta/llama-3.1-8b-instruct (Ultra Fast)</option>
+              <option value="@cf/qwen/qwen2.5-7b-instruct">@cf/qwen/qwen2.5-7b-instruct (Multilingual)</option>
+            </select>
+          </div>
+
+          <div className="space-y-1.5 pt-1 border-t border-white/5">
+            <input
+              type="text"
+              value={cfAccountId}
+              onChange={(e) => setCfAccountId(e.target.value)}
+              placeholder="Account ID (e.g. 8f4a...)"
+              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-cyan-400 font-mono placeholder-slate-600 transition"
+            />
+            <div className="flex gap-1.5">
+              <input
+                type="password"
+                value={cfToken}
+                onChange={(e) => setCfToken(e.target.value)}
+                placeholder="Workers AI API Token"
+                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-cyan-400 font-mono placeholder-slate-600 transition"
+              />
+              <button
+                onClick={() => saveCloudflare()}
+                disabled={cfBusy || (!cfAccountId.trim() && !cfSet)}
+                className="flex items-center justify-center gap-1 rounded-lg bg-cyan-600 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-white shadow transition shrink-0"
+              >
+                {cfBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
+              </button>
+              {cfSet && (
+                <button
+                  onClick={() => saveCloudflare(true)}
+                  disabled={cfBusy}
+                  title="Clear Cloudflare credentials"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                >
+                  <Trash2 size={12} />
+                </button>
+              )}
+            </div>
+            {cfMsg && (
+              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${cfMsg.ok ? "bg-cyan-500/10 text-cyan-300 border-cyan-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+                {cfMsg.text}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 4. Mistral AI */}
+        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
+          <div className="space-y-2">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 shrink-0">
+                  <Sparkles size={16} />
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+                    Mistral AI
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-orange-500/20 text-orange-300 font-mono">1B Tokens</span>
+                  </h3>
+                  <p className="text-[10px] text-slate-400">1 Billion free tokens/month on Experiment tier</p>
+                </div>
+              </div>
+
+              <a
+                href="https://console.mistral.ai/api-keys"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-orange-500 to-amber-600 hover:brightness-110 text-slate-950 text-[10px] font-bold shadow-md transition shrink-0"
+              >
+                <ExternalLink size={11} />
+                GET KEY
+              </a>
+            </div>
+
+            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
+              <span className="text-slate-400">Status:</span>
+              <span className={`px-2 py-0.5 rounded-full border ${mistralSet ? "bg-orange-500/10 text-orange-400 border-orange-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+                {mistralSet ? `Active (${mistralHint})` : "Not Configured"}
+              </span>
+            </div>
+
+            <select
+              value={mistralModel}
+              onChange={(e) => setMistralModel(e.target.value)}
+              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-orange-400 font-mono transition"
+            >
+              <option value="mistral-small-latest">mistral-small-latest (Smart &amp; Fast - Recommended)</option>
+              <option value="codestral-latest">codestral-latest (High Precision Reasoning)</option>
+              <option value="mistral-large-latest">mistral-large-latest (Top Benchmark)</option>
+              <option value="open-mistral-nemo">open-mistral-nemo (Free 12B Open Weights)</option>
+            </select>
+          </div>
+
+          <div className="space-y-1.5 pt-1 border-t border-white/5">
+            <div className="flex gap-1.5">
+              <input
+                type="password"
+                value={mistralKey}
+                onChange={(e) => setMistralKey(e.target.value)}
+                placeholder="Paste Mistral API Key"
+                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-orange-400 font-mono placeholder-slate-600 transition"
+              />
+              <button
+                onClick={() => saveMistral()}
+                disabled={mistralBusy || !mistralKey.trim()}
+                className="flex items-center justify-center gap-1 rounded-lg bg-orange-500 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-slate-950 shadow transition shrink-0"
+              >
+                {mistralBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
+              </button>
+              {mistralSet && (
+                <button
+                  onClick={() => saveMistral("")}
+                  disabled={mistralBusy}
+                  title="Clear Mistral key"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                >
+                  <Trash2 size={12} />
+                </button>
+              )}
+            </div>
+            {mistralMsg && (
+              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${mistralMsg.ok ? "bg-orange-500/10 text-orange-300 border-orange-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+                {mistralMsg.text}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 5. GitHub Models (Microsoft Azure) */}
+        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
+          <div className="space-y-2">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 shrink-0">
+                  <Bot size={16} />
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+                    GitHub Models
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-purple-500/20 text-purple-300 font-mono">100% Free</span>
+                  </h3>
+                  <p className="text-[10px] text-slate-400">Azure GPT-4o-mini &amp; Llama 3.1 via GitHub PAT</p>
+                </div>
+              </div>
+
+              <a
+                href="https://github.com/settings/tokens"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-purple-600 to-violet-600 hover:brightness-110 text-white text-[10px] font-bold shadow-md transition shrink-0"
+              >
+                <ExternalLink size={11} />
+                GET KEY
+              </a>
+            </div>
+
+            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
+              <span className="text-slate-400">Status:</span>
+              <span className={`px-2 py-0.5 rounded-full border ${ghSet ? "bg-purple-500/10 text-purple-400 border-purple-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+                {ghSet ? `Active (${ghHint})` : "Not Configured"}
+              </span>
+            </div>
+
+            <select
+              value={ghModel}
+              onChange={(e) => setGhModel(e.target.value)}
+              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-purple-400 font-mono transition"
+            >
+              <option value="gpt-4o-mini">gpt-4o-mini (OpenAI Precision - 100% Free via GitHub)</option>
+              <option value="Meta-Llama-3.1-70B-Instruct">Meta-Llama-3.1-70B-Instruct (High Capacity)</option>
+              <option value="Phi-3.5-mini-instruct">Phi-3.5-mini-instruct (Fast &amp; Lightweight)</option>
+            </select>
+          </div>
+
+          <div className="space-y-1.5 pt-1 border-t border-white/5">
+            <div className="flex gap-1.5">
+              <input
+                type="password"
+                value={ghToken}
+                onChange={(e) => setGhToken(e.target.value)}
+                placeholder="ghp_... Paste GitHub Token (no scopes)"
+                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-purple-400 font-mono placeholder-slate-600 transition"
+              />
+              <button
+                onClick={() => saveGitHub()}
+                disabled={ghBusy || !ghToken.trim()}
+                className="flex items-center justify-center gap-1 rounded-lg bg-purple-600 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-white shadow transition shrink-0"
+              >
+                {ghBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
+              </button>
+              {ghSet && (
+                <button
+                  onClick={() => saveGitHub(true)}
+                  disabled={ghBusy}
+                  title="Clear GitHub token"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                >
+                  <Trash2 size={12} />
+                </button>
+              )}
+            </div>
+            {ghMsg && (
+              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${ghMsg.ok ? "bg-purple-500/10 text-purple-300 border-purple-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+                {ghMsg.text}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 6. SambaNova Cloud */}
+        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
+          <div className="space-y-2">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
+                  <Cpu size={16} />
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+                    SambaNova Cloud
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-emerald-500/20 text-emerald-300 font-mono">400 T/s</span>
+                  </h3>
+                  <p className="text-[10px] text-slate-400">100% Free permanent developer tier (~400 tokens/s)</p>
+                </div>
+              </div>
+
+              <a
+                href="https://cloud.sambanova.ai/apis"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-600 hover:brightness-110 text-white text-[10px] font-bold shadow-md transition shrink-0"
+              >
+                <ExternalLink size={11} />
+                GET KEY
+              </a>
+            </div>
+
+            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
+              <span className="text-slate-400">Status:</span>
+              <span className={`px-2 py-0.5 rounded-full border ${sambaSet ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+                {sambaSet ? `Active (${sambaHint})` : "Not Configured"}
+              </span>
+            </div>
+
+            <select
+              value={sambaModel}
+              onChange={(e) => setSambaModel(e.target.value)}
+              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-emerald-400 font-mono transition"
+            >
+              <option value="Meta-Llama-3.3-70B-Instruct">Meta-Llama-3.3-70B-Instruct (Recommended)</option>
+              <option value="Qwen2.5-72B-Instruct">Qwen2.5-72B-Instruct (Multilingual Reasoning)</option>
+              <option value="Meta-Llama-3.1-8B-Instruct">Meta-Llama-3.1-8B-Instruct (Sub-second Instant)</option>
+            </select>
+          </div>
+
+          <div className="space-y-1.5 pt-1 border-t border-white/5">
+            <div className="flex gap-1.5">
+              <input
+                type="password"
+                value={sambaKey}
+                onChange={(e) => setSambaKey(e.target.value)}
+                placeholder="Paste SambaNova API Key"
+                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-emerald-400 font-mono placeholder-slate-600 transition"
+              />
+              <button
+                onClick={() => saveSambaNova()}
+                disabled={sambaBusy || !sambaKey.trim()}
+                className="flex items-center justify-center gap-1 rounded-lg bg-emerald-600 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-white shadow transition shrink-0"
+              >
+                {sambaBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
+              </button>
+              {sambaSet && (
+                <button
+                  onClick={() => saveSambaNova("")}
+                  disabled={sambaBusy}
+                  title="Clear SambaNova key"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                >
+                  <Trash2 size={12} />
+                </button>
+              )}
+            </div>
+            {sambaMsg && (
+              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${sambaMsg.ok ? "bg-emerald-500/10 text-emerald-300 border-emerald-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+                {sambaMsg.text}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 7. Together AI */}
+        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
+          <div className="space-y-2">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 shrink-0">
+                  <Cloud size={16} />
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+                    Together AI
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-pink-500/20 text-pink-300 font-mono">Trial Credits</span>
+                  </h3>
+                  <p className="text-[10px] text-slate-400">Free open-source trial models (DeepSeek &amp; Llama)</p>
+                </div>
+              </div>
+
+              <a
+                href="https://api.together.xyz/settings/api-keys"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-pink-500 to-rose-600 hover:brightness-110 text-white text-[10px] font-bold shadow-md transition shrink-0"
+              >
+                <ExternalLink size={11} />
+                GET KEY
+              </a>
+            </div>
+
+            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
+              <span className="text-slate-400">Status:</span>
+              <span className={`px-2 py-0.5 rounded-full border ${togetherSet ? "bg-pink-500/10 text-pink-400 border-pink-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+                {togetherSet ? `Active (${togetherHint})` : "Not Configured"}
+              </span>
+            </div>
+
+            <select
+              value={togetherModel}
+              onChange={(e) => setTogetherModel(e.target.value)}
+              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-pink-400 font-mono transition"
+            >
+              <option value="deepseek-ai/DeepSeek-V3">deepseek-ai/DeepSeek-V3 (Recommended)</option>
+              <option value="meta-llama/Llama-3.3-70B-Instruct-Turbo">meta-llama/Llama-3.3-70B-Instruct-Turbo</option>
+              <option value="mistralai/Mixtral-8x7B-Instruct-v0.1">mistralai/Mixtral-8x7B-Instruct-v0.1 (MoE)</option>
+            </select>
+          </div>
+
+          <div className="space-y-1.5 pt-1 border-t border-white/5">
+            <div className="flex gap-1.5">
+              <input
+                type="password"
+                value={togetherKey}
+                onChange={(e) => setTogetherKey(e.target.value)}
+                placeholder="Paste Together API Key"
+                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-pink-400 font-mono placeholder-slate-600 transition"
+              />
+              <button
+                onClick={() => saveTogether()}
+                disabled={togetherBusy || !togetherKey.trim()}
+                className="flex items-center justify-center gap-1 rounded-lg bg-pink-600 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-white shadow transition shrink-0"
+              >
+                {togetherBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
+              </button>
+              {togetherSet && (
+                <button
+                  onClick={() => saveTogether("")}
+                  disabled={togetherBusy}
+                  title="Clear Together key"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                >
+                  <Trash2 size={12} />
+                </button>
+              )}
+            </div>
+            {togetherMsg && (
+              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${togetherMsg.ok ? "bg-pink-500/10 text-pink-300 border-pink-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+                {togetherMsg.text}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -1416,8 +2802,8 @@ function AboutPanel() {
             <a href="https://www.digiformation.co.uk/" target="_blank" rel="noreferrer" title="Digiformation Ltd">
               <img
                 src={digiformationLogo}
-                alt="Digiformation Ltd Logo"
-                className="w-16 h-16 rounded-full object-contain bg-white p-1.5 border-2 border-emerald-500/30 shadow-xl shadow-emerald-500/20 hover:scale-105 transition shrink-0"
+                alt="Digi WhatsApp Agent"
+                className="w-16 h-16 rounded-2xl object-contain bg-[#020a05] p-1 border-2 border-emerald-500/40 shadow-xl shadow-emerald-500/20 hover:scale-105 transition shrink-0"
               />
             </a>
             <div>
@@ -1537,6 +2923,35 @@ function AboutPanel() {
         </div>
       </div>
 
+      {/* Flagship Ecosystem Platform: DIGI BIZ OS */}
+      <div className="p-6 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-teal-950/30 to-slate-900 border border-emerald-500/30 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              ⚡ Flagship Business Operating System
+            </span>
+            <span className="px-2.5 py-0.5 text-[10px] font-mono font-semibold rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
+              3-Day Free Trial
+            </span>
+          </div>
+          <h3 className="text-lg font-extrabold text-white">DIGI BIZ OS — Sovereign AI Business Platform</h3>
+          <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
+            Run your complete business offline and online: 20+ Free AI models, automated WhatsApp sales agent, local CRM, customer invoicing, document engine, and lifetime updates for £29 once.
+          </p>
+        </div>
+
+        <a
+          href="https://www.digibizos.co.uk/pricing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:brightness-110 text-white font-bold text-xs shadow-lg shadow-emerald-950/50 hover:shadow-emerald-500/20 transition-all shrink-0 hover:scale-105 no-underline"
+        >
+          <span>🚀</span>
+          <span>Try DIGI BIZ OS Free</span>
+          <ExternalLink size={14} />
+        </a>
+      </div>
+
       {/* Trust & Company Summary */}
       <div className="p-5 rounded-2xl bg-slate-900/60 border border-white/10 space-y-3">
         <h3 className="text-sm font-bold text-white flex items-center gap-2">
@@ -1551,162 +2966,151 @@ function AboutPanel() {
 }
 
 /* ────────────────────────────────────────────────────────────────────────── */
-/* MAIN APPLICATION LAYOUT                                                    */
+/* MAIN APPLICATION LAYOUT (DIGI LABS SHELL & THEMING)                       */
 /* ────────────────────────────────────────────────────────────────────────── */
 export default function App() {
   const [tab, setTab] = useState<"whatsapp" | "logs" | "settings" | "about">("whatsapp");
 
+  const handleMinimize = () => {
+    try {
+      const e = (window as any).electron || (window as any).studio;
+      e?.minimize?.();
+    } catch { }
+  };
+
+  const handleMaximize = () => {
+    try {
+      const e = (window as any).electron || (window as any).studio;
+      e?.maximize?.();
+    } catch { }
+  };
+
+  const handleClose = () => {
+    try {
+      const e = (window as any).electron || (window as any).studio;
+      e?.close?.();
+    } catch { }
+  };
+
   return (
-    <div className="min-h-screen bg-[#070B0E] text-slate-100 flex flex-col justify-between selection:bg-[#00A884]/30 selection:text-white">
-      {/* Top Ambient Glow Gradient */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1700px] h-64 bg-gradient-to-b from-[#00A884]/15 via-emerald-500/5 to-transparent blur-3xl pointer-events-none" />
-
-      {/* Main Full-Width Container */}
-      <div className="w-full max-w-[1650px] mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 relative z-10 flex-1">
-        {/* Full-Width Header */}
-        <header className="glass-card rounded-2xl p-4 sm:p-5 border border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 shadow-2xl">
-          <div className="flex items-center gap-3.5 w-full md:w-auto">
-            <WhatsAppLogo s={44} />
-            <div>
-              <div className="flex items-center gap-2.5">
-                <h1 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                  WhatsApp AI Sales Agent
-                </h1>
-                <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/25 shadow-sm">
-                  v2.0 PRO
-                </span>
-              </div>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Autonomous Conversational Sales Engine • Multi-Account Baileys QR • Multimodal Audio &amp; Markdown Knowledge
-              </p>
-            </div>
+    <div className="shell">
+      {/* ── Frameless Studio Topbar ── */}
+      <header className="topbar">
+        {/* Brand */}
+        <div className="brand">
+          <div className="brand-mark">
+            <img src={digiformationLogo} alt="Digi WhatsApp Agent" />
           </div>
-
-          {/* Navigation Bar in Header */}
-          <div className="flex items-center gap-2 flex-wrap w-full md:w-auto justify-end">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 p-1 rounded-xl bg-slate-950/80 border border-white/10 shadow-inner">
-              <button
-                onClick={() => setTab("whatsapp")}
-                className={`flex items-center justify-center gap-2 py-2 px-3.5 rounded-lg text-xs font-bold transition-all ${
-                  tab === "whatsapp"
-                    ? "bg-gradient-to-r from-[#00A884] to-[#128C7E] text-white shadow-lg shadow-emerald-950/40"
-                    : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
-                }`}
-              >
-                <Smartphone size={15} />
-                <span>WhatsApp Numbers</span>
-              </button>
-
-              <button
-                onClick={() => setTab("logs")}
-                className={`flex items-center justify-center gap-2 py-2 px-3.5 rounded-lg text-xs font-bold transition-all ${
-                  tab === "logs"
-                    ? "bg-gradient-to-r from-[#00A884] to-[#128C7E] text-white shadow-lg shadow-emerald-950/40"
-                    : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
-                }`}
-              >
-                <Activity size={15} />
-                <span>Live Logs</span>
-              </button>
-
-              <button
-                onClick={() => setTab("settings")}
-                className={`flex items-center justify-center gap-2 py-2 px-3.5 rounded-lg text-xs font-bold transition-all ${
-                  tab === "settings"
-                    ? "bg-gradient-to-r from-[#00A884] to-[#128C7E] text-white shadow-lg shadow-emerald-950/40"
-                    : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
-                }`}
-              >
-                <Settings2 size={15} />
-                <span>AI Brain</span>
-              </button>
-
-              <button
-                onClick={() => setTab("about")}
-                className={`flex items-center justify-center gap-2 py-2 px-3.5 rounded-lg text-xs font-bold transition-all ${
-                  tab === "about"
-                    ? "bg-gradient-to-r from-[#00A884] to-[#128C7E] text-white shadow-lg shadow-emerald-950/40"
-                    : "text-slate-400 hover:text-slate-200 hover:bg-white/[0.04]"
-                }`}
-              >
-                <Building2 size={15} />
-                <span>Owner / About</span>
-              </button>
-            </div>
-
-            <div className="hidden xl:flex items-center gap-2 bg-slate-900/90 px-3.5 py-2 rounded-xl border border-white/10 text-xs font-mono text-slate-300 shadow">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Server Port: {window.location.port || "9000"} Active</span>
-            </div>
-          </div>
-        </header>
-
-        {/* Full Screen Content Area */}
-        <main className="transition-all duration-300 w-full">
-          {tab === "whatsapp" ? (
-            <WhatsAppMulti />
-          ) : tab === "logs" ? (
-            <LogsPanel />
-          ) : tab === "settings" ? (
-            <SettingsPanel />
-          ) : (
-            <AboutPanel />
-          )}
-        </main>
-      </div>
-
-      {/* Global Full-Width Digiformation Footer */}
-      <footer className="w-full max-w-[1650px] mx-auto py-6 px-4 sm:px-6 lg:px-8 border-t border-white/10 space-y-4">
-        {/* Footer Brand Card */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/70 border border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl">
-          <div className="flex items-center gap-3.5 text-left w-full md:w-auto">
-            <a href="https://www.digiformation.co.uk/" target="_blank" rel="noreferrer" title="Digiformation Ltd">
-              <img
-                src={digiformationLogo}
-                alt="Digiformation Ltd Logo"
-                className="w-12 h-12 rounded-full object-contain bg-white p-1 border-2 border-white/20 shadow-md hover:scale-105 transition shrink-0"
-              />
-            </a>
-            <div>
-              <div className="text-sm font-bold text-white flex items-center gap-2">
-                <span>Digiformation Ltd</span>
-                <span className="text-[10px] font-mono text-emerald-400 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/25">
-                  UK #16994903
-                </span>
-              </div>
-              <div className="text-xs text-slate-400">
-                Official UK Company Formation &amp; AI Automation Agency • Wolverhampton, UK
-              </div>
-            </div>
-          </div>
-
-          {/* All Social & Authority Icons in Footer */}
-          <div className="flex items-center gap-2 flex-wrap justify-center w-full md:w-auto">
-            {SOCIAL_CHANNELS.map((ch) => (
-              <a
-                key={ch.name}
-                href={ch.url}
-                target="_blank"
-                rel="noreferrer"
-                title={ch.name + ": " + ch.label}
-                className="h-9 px-3 rounded-xl bg-slate-950/70 hover:bg-emerald-500/20 text-slate-300 hover:text-emerald-300 border border-white/5 hover:border-emerald-500/30 transition flex items-center gap-2 text-xs font-medium shadow"
-              >
-                {ch.icon}
-                <span className="hidden sm:inline">{ch.name}</span>
-              </a>
-            ))}
+          <div>
+            <div className="brand-title">Digi WhatsApp Agent</div>
+            <div className="brand-sub">Autonomous Sales Assistant</div>
           </div>
         </div>
 
-        {/* Bottom copyright line */}
-        <div className="flex items-center justify-between flex-wrap gap-2 text-xs text-slate-500 px-1">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Digiformation Universal WhatsApp Sales Agent Engine</span>
-          </div>
-          <div>© {new Date().getFullYear()} Digiformation Ltd. All rights reserved.</div>
+        <div className="flex-1" />
+
+        {/* Studio Section Tabs (Clean, Spaced DIGI LABS Pill Design) */}
+        <nav className="tabs" role="tablist" aria-label="Studio sections">
+          <button
+            onClick={() => setTab("whatsapp")}
+            className={`tab ${tab === "whatsapp" ? "active" : ""}`}
+            role="tab"
+            aria-selected={tab === "whatsapp"}
+          >
+            <Smartphone size={13} />
+            <span>WhatsApp Agent</span>
+          </button>
+          <button
+            onClick={() => setTab("logs")}
+            className={`tab ${tab === "logs" ? "active" : ""}`}
+            role="tab"
+            aria-selected={tab === "logs"}
+          >
+            <Activity size={13} />
+            <span>Live Logs</span>
+          </button>
+          <button
+            onClick={() => setTab("settings")}
+            className={`tab ${tab === "settings" ? "active" : ""}`}
+            role="tab"
+            aria-selected={tab === "settings"}
+          >
+            <Bot size={13} />
+            <span>AI Engine</span>
+          </button>
+          <button
+            onClick={() => setTab("about")}
+            className={`tab ${tab === "about" ? "active" : ""}`}
+            role="tab"
+            aria-selected={tab === "about"}
+          >
+            <Info size={13} />
+            <span>About</span>
+          </button>
+        </nav>
+
+        {/* Try DIGI BIZ OS Action Button */}
+        <a
+          href="https://www.digibizos.co.uk/pricing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-cyan-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 border border-emerald-400/40 hover:border-emerald-400/80 shadow-[0_0_16px_-2px_rgba(16,185,129,0.35)] transition-all transform hover:-translate-y-0.5 text-white text-xs font-bold shrink-0 no-underline cursor-pointer"
+          title="Try DIGI BIZ OS - Claim 3-Day Free Trial"
+        >
+          <span className="text-emerald-400 text-xs">⚡</span>
+          <span>Try DIGI BIZ OS</span>
+          <span className="text-[9px] font-mono font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 border border-emerald-500/40">
+            Free Trial
+          </span>
+        </a>
+
+        {/* Window controls (frameless topbar) */}
+        <div className="win-controls">
+          <button onClick={handleMinimize} className="wc" aria-label="Minimize" title="Minimize">–</button>
+          <button onClick={handleMaximize} className="wc" aria-label="Maximize" title="Maximize">□</button>
+          <button onClick={handleClose} className="wc wc-close" aria-label="Close" title="Close">✕</button>
+        </div>
+      </header>
+
+      {/* ── Main Work Area (Zero Window Scrollbar, Single-Pane Fit) ── */}
+      <main className="flex-1 overflow-hidden min-h-0 p-2 sm:p-2.5 w-full max-w-[1600px] mx-auto flex flex-col">
+        {tab === "whatsapp" ? (
+          <WhatsAppMulti />
+        ) : tab === "logs" ? (
+          <LogsPanel />
+        ) : tab === "settings" ? (
+          <SettingsPanel />
+        ) : (
+          <AboutPanel />
+        )}
+      </main>
+
+      {/* ── Persistent Rounded App Foot ── */}
+      <footer className="appfoot">
+        <div className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+          <span className="text-white font-bold">Digi WhatsApp Agent</span>
+          <span className="opacity-40">·</span>
+          <span className="text-slate-400">by DigiFormation Ltd (UK #16994903)</span>
+        </div>
+        <div className="flex-1" />
+        <a
+          href="https://www.digibizos.co.uk/pricing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1.5 text-xs transition-colors no-underline mr-4"
+          title="Try DIGI BIZ OS - Claim 3-Day Free Trial"
+        >
+          <span>🚀</span>
+          <span><strong>Try DIGI BIZ OS</strong> (3-Day Free Trial)</span>
+          <span>↗</span>
+        </a>
+        <div className="flex items-center gap-4 text-xs">
+          <a href="https://www.digiformation.co.uk/" target="_blank" rel="noreferrer">Website</a>
+          <a href="https://linktr.ee/digiformationltd" target="_blank" rel="noreferrer">Portals</a>
+          <span className="text-slate-500 font-mono">v2.0 PRO</span>
         </div>
       </footer>
     </div>
   );
-}
+}
