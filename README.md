@@ -1,14 +1,28 @@
-# 🚀 Universal WhatsApp Sales Agent
+# 🚀 Digi WhatsApp Agent
 
-> **An autonomous, production-ready AI Sales Agent & Conversational Engine for WhatsApp.**  
-> Powered by Baileys WhatsApp Web protocol, local SQLite memory, deterministic Finite State Machines, and ultra-fast LLM orchestration (Groq / OpenCode Zen).
+> **An autonomous, production-ready AI Sales Agent & Conversational Engine for WhatsApp by DigiFormation Ltd.**  
+> Powered by Baileys WhatsApp Web protocol, local SQLite memory, deterministic Finite State Machines, and 7-Tier Free AI Orchestration (Google Gemini #1, Groq LPU, Cloudflare Workers AI, Mistral AI, GitHub Models, SambaNova Cloud & Together AI).
+
+<p align="center">
+  <a href="https://www.digibizos.co.uk/pricing">
+    <img src="https://img.shields.io/badge/🚀_Try_DIGI_BIZ_OS-3--Day_Free_Trial-10b981?style=for-the-badge&logo=windows&logoColor=white" alt="Try DIGI BIZ OS 3-Day Free Trial" />
+  </a>
+  <a href="https://www.digiformation.co.uk/">
+    <img src="https://img.shields.io/badge/Corporate_Entity-DigiFormation_Ltd-blue?style=for-the-badge" alt="DigiFormation Ltd" />
+  </a>
+  <img src="https://img.shields.io/badge/License-Source--Available-purple?style=for-the-badge" alt="License" />
+</p>
+
+> 🌟 **EXPERIENCE OUR FLAGSHIP DESKTOP PLATFORM: DIGI BIZ OS**  
+> Run your entire business offline & online: 20+ Free AI models, automated WhatsApp sales agent, local CRM, customer invoicing, document engine, and lifetime updates for £29 once.  
+> 👉 **[✨ Try DIGI BIZ OS — Claim Your 3-Day Free Trial](https://www.digibizos.co.uk/pricing)**
 
 ---
 
 ## 🌟 Key Features
 
 * **📱 Multi-Account WhatsApp Pairing:** Connect multiple WhatsApp accounts simultaneously using direct QR code pairing via `@whiskeysockets/baileys` without paying expensive Business API per-conversation fees.
-* **🧠 Decoupled Universal Business Knowledge (RAG):** 100% business-agnostic. Drop your company profile, pricing tables, services, and FAQs into `/knowledge/*.md` files and the agent instantly sells for your business.
+* **🧠 7-Tier Free AI Cascading:** 100% Free Quotas cascading through Google Gemini 2.5 Flash (#1 Primary) ➔ Groq LPU (12ms) ➔ Cloudflare Workers AI ➔ Mistral AI ➔ GitHub Models ➔ SambaNova Cloud ➔ Together AI.
 * **⚡ 0ms Deterministic Response Layer:** Instant Zero-AI fallback for standard inquiries (office hours, verification links, package lists). If external AI models go offline, the agent continues serving customers seamlessly.
 * **🎙️ Voice Note Transcription (Whisper STT):** Inbound voice messages are automatically transcribed via Groq Whisper and answered in clean, authentic Pakistani Roman Urdu or English.
 * **📊 8-Stage Sales Pipeline State Machine:** Deterministic Finite State Machine (`NEW` ➔ `GREETED` ➔ `QUALIFIED` ➔ `PACKAGE_SELECTED` ➔ `ORDER_INITIATED` ➔ `DOCUMENTS_PENDING` ➔ `COMPLETED`) ensuring structured sales conversations and Next-Best-Action (NBA) directives.
@@ -29,8 +43,8 @@
 
 #### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/digiformationltd-creator/OPEN-WHATSAPP-AGENT-BY-DIGIFORMATION-LTD-.git
-cd OPEN-WHATSAPP-AGENT-BY-DIGIFORMATION-LTD-
+git clone https://github.com/digiformationltd-creator/digi-whatsapp-agent.git
+cd digi-whatsapp-agent
 ```
 
 #### Step 2: Install Dependencies

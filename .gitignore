@@ -7,6 +7,8 @@ node_modules/
 dist/
 dist_electron/
 build/
+release/
+*.exe
 
 # Local databases & user data
 data/

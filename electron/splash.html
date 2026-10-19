@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Digi WhatsApp Agent</title>
+<style>
+  :root {
+    --bg-base: #041009;
+    --bg-deep: #020805;
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --accent-emerald: #25D366;
+    --accent-glow: rgba(37, 211, 102, 0.45);
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: transparent !important;
+    padding: 12px;
+    display: flex;
+  }
+
+  .splash-card {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: radial-gradient(900px 600px at 50% -10%, rgba(37,211,102,0.18), transparent 60%), #041009;
+    color: var(--text-primary);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    -webkit-user-select: none;
+    user-select: none;
+    border: 1px solid rgba(37, 211, 102, 0.2);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.9), 0 0 30px rgba(37, 211, 102, 0.15);
+    overflow: hidden;
+    padding: 0 36px;
+    -webkit-app-region: drag;
+  }
+
+  .mark {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 20px;
+    border-radius: 22px;
+    display: grid;
+    place-items: center;
+    background: #020805;
+    box-shadow: 0 0 0 1px rgba(37, 211, 102, 0.3), 0 0 42px -4px var(--accent-glow);
+    animation: breathe 2.8s ease-in-out infinite;
+    overflow: hidden;
+  }
+  .mark img { width: 100%; height: 100%; object-fit: contain; border-radius: 22px; display: block; }
+  
+  @keyframes breathe {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(37, 211, 102, 0.3), 0 0 34px -10px var(--accent-glow); }
+    50%      { box-shadow: 0 0 0 1px rgba(37, 211, 102, 0.6), 0 0 58px 0 var(--accent-glow); }
+  }
+
+  h1 {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .by { margin-top: 8px; font-size: 11.5px; color: var(--text-secondary); letter-spacing: 0.1em; }
+
+  .track {
+    margin: 26px auto 0;
+    width: 230px;
+    height: 2px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .track span {
+    display: block;
+    width: 40%;
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-emerald), transparent);
+    animation: sweep 1.25s ease-in-out infinite;
+  }
+  @keyframes sweep { 0% { transform: translateX(-110%); } 100% { transform: translateX(260%); } }
+
+  #stage {
+    margin-top: 16px;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    min-height: 15px;
+    letter-spacing: 0.04em;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mark, .track span { animation: none; }
+    .track span { width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <div class="splash-card">
+    <div class="mark"><img src="../assets/logo-round.png" alt="Digi WhatsApp Agent"></div>
+    <h1>Digi WhatsApp Agent</h1>
+    <div class="by">by DigiFormation Ltd</div>
+    <div class="track"><span></span></div>
+    <div id="stage">Starting Digi WhatsApp Agent…</div>
+  </div>
+<script>
+  if (window.splash && window.splash.onStage) {
+    window.splash.onStage(function (text) {
+      var el = document.getElementById("stage");
+      if (el && text) el.textContent = text;
+    });
+  }
+</script>
+</body>
+</html>
