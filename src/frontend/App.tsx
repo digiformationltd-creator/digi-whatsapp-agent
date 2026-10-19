@@ -1691,7 +1691,7 @@ function SettingsPanel() {
 
   // Model selectors state
   const [geminiModel, setGeminiModel] = useState("gemini-2.5-flash");
-  const [groqModel, setGroqModel] = useState("qwen/qwen3.8-27b");
+  const [groqModel, setGroqModel] = useState("llama-3.3-70b-versatile");
 
   // GitHub Models Key (100% Free via GitHub Personal Access Token)
   const [ghToken, setGhToken] = useState("");
@@ -2018,60 +2018,61 @@ function SettingsPanel() {
   };
 
   return (
-    <div className="h-full overflow-y-auto pr-1.5 pb-8 space-y-4">
-      {/* Cascade Overview Banner */}
-      <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-blue-950/40 via-purple-950/30 to-emerald-950/30 border border-blue-500/20 shadow-lg flex items-center justify-between gap-4 flex-wrap">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
-            <Sparkles size={18} />
+    <div className="h-full overflow-y-auto pr-1 pb-16 space-y-2.5">
+      {/* Slim Cascade Overview Banner */}
+      <div className="py-2 px-3 rounded-xl bg-gradient-to-r from-blue-950/50 via-purple-950/40 to-emerald-950/40 border border-blue-500/25 shadow flex items-center justify-between gap-2 flex-wrap">
+        <div className="flex items-center gap-2">
+          <div className="w-6 h-6 rounded-lg bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 shrink-0">
+            <Sparkles size={14} />
           </div>
           <div>
-            <div className="text-xs font-bold text-slate-100 flex items-center gap-2">
-              7-Tier Resilient Free AI Reasoning Cascade (100% Free Quotas)
+            <div className="text-[12px] font-bold text-slate-100 flex items-center gap-1.5 leading-tight">
+              7-Tier Resilient Free AI Reasoning Cascade
+              <span className="text-[9px] uppercase px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 font-mono border border-emerald-500/30">100% Free Quotas</span>
             </div>
-            <p className="text-[11px] text-slate-400 mt-0.5">
+            <p className="text-[10px] text-slate-400 leading-tight">
               <span className="text-blue-400 font-semibold">Gemini Flash (#1)</span> &rarr; <span className="text-amber-400 font-semibold">Groq (12ms)</span> &rarr; <span className="text-cyan-400 font-semibold">Cloudflare</span> &rarr; <span className="text-orange-400 font-semibold">Mistral</span> &rarr; <span className="text-purple-400 font-semibold">GitHub Models</span> &rarr; <span className="text-emerald-400 font-semibold">SambaNova</span> &rarr; <span className="text-pink-400 font-semibold">Together AI</span>
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-2 text-[11px] font-mono px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
-          <CheckCircle2 size={13} />
+        <div className="flex items-center gap-1.5 text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 shrink-0">
+          <CheckCircle2 size={12} />
           Zero-Cost Cascade Active
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 items-stretch">
+      {/* Ultra-Compact 4-Column Grid: All 7 models fit cleanly */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5 items-stretch">
         {/* 1. Google Gemini AI Engine (#1 Recommended) */}
-        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
-          <div className="space-y-2">
-            <div className="flex items-start justify-between gap-2">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
-                  <Sparkles size={16} />
+        <div className="glass-card rounded-xl p-2.5 sm:p-3 border border-blue-500/20 flex flex-col justify-between shadow-lg space-y-2 bg-slate-900/60">
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between gap-1.5">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <div className="w-6 h-6 rounded-lg bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+                  <Sparkles size={13} />
                 </div>
-                <div>
-                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+                <div className="min-w-0">
+                  <h4 className="text-[12px] font-bold text-slate-100 truncate flex items-center gap-1">
                     Google Gemini
-                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-blue-500/20 text-blue-300 font-mono">#1 Free</span>
-                  </h3>
-                  <p className="text-[10px] text-slate-400">15 RPM &bull; Multilingual Roman Urdu/Urdu</p>
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-blue-500/25 text-blue-300 font-mono">#1 Free</span>
+                  </h4>
                 </div>
               </div>
-
               <a
                 href="https://aistudio.google.com/api-keys"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:brightness-110 text-white text-[10px] font-bold shadow-md transition shrink-0"
+                className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-bold shadow transition shrink-0"
+                title="Get Free Gemini Key from Google AI Studio"
               >
-                <ExternalLink size={11} />
+                <ExternalLink size={10} />
                 GET KEY
               </a>
             </div>
 
-            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
-              <span className="text-slate-400">Status:</span>
-              <span className={`px-2 py-0.5 rounded-full border ${geminiSet ? "bg-blue-500/10 text-blue-400 border-blue-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+            <div className="flex items-center justify-between text-[10px] font-mono">
+              <span className="text-slate-400">15 RPM &bull; Urdu Master</span>
+              <span className={`px-1.5 py-0.2 rounded border ${geminiSet ? "bg-blue-500/15 text-blue-400 border-blue-500/30" : "bg-slate-800 text-slate-400 border-white/5"}`}>
                 {geminiSet ? `Active (${geminiHint})` : "Not Configured"}
               </span>
             </div>
@@ -2079,43 +2080,43 @@ function SettingsPanel() {
             <select
               value={geminiModel}
               onChange={(e) => setGeminiModel(e.target.value)}
-              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-blue-400 font-mono transition"
+              className="w-full rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-blue-400 font-mono transition"
             >
-              <option value="gemini-2.5-flash">gemini-2.5-flash (Smart &amp; Fast - Recommended)</option>
+              <option value="gemini-2.5-flash">gemini-2.5-flash (Smart &amp; Fast)</option>
               <option value="gemini-2.0-flash">gemini-2.0-flash (Ultra-Fast 2.0)</option>
               <option value="gemini-1.5-flash">gemini-1.5-flash (1M High Context)</option>
             </select>
           </div>
 
-          <div className="space-y-1.5 pt-1 border-t border-white/5">
-            <div className="flex gap-1.5">
+          <div className="space-y-1 pt-1 border-t border-white/5">
+            <div className="flex gap-1">
               <input
                 type="password"
                 value={geminiKey}
                 onChange={(e) => setGeminiKey(e.target.value)}
                 placeholder="AIzaSy... Paste Gemini Key"
-                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-blue-400 font-mono placeholder-slate-600 transition"
+                className="flex-1 min-w-0 rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-blue-400 font-mono placeholder-slate-600 transition"
               />
               <button
                 onClick={() => saveGemini()}
                 disabled={geminiBusy || !geminiKey.trim()}
-                className="flex items-center justify-center gap-1 rounded-lg bg-blue-600 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-white shadow transition shrink-0"
+                className="flex items-center justify-center gap-1 rounded-lg bg-blue-600 hover:brightness-110 disabled:opacity-40 px-2.5 py-1 text-[11px] font-bold text-white shadow transition shrink-0"
               >
-                {geminiBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
+                {geminiBusy ? <Loader2 size={11} className="animate-spin" /> : <Save size={11} />} Save
               </button>
               {geminiSet && (
                 <button
-                  onClick={() => saveGemini("")}
+                  onClick={() => saveGemini(true)}
                   disabled={geminiBusy}
                   title="Clear Gemini key"
-                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1 text-[11px] text-slate-400 hover:text-rose-300 transition shrink-0"
                 >
-                  <Trash2 size={12} />
+                  <Trash2 size={11} />
                 </button>
               )}
             </div>
             {geminiMsg && (
-              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${geminiMsg.ok ? "bg-blue-500/10 text-blue-300 border-blue-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+              <div className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${geminiMsg.ok ? "bg-blue-500/10 text-blue-300 border-blue-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
                 {geminiMsg.text}
               </div>
             )}
@@ -2123,81 +2124,80 @@ function SettingsPanel() {
         </div>
 
         {/* 2. Groq LPU High-Speed Cloud */}
-        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
-          <div className="space-y-2">
-            <div className="flex items-start justify-between gap-2">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 shrink-0">
-                  <Zap size={16} />
+        <div className="glass-card rounded-xl p-2.5 sm:p-3 border border-amber-500/20 flex flex-col justify-between shadow-lg space-y-2 bg-slate-900/60">
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between gap-1.5">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <div className="w-6 h-6 rounded-lg bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
+                  <Zap size={13} />
                 </div>
-                <div>
-                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+                <div className="min-w-0">
+                  <h4 className="text-[12px] font-bold text-slate-100 truncate flex items-center gap-1">
                     Groq Cloud LPU
-                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-amber-500/20 text-amber-300 font-mono">12ms Speed</span>
-                  </h3>
-                  <p className="text-[10px] text-slate-400">Sub-second inference &amp; Whisper STT</p>
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-amber-500/25 text-amber-300 font-mono">12ms</span>
+                  </h4>
                 </div>
               </div>
-
               <a
                 href="https://console.groq.com/keys"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:brightness-110 text-slate-950 text-[10px] font-bold shadow-md transition shrink-0"
+                className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-amber-500 hover:bg-amber-400 text-slate-950 text-[10px] font-bold shadow transition shrink-0"
+                title="Get Free Groq Key"
               >
-                <ExternalLink size={11} />
+                <ExternalLink size={10} />
                 GET KEY
               </a>
             </div>
 
-            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
-              <span className="text-slate-400">Status:</span>
-              <span className={`px-2 py-0.5 rounded-full border ${groqSet ? "bg-amber-500/10 text-amber-400 border-amber-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
-                {groqSet ? `Active (${groqHint})` : "Whisper Fallback"}
+            <div className="flex items-center justify-between text-[10px] font-mono">
+              <span className="text-slate-400">12ms &bull; Whisper STT</span>
+              <span className={`px-1.5 py-0.2 rounded border ${groqSet ? "bg-amber-500/15 text-amber-400 border-amber-500/30" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+                {groqSet ? `Active (${groqHint})` : "Fallback Mode"}
               </span>
             </div>
 
             <select
               value={groqModel}
               onChange={(e) => setGroqModel(e.target.value)}
-              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-amber-400 font-mono transition"
+              className="w-full rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-amber-400 font-mono transition"
             >
-              <option value="qwen/qwen3.8-27b">qwen/qwen3.8-27b (12ms Ultra-Fast - Recommended)</option>
-              <option value="openai/gpt-oss-120b">openai/gpt-oss-120b (Deep Reasoning 120B)</option>
-              <option value="openai/gpt-oss-20b">openai/gpt-oss-20b (Lightweight Fast)</option>
-              <option value="allam-2-7b">allam-2-7b (Urdu/Arabic Multilingual)</option>
+              <option value="llama-3.3-70b-versatile">llama-3.3-70b-versatile (Recommended)</option>
+              <option value="llama-3.1-8b-instant">llama-3.1-8b-instant (Ultra Fast 12ms)</option>
+              <option value="mixtral-8x7b-32768">mixtral-8x7b-32768 (MoE Architecture)</option>
+              <option value="qwen-2.5-32b">qwen-2.5-32b (Multilingual Reasoning)</option>
             </select>
           </div>
 
-          <div className="space-y-1.5 pt-1 border-t border-white/5">
-            <div className="flex gap-1.5">
+          <div className="space-y-1 pt-1 border-t border-white/5">
+            <div className="flex gap-1">
               <input
                 type="password"
                 value={groqKey}
                 onChange={(e) => setGroqKey(e.target.value)}
                 placeholder="gsk_... Paste Groq API Key"
-                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-amber-400 font-mono placeholder-slate-600 transition"
+                className="flex-1 min-w-0 rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-amber-400 font-mono placeholder-slate-600 transition"
               />
               <button
                 onClick={() => saveGroq()}
                 disabled={groqBusy || !groqKey.trim()}
-                className="flex items-center justify-center gap-1 rounded-lg bg-amber-500 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-slate-950 shadow transition shrink-0"
+                className="flex items-center justify-center gap-1 rounded-lg bg-amber-500 hover:brightness-110 disabled:opacity-40 px-2.5 py-1 text-[11px] font-bold text-slate-950 shadow transition shrink-0"
               >
-                {groqBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
+                {groqBusy ? <Loader2 size={11} className="animate-spin" /> : <Save size={11} />} Save
               </button>
               {groqSet && (
                 <button
-                  onClick={() => saveGroq("")}
+                  onClick={() => saveGroq(true)}
                   disabled={groqBusy}
                   title="Clear Groq key"
-                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1 text-[11px] text-slate-400 hover:text-rose-300 transition shrink-0"
                 >
-                  <Trash2 size={12} />
+                  <Trash2 size={11} />
                 </button>
               )}
             </div>
             {groqMsg && (
-              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${groqMsg.ok ? "bg-amber-500/10 text-amber-300 border-amber-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+              <div className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${groqMsg.ok ? "bg-amber-500/10 text-amber-300 border-amber-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
                 {groqMsg.text}
               </div>
             )}
@@ -2205,36 +2205,35 @@ function SettingsPanel() {
         </div>
 
         {/* 3. Cloudflare Workers AI */}
-        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
-          <div className="space-y-2">
-            <div className="flex items-start justify-between gap-2">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
-                  <Globe size={16} />
+        <div className="glass-card rounded-xl p-2.5 sm:p-3 border border-cyan-500/20 flex flex-col justify-between shadow-lg space-y-2 bg-slate-900/60">
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between gap-1.5">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <div className="w-6 h-6 rounded-lg bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
+                  <Globe size={13} />
                 </div>
-                <div>
-                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+                <div className="min-w-0">
+                  <h4 className="text-[12px] font-bold text-slate-100 truncate flex items-center gap-1">
                     Cloudflare AI
-                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-cyan-500/20 text-cyan-300 font-mono">10k Neurons</span>
-                  </h3>
-                  <p className="text-[10px] text-slate-400">10,000 free daily neurons on global edge</p>
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-cyan-500/25 text-cyan-300 font-mono">10k Neurons</span>
+                  </h4>
                 </div>
               </div>
-
               <a
                 href="https://dash.cloudflare.com/?to=/:account/ai/workers-ai"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 hover:brightness-110 text-white text-[10px] font-bold shadow-md transition shrink-0"
+                className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-600 hover:bg-cyan-500 text-white text-[10px] font-bold shadow transition shrink-0"
+                title="Get Cloudflare Workers AI Credentials"
               >
-                <ExternalLink size={11} />
+                <ExternalLink size={10} />
                 GET KEY
               </a>
             </div>
 
-            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
-              <span className="text-slate-400">Status:</span>
-              <span className={`px-2 py-0.5 rounded-full border ${cfSet ? "bg-cyan-500/10 text-cyan-400 border-cyan-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+            <div className="flex items-center justify-between text-[10px] font-mono">
+              <span className="text-slate-400">10k Free Daily Neurons</span>
+              <span className={`px-1.5 py-0.2 rounded border ${cfSet ? "bg-cyan-500/15 text-cyan-400 border-cyan-500/30" : "bg-slate-800 text-slate-400 border-white/5"}`}>
                 {cfSet ? `Active (${cfAccountHint || "Connected"})` : "Not Configured"}
               </span>
             </div>
@@ -2242,51 +2241,51 @@ function SettingsPanel() {
             <select
               value={cfModel}
               onChange={(e) => setCfModel(e.target.value)}
-              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-cyan-400 font-mono transition"
+              className="w-full rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-cyan-400 font-mono transition"
             >
-              <option value="@cf/meta/llama-3.3-70b-instruct">@cf/meta/llama-3.3-70b-instruct (Recommended)</option>
+              <option value="@cf/meta/llama-3.3-70b-instruct">@cf/meta/llama-3.3-70b-instruct (Llama 3.3)</option>
               <option value="@cf/deepseek-ai/deepseek-r1-distill-qwen-32b">@cf/deepseek-ai/deepseek-r1-distill-qwen-32b</option>
               <option value="@cf/meta/llama-3.1-8b-instruct">@cf/meta/llama-3.1-8b-instruct (Ultra Fast)</option>
               <option value="@cf/qwen/qwen2.5-7b-instruct">@cf/qwen/qwen2.5-7b-instruct (Multilingual)</option>
             </select>
           </div>
 
-          <div className="space-y-1.5 pt-1 border-t border-white/5">
+          <div className="space-y-1 pt-1 border-t border-white/5">
             <input
               type="text"
               value={cfAccountId}
               onChange={(e) => setCfAccountId(e.target.value)}
               placeholder="Account ID (e.g. 8f4a...)"
-              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-cyan-400 font-mono placeholder-slate-600 transition"
+              className="w-full rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-cyan-400 font-mono placeholder-slate-600 transition"
             />
-            <div className="flex gap-1.5">
+            <div className="flex gap-1">
               <input
                 type="password"
                 value={cfToken}
                 onChange={(e) => setCfToken(e.target.value)}
                 placeholder="Workers AI API Token"
-                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-cyan-400 font-mono placeholder-slate-600 transition"
+                className="flex-1 min-w-0 rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-cyan-400 font-mono placeholder-slate-600 transition"
               />
               <button
                 onClick={() => saveCloudflare()}
                 disabled={cfBusy || (!cfAccountId.trim() && !cfSet)}
-                className="flex items-center justify-center gap-1 rounded-lg bg-cyan-600 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-white shadow transition shrink-0"
+                className="flex items-center justify-center gap-1 rounded-lg bg-cyan-600 hover:brightness-110 disabled:opacity-40 px-2.5 py-1 text-[11px] font-bold text-white shadow transition shrink-0"
               >
-                {cfBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
+                {cfBusy ? <Loader2 size={11} className="animate-spin" /> : <Save size={11} />} Save
               </button>
               {cfSet && (
                 <button
                   onClick={() => saveCloudflare(true)}
                   disabled={cfBusy}
                   title="Clear Cloudflare credentials"
-                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1 text-[11px] text-slate-400 hover:text-rose-300 transition shrink-0"
                 >
-                  <Trash2 size={12} />
+                  <Trash2 size={11} />
                 </button>
               )}
             </div>
             {cfMsg && (
-              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${cfMsg.ok ? "bg-cyan-500/10 text-cyan-300 border-cyan-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+              <div className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${cfMsg.ok ? "bg-cyan-500/10 text-cyan-300 border-cyan-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
                 {cfMsg.text}
               </div>
             )}
@@ -2294,36 +2293,35 @@ function SettingsPanel() {
         </div>
 
         {/* 4. Mistral AI */}
-        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
-          <div className="space-y-2">
-            <div className="flex items-start justify-between gap-2">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 shrink-0">
-                  <Sparkles size={16} />
+        <div className="glass-card rounded-xl p-2.5 sm:p-3 border border-orange-500/20 flex flex-col justify-between shadow-lg space-y-2 bg-slate-900/60">
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between gap-1.5">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <div className="w-6 h-6 rounded-lg bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-orange-400 shrink-0">
+                  <Sparkles size={13} />
                 </div>
-                <div>
-                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+                <div className="min-w-0">
+                  <h4 className="text-[12px] font-bold text-slate-100 truncate flex items-center gap-1">
                     Mistral AI
-                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-orange-500/20 text-orange-300 font-mono">1B Tokens</span>
-                  </h3>
-                  <p className="text-[10px] text-slate-400">1 Billion free tokens/month on Experiment tier</p>
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-orange-500/25 text-orange-300 font-mono">1B Tokens</span>
+                  </h4>
                 </div>
               </div>
-
               <a
                 href="https://console.mistral.ai/api-keys"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-orange-500 to-amber-600 hover:brightness-110 text-slate-950 text-[10px] font-bold shadow-md transition shrink-0"
+                className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-orange-500 hover:bg-orange-400 text-slate-950 text-[10px] font-bold shadow transition shrink-0"
+                title="Get Free Mistral API Key"
               >
-                <ExternalLink size={11} />
+                <ExternalLink size={10} />
                 GET KEY
               </a>
             </div>
 
-            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
-              <span className="text-slate-400">Status:</span>
-              <span className={`px-2 py-0.5 rounded-full border ${mistralSet ? "bg-orange-500/10 text-orange-400 border-orange-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+            <div className="flex items-center justify-between text-[10px] font-mono">
+              <span className="text-slate-400">1B Monthly Tokens</span>
+              <span className={`px-1.5 py-0.2 rounded border ${mistralSet ? "bg-orange-500/15 text-orange-400 border-orange-500/30" : "bg-slate-800 text-slate-400 border-white/5"}`}>
                 {mistralSet ? `Active (${mistralHint})` : "Not Configured"}
               </span>
             </div>
@@ -2331,44 +2329,44 @@ function SettingsPanel() {
             <select
               value={mistralModel}
               onChange={(e) => setMistralModel(e.target.value)}
-              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-orange-400 font-mono transition"
+              className="w-full rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-orange-400 font-mono transition"
             >
-              <option value="mistral-small-latest">mistral-small-latest (Smart &amp; Fast - Recommended)</option>
-              <option value="codestral-latest">codestral-latest (High Precision Reasoning)</option>
+              <option value="mistral-small-latest">mistral-small-latest (Smart &amp; Fast)</option>
+              <option value="codestral-latest">codestral-latest (High Precision)</option>
               <option value="mistral-large-latest">mistral-large-latest (Top Benchmark)</option>
-              <option value="open-mistral-nemo">open-mistral-nemo (Free 12B Open Weights)</option>
+              <option value="open-mistral-nemo">open-mistral-nemo (Free 12B Open)</option>
             </select>
           </div>
 
-          <div className="space-y-1.5 pt-1 border-t border-white/5">
-            <div className="flex gap-1.5">
+          <div className="space-y-1 pt-1 border-t border-white/5">
+            <div className="flex gap-1">
               <input
                 type="password"
                 value={mistralKey}
                 onChange={(e) => setMistralKey(e.target.value)}
                 placeholder="Paste Mistral API Key"
-                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-orange-400 font-mono placeholder-slate-600 transition"
+                className="flex-1 min-w-0 rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-orange-400 font-mono placeholder-slate-600 transition"
               />
               <button
                 onClick={() => saveMistral()}
                 disabled={mistralBusy || !mistralKey.trim()}
-                className="flex items-center justify-center gap-1 rounded-lg bg-orange-500 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-slate-950 shadow transition shrink-0"
+                className="flex items-center justify-center gap-1 rounded-lg bg-orange-500 hover:brightness-110 disabled:opacity-40 px-2.5 py-1 text-[11px] font-bold text-slate-950 shadow transition shrink-0"
               >
-                {mistralBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
+                {mistralBusy ? <Loader2 size={11} className="animate-spin" /> : <Save size={11} />} Save
               </button>
               {mistralSet && (
                 <button
-                  onClick={() => saveMistral("")}
+                  onClick={() => saveMistral(true)}
                   disabled={mistralBusy}
                   title="Clear Mistral key"
-                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1 text-[11px] text-slate-400 hover:text-rose-300 transition shrink-0"
                 >
-                  <Trash2 size={12} />
+                  <Trash2 size={11} />
                 </button>
               )}
             </div>
             {mistralMsg && (
-              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${mistralMsg.ok ? "bg-orange-500/10 text-orange-300 border-orange-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+              <div className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${mistralMsg.ok ? "bg-orange-500/10 text-orange-300 border-orange-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
                 {mistralMsg.text}
               </div>
             )}
@@ -2376,36 +2374,35 @@ function SettingsPanel() {
         </div>
 
         {/* 5. GitHub Models (Microsoft Azure) */}
-        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
-          <div className="space-y-2">
-            <div className="flex items-start justify-between gap-2">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 shrink-0">
-                  <Bot size={16} />
+        <div className="glass-card rounded-xl p-2.5 sm:p-3 border border-purple-500/20 flex flex-col justify-between shadow-lg space-y-2 bg-slate-900/60">
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between gap-1.5">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <div className="w-6 h-6 rounded-lg bg-purple-500/15 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
+                  <Bot size={13} />
                 </div>
-                <div>
-                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+                <div className="min-w-0">
+                  <h4 className="text-[12px] font-bold text-slate-100 truncate flex items-center gap-1">
                     GitHub Models
-                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-purple-500/20 text-purple-300 font-mono">100% Free</span>
-                  </h3>
-                  <p className="text-[10px] text-slate-400">Azure GPT-4o-mini &amp; Llama 3.1 via GitHub PAT</p>
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-purple-500/25 text-purple-300 font-mono">100% Free</span>
+                  </h4>
                 </div>
               </div>
-
               <a
                 href="https://github.com/settings/tokens"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-purple-600 to-violet-600 hover:brightness-110 text-white text-[10px] font-bold shadow-md transition shrink-0"
+                className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-purple-600 hover:bg-purple-500 text-white text-[10px] font-bold shadow transition shrink-0"
+                title="Get GitHub Token (No Scopes Required)"
               >
-                <ExternalLink size={11} />
+                <ExternalLink size={10} />
                 GET KEY
               </a>
             </div>
 
-            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
-              <span className="text-slate-400">Status:</span>
-              <span className={`px-2 py-0.5 rounded-full border ${ghSet ? "bg-purple-500/10 text-purple-400 border-purple-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+            <div className="flex items-center justify-between text-[10px] font-mono">
+              <span className="text-slate-400">Azure GPT-4o-mini</span>
+              <span className={`px-1.5 py-0.2 rounded border ${ghSet ? "bg-purple-500/15 text-purple-400 border-purple-500/30" : "bg-slate-800 text-slate-400 border-white/5"}`}>
                 {ghSet ? `Active (${ghHint})` : "Not Configured"}
               </span>
             </div>
@@ -2413,43 +2410,43 @@ function SettingsPanel() {
             <select
               value={ghModel}
               onChange={(e) => setGhModel(e.target.value)}
-              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-purple-400 font-mono transition"
+              className="w-full rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-purple-400 font-mono transition"
             >
-              <option value="gpt-4o-mini">gpt-4o-mini (OpenAI Precision - 100% Free via GitHub)</option>
-              <option value="Meta-Llama-3.1-70B-Instruct">Meta-Llama-3.1-70B-Instruct (High Capacity)</option>
-              <option value="Phi-3.5-mini-instruct">Phi-3.5-mini-instruct (Fast &amp; Lightweight)</option>
+              <option value="gpt-4o-mini">gpt-4o-mini (OpenAI GPT-4o-mini Free)</option>
+              <option value="Meta-Llama-3.1-70B-Instruct">Meta-Llama-3.1-70B-Instruct (70B)</option>
+              <option value="Phi-3.5-mini-instruct">Phi-3.5-mini-instruct (Fast &amp; Light)</option>
             </select>
           </div>
 
-          <div className="space-y-1.5 pt-1 border-t border-white/5">
-            <div className="flex gap-1.5">
+          <div className="space-y-1 pt-1 border-t border-white/5">
+            <div className="flex gap-1">
               <input
                 type="password"
                 value={ghToken}
                 onChange={(e) => setGhToken(e.target.value)}
-                placeholder="ghp_... Paste GitHub Token (no scopes)"
-                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-purple-400 font-mono placeholder-slate-600 transition"
+                placeholder="ghp_... Paste GitHub Token"
+                className="flex-1 min-w-0 rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-purple-400 font-mono placeholder-slate-600 transition"
               />
               <button
                 onClick={() => saveGitHub()}
                 disabled={ghBusy || !ghToken.trim()}
-                className="flex items-center justify-center gap-1 rounded-lg bg-purple-600 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-white shadow transition shrink-0"
+                className="flex items-center justify-center gap-1 rounded-lg bg-purple-600 hover:brightness-110 disabled:opacity-40 px-2.5 py-1 text-[11px] font-bold text-white shadow transition shrink-0"
               >
-                {ghBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
+                {ghBusy ? <Loader2 size={11} className="animate-spin" /> : <Save size={11} />} Save
               </button>
               {ghSet && (
                 <button
                   onClick={() => saveGitHub(true)}
                   disabled={ghBusy}
                   title="Clear GitHub token"
-                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1 text-[11px] text-slate-400 hover:text-rose-300 transition shrink-0"
                 >
-                  <Trash2 size={12} />
+                  <Trash2 size={11} />
                 </button>
               )}
             </div>
             {ghMsg && (
-              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${ghMsg.ok ? "bg-purple-500/10 text-purple-300 border-purple-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+              <div className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${ghMsg.ok ? "bg-purple-500/10 text-purple-300 border-purple-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
                 {ghMsg.text}
               </div>
             )}
@@ -2457,36 +2454,35 @@ function SettingsPanel() {
         </div>
 
         {/* 6. SambaNova Cloud */}
-        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
-          <div className="space-y-2">
-            <div className="flex items-start justify-between gap-2">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
-                  <Cpu size={16} />
+        <div className="glass-card rounded-xl p-2.5 sm:p-3 border border-emerald-500/20 flex flex-col justify-between shadow-lg space-y-2 bg-slate-900/60">
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between gap-1.5">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <div className="w-6 h-6 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                  <Cpu size={13} />
                 </div>
-                <div>
-                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
-                    SambaNova Cloud
-                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-emerald-500/20 text-emerald-300 font-mono">400 T/s</span>
-                  </h3>
-                  <p className="text-[10px] text-slate-400">100% Free permanent developer tier (~400 tokens/s)</p>
+                <div className="min-w-0">
+                  <h4 className="text-[12px] font-bold text-slate-100 truncate flex items-center gap-1">
+                    SambaNova
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-emerald-500/25 text-emerald-300 font-mono">400 T/s</span>
+                  </h4>
                 </div>
               </div>
-
               <a
                 href="https://cloud.sambanova.ai/apis"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-600 hover:brightness-110 text-white text-[10px] font-bold shadow-md transition shrink-0"
+                className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-bold shadow transition shrink-0"
+                title="Get Free SambaNova API Key"
               >
-                <ExternalLink size={11} />
+                <ExternalLink size={10} />
                 GET KEY
               </a>
             </div>
 
-            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
-              <span className="text-slate-400">Status:</span>
-              <span className={`px-2 py-0.5 rounded-full border ${sambaSet ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+            <div className="flex items-center justify-between text-[10px] font-mono">
+              <span className="text-slate-400">400 Tokens/s Llama</span>
+              <span className={`px-1.5 py-0.2 rounded border ${sambaSet ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30" : "bg-slate-800 text-slate-400 border-white/5"}`}>
                 {sambaSet ? `Active (${sambaHint})` : "Not Configured"}
               </span>
             </div>
@@ -2494,43 +2490,43 @@ function SettingsPanel() {
             <select
               value={sambaModel}
               onChange={(e) => setSambaModel(e.target.value)}
-              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-emerald-400 font-mono transition"
+              className="w-full rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-emerald-400 font-mono transition"
             >
-              <option value="Meta-Llama-3.3-70B-Instruct">Meta-Llama-3.3-70B-Instruct (Recommended)</option>
-              <option value="Qwen2.5-72B-Instruct">Qwen2.5-72B-Instruct (Multilingual Reasoning)</option>
-              <option value="Meta-Llama-3.1-8B-Instruct">Meta-Llama-3.1-8B-Instruct (Sub-second Instant)</option>
+              <option value="Meta-Llama-3.3-70B-Instruct">Meta-Llama-3.3-70B-Instruct (70B)</option>
+              <option value="Qwen2.5-72B-Instruct">Qwen2.5-72B-Instruct (Multilingual)</option>
+              <option value="Meta-Llama-3.1-8B-Instruct">Meta-Llama-3.1-8B-Instruct (Fast)</option>
             </select>
           </div>
 
-          <div className="space-y-1.5 pt-1 border-t border-white/5">
-            <div className="flex gap-1.5">
+          <div className="space-y-1 pt-1 border-t border-white/5">
+            <div className="flex gap-1">
               <input
                 type="password"
                 value={sambaKey}
                 onChange={(e) => setSambaKey(e.target.value)}
                 placeholder="Paste SambaNova API Key"
-                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-emerald-400 font-mono placeholder-slate-600 transition"
+                className="flex-1 min-w-0 rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-emerald-400 font-mono placeholder-slate-600 transition"
               />
               <button
                 onClick={() => saveSambaNova()}
                 disabled={sambaBusy || !sambaKey.trim()}
-                className="flex items-center justify-center gap-1 rounded-lg bg-emerald-600 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-white shadow transition shrink-0"
+                className="flex items-center justify-center gap-1 rounded-lg bg-emerald-600 hover:brightness-110 disabled:opacity-40 px-2.5 py-1 text-[11px] font-bold text-white shadow transition shrink-0"
               >
-                {sambaBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
+                {sambaBusy ? <Loader2 size={11} className="animate-spin" /> : <Save size={11} />} Save
               </button>
               {sambaSet && (
                 <button
-                  onClick={() => saveSambaNova("")}
+                  onClick={() => saveSambaNova(true)}
                   disabled={sambaBusy}
                   title="Clear SambaNova key"
-                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1 text-[11px] text-slate-400 hover:text-rose-300 transition shrink-0"
                 >
-                  <Trash2 size={12} />
+                  <Trash2 size={11} />
                 </button>
               )}
             </div>
             {sambaMsg && (
-              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${sambaMsg.ok ? "bg-emerald-500/10 text-emerald-300 border-emerald-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+              <div className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${sambaMsg.ok ? "bg-emerald-500/10 text-emerald-300 border-emerald-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
                 {sambaMsg.text}
               </div>
             )}
@@ -2538,36 +2534,35 @@ function SettingsPanel() {
         </div>
 
         {/* 7. Together AI */}
-        <div className="glass-card rounded-2xl p-4 border border-white/10 flex flex-col justify-between shadow-xl space-y-3">
-          <div className="space-y-2">
-            <div className="flex items-start justify-between gap-2">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 shrink-0">
-                  <Cloud size={16} />
+        <div className="glass-card rounded-xl p-2.5 sm:p-3 border border-pink-500/20 flex flex-col justify-between shadow-lg space-y-2 bg-slate-900/60">
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between gap-1.5">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <div className="w-6 h-6 rounded-lg bg-pink-500/15 border border-pink-500/30 flex items-center justify-center text-pink-400 shrink-0">
+                  <Cloud size={13} />
                 </div>
-                <div>
-                  <h3 className="text-xs font-bold text-slate-100 uppercase tracking-wider flex items-center gap-1.5">
+                <div className="min-w-0">
+                  <h4 className="text-[12px] font-bold text-slate-100 truncate flex items-center gap-1">
                     Together AI
-                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-pink-500/20 text-pink-300 font-mono">Trial Credits</span>
-                  </h3>
-                  <p className="text-[10px] text-slate-400">Free open-source trial models (DeepSeek &amp; Llama)</p>
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-pink-500/25 text-pink-300 font-mono">Trial $</span>
+                  </h4>
                 </div>
               </div>
-
               <a
                 href="https://api.together.xyz/settings/api-keys"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-gradient-to-r from-pink-500 to-rose-600 hover:brightness-110 text-white text-[10px] font-bold shadow-md transition shrink-0"
+                className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-pink-600 hover:bg-pink-500 text-white text-[10px] font-bold shadow transition shrink-0"
+                title="Get Together AI Key"
               >
-                <ExternalLink size={11} />
+                <ExternalLink size={10} />
                 GET KEY
               </a>
             </div>
 
-            <div className="flex items-center justify-between text-[10px] font-mono pt-1">
-              <span className="text-slate-400">Status:</span>
-              <span className={`px-2 py-0.5 rounded-full border ${togetherSet ? "bg-pink-500/10 text-pink-400 border-pink-500/25" : "bg-slate-800 text-slate-400 border-white/5"}`}>
+            <div className="flex items-center justify-between text-[10px] font-mono">
+              <span className="text-slate-400">DeepSeek &bull; Open Models</span>
+              <span className={`px-1.5 py-0.2 rounded border ${togetherSet ? "bg-pink-500/15 text-pink-400 border-pink-500/30" : "bg-slate-800 text-slate-400 border-white/5"}`}>
                 {togetherSet ? `Active (${togetherHint})` : "Not Configured"}
               </span>
             </div>
@@ -2575,46 +2570,90 @@ function SettingsPanel() {
             <select
               value={togetherModel}
               onChange={(e) => setTogetherModel(e.target.value)}
-              className="w-full rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-[11px] text-slate-200 outline-none focus:border-pink-400 font-mono transition"
+              className="w-full rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-pink-400 font-mono transition"
             >
-              <option value="deepseek-ai/DeepSeek-V3">deepseek-ai/DeepSeek-V3 (Recommended)</option>
+              <option value="deepseek-ai/DeepSeek-V3">deepseek-ai/DeepSeek-V3 (DeepSeek V3)</option>
               <option value="meta-llama/Llama-3.3-70B-Instruct-Turbo">meta-llama/Llama-3.3-70B-Instruct-Turbo</option>
               <option value="mistralai/Mixtral-8x7B-Instruct-v0.1">mistralai/Mixtral-8x7B-Instruct-v0.1 (MoE)</option>
             </select>
           </div>
 
-          <div className="space-y-1.5 pt-1 border-t border-white/5">
-            <div className="flex gap-1.5">
+          <div className="space-y-1 pt-1 border-t border-white/5">
+            <div className="flex gap-1">
               <input
                 type="password"
                 value={togetherKey}
                 onChange={(e) => setTogetherKey(e.target.value)}
                 placeholder="Paste Together API Key"
-                className="flex-1 min-w-0 rounded-lg bg-slate-900/90 border border-white/10 px-2.5 py-1.5 text-xs text-slate-200 outline-none focus:border-pink-400 font-mono placeholder-slate-600 transition"
+                className="flex-1 min-w-0 rounded-lg bg-slate-950/90 border border-white/10 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-pink-400 font-mono placeholder-slate-600 transition"
               />
               <button
                 onClick={() => saveTogether()}
                 disabled={togetherBusy || !togetherKey.trim()}
-                className="flex items-center justify-center gap-1 rounded-lg bg-pink-600 hover:brightness-110 disabled:opacity-40 px-3 py-1.5 text-xs font-bold text-white shadow transition shrink-0"
+                className="flex items-center justify-center gap-1 rounded-lg bg-pink-600 hover:brightness-110 disabled:opacity-40 px-2.5 py-1 text-[11px] font-bold text-white shadow transition shrink-0"
               >
-                {togetherBusy ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />} Save
+                {togetherBusy ? <Loader2 size={11} className="animate-spin" /> : <Save size={11} />} Save
               </button>
               {togetherSet && (
                 <button
-                  onClick={() => saveTogether("")}
+                  onClick={() => saveTogether(true)}
                   disabled={togetherBusy}
                   title="Clear Together key"
-                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1.5 text-xs text-slate-400 hover:text-rose-300 transition shrink-0"
+                  className="flex items-center justify-center rounded-lg bg-slate-800 hover:bg-rose-500/20 border border-white/10 hover:border-rose-500/30 px-2 py-1 text-[11px] text-slate-400 hover:text-rose-300 transition shrink-0"
                 >
-                  <Trash2 size={12} />
+                  <Trash2 size={11} />
                 </button>
               )}
             </div>
             {togetherMsg && (
-              <div className={`text-[10px] font-mono px-2 py-1 rounded border ${togetherMsg.ok ? "bg-pink-500/10 text-pink-300 border-pink-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
+              <div className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${togetherMsg.ok ? "bg-pink-500/10 text-pink-300 border-pink-500/20" : "bg-rose-500/10 text-rose-300 border-rose-500/20"}`}>
                 {togetherMsg.text}
               </div>
             )}
+          </div>
+        </div>
+
+        {/* 8. Cascade & Zero-Cost Guard Status (Grid Balancer Card) */}
+        <div className="glass-card rounded-xl p-2.5 sm:p-3 border border-white/10 flex flex-col justify-between shadow-lg space-y-2 bg-gradient-to-br from-slate-900/80 to-slate-950/80">
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between gap-1.5">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <div className="w-6 h-6 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                  <ShieldCheck size={13} />
+                </div>
+                <div className="min-w-0">
+                  <h4 className="text-[12px] font-bold text-slate-100 truncate flex items-center gap-1">
+                    AI Auto-Failover
+                    <span className="text-[8px] uppercase px-1 py-0.2 rounded bg-emerald-500/25 text-emerald-300 font-mono">0ms SLA</span>
+                  </h4>
+                </div>
+              </div>
+              <a
+                href="https://www.digibizos.co.uk/open-source"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-bold shadow transition shrink-0"
+                title="View DIGI BIZ OS Open Source Ecosystem"
+              >
+                <ExternalLink size={10} />
+                HUB
+              </a>
+            </div>
+
+            <div className="text-[10px] text-slate-300 leading-relaxed font-sans bg-black/30 p-2 rounded-lg border border-white/5 space-y-1">
+              <div className="flex items-center justify-between text-slate-400 font-mono text-[9px]">
+                <span>Cascading Priority:</span>
+                <span className="text-emerald-400 font-bold">100% Free Tiers</span>
+              </div>
+              <p className="text-[10px] text-slate-400">
+                If any provider hits rate limits or downtime, request seamlessly jumps to the next healthy model with 0ms customer latency.
+              </p>
+            </div>
+          </div>
+
+          <div className="pt-1 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-400">
+            <span>Deterministic Fallback:</span>
+            <span className="text-emerald-400 font-semibold">Active &bull; Local SQLite</span>
           </div>
         </div>
       </div>
