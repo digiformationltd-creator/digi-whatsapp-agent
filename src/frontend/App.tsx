@@ -2018,7 +2018,7 @@ function SettingsPanel() {
   };
 
   return (
-    <div className="space-y-5">
+    <div className="h-full overflow-y-auto pr-1.5 pb-8 space-y-4">
       {/* Cascade Overview Banner */}
       <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-blue-950/40 via-purple-950/30 to-emerald-950/30 border border-blue-500/20 shadow-lg flex items-center justify-between gap-4 flex-wrap">
         <div className="flex items-center gap-3">
@@ -2792,7 +2792,7 @@ const SOCIAL_CHANNELS = [
 /* ────────────────────────────────────────────────────────────────────────── */
 function AboutPanel() {
   return (
-    <div className="space-y-6">
+    <div className="h-full overflow-y-auto pr-1.5 pb-8 space-y-5">
       {/* Brand Hero Card */}
       <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900/90 to-[#00A884]/15 border border-white/10 shadow-xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-[#00A884]/10 rounded-full blur-3xl pointer-events-none" />
