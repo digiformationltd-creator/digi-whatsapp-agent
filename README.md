@@ -4,6 +4,9 @@
 > Powered by Baileys WhatsApp Web protocol, local SQLite memory, deterministic Finite State Machines, and 7-Tier Free AI Orchestration (Google Gemini #1, Groq LPU, Cloudflare Workers AI, Mistral AI, GitHub Models, SambaNova Cloud & Together AI).
 
 <p align="center">
+  <a href="https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases/latest">
+    <img src="https://img.shields.io/badge/⬇️_Download_Windows_Setup-v1.0.0_(.exe)-0284c7?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows Installer" />
+  </a>
   <a href="https://www.digibizos.co.uk/pricing">
     <img src="https://img.shields.io/badge/🚀_Try_DIGI_BIZ_OS-3--Day_Free_Trial-10b981?style=for-the-badge&logo=windows&logoColor=white" alt="Try DIGI BIZ OS 3-Day Free Trial" />
   </a>
@@ -35,7 +38,22 @@
 
 ## 🚀 Installation & Quick Start Guide
 
-### 🛠️ Method 1: Manual Installation (Step-by-Step)
+### ⚡ Method 1: 1-Click Official Windows Installer (Recommended)
+**No coding, no terminal, and no Node.js required!**
+
+1. **Download the Official Installer:**  
+   👉 **[Download Digi WhatsApp Agent Setup 1.0.0.exe](https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases/download/v1.0.0/Digi.WhatsApp.Agent.Setup.1.0.0.exe)**  
+   *(Or browse all versions on the [GitHub Releases Page](https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases))*
+2. **Run the Installer:** Double-click the downloaded setup file. It will install the application and place a shortcut on your Desktop and Start Menu.
+3. **Launch the Agent:** Open **Digi WhatsApp Agent** from your desktop.
+4. **Enter Free AI Keys & Connect WhatsApp:**
+   - In the **Settings & API Keys** panel, paste your free Google Gemini, Groq, or Cloudflare key (direct "Get Key" buttons are provided on every card).
+   - In the WhatsApp panel, click **Connect** and scan the QR code with your phone (WhatsApp ➔ Linked Devices ➔ Link a Device).
+   - The agent is now live and working 24/7!
+
+---
+
+### 🛠️ Method 2: Developer Setup (Run from Source)
 
 #### Prerequisites
 - [Node.js](https://nodejs.org/) v20.x or v22.x+ (Recommended: Node v22 LTS with built-in `node:sqlite`)
@@ -60,16 +78,12 @@ cp .env.example .env
 *(Optional)* Add your free API keys in `.env` (or add them later directly in the Web UI):
 ```env
 PORT=9010
+GEMINI_API_KEY=your_gemini_api_key_here
 GROQ_API_KEY=gsk_your_groq_key_here
-WHATSAPP_AGENT_KEY=your_opencode_zen_key_here
+CLOUDFLARE_API_KEY=your_cloudflare_workers_ai_key_here
 ```
 
 #### Step 4: Launch the Agent
-
-**Option A (1-Click Windows Runner):**  
-Double-click **`start.bat`** or **`start-whatsapp-agent.bat`**. It will automatically build and open the browser for you!
-
-**Option B (Terminal Command):**  
 ```bash
 # Development Mode (Hot Reloading)
 npm run dev
@@ -79,14 +93,9 @@ npm run build && npm start
 ```
 Open **[http://localhost:9010](http://localhost:9010)** in your browser.
 
-#### Step 5: Pair WhatsApp & Enter Keys
-1. On the dashboard at `http://localhost:9010`, click **API Keys & Models** and paste your free Groq / AI key.
-2. Click **Connect** on the dashboard and scan the pairing QR code with your phone (WhatsApp ➔ Linked Devices ➔ Link a Device).
-3. The agent is now active and ready to sell 24/7!
-
 ---
 
-### 🤖 Method 2: Automatic 1-Prompt Setup (For Antigravity & AI Assistants)
+### 🤖 Method 3: Automatic 1-Prompt Setup (For Antigravity & AI Assistants)
 
 If you are using **Google Antigravity**, **Cursor**, **Windsurf**, or **Claude Code**, you don't even need to touch the terminal! 
 
