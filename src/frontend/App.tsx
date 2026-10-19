@@ -981,11 +981,11 @@ function WhatsAppChannel({ accountId = "0" }: { accountId?: string }) {
 
           {/* Try DIGI BIZ OS Flagship Promo Card */}
           <a
-            href="https://www.digibizos.co.uk/pricing"
+            href="https://www.digibizos.co.uk/open-source"
             target="_blank"
             rel="noopener noreferrer"
             className="block p-3.5 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-teal-950/30 to-slate-900 border border-emerald-500/30 hover:border-emerald-400/60 shadow-lg transition-all group no-underline"
-            title="Try DIGI BIZ OS - Claim 3-Day Free Trial"
+            title="DIGI BIZ OS - Open Source Tools & Suite"
           >
             <div className="flex items-center justify-between gap-3">
               <div className="space-y-0.5">
@@ -2941,13 +2941,13 @@ function AboutPanel() {
         </div>
 
         <a
-          href="https://www.digibizos.co.uk/pricing"
+          href="https://www.digibizos.co.uk/open-source"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:brightness-110 text-white font-bold text-xs shadow-lg shadow-emerald-950/50 hover:shadow-emerald-500/20 transition-all shrink-0 hover:scale-105 no-underline"
         >
           <span>🚀</span>
-          <span>Try DIGI BIZ OS Free</span>
+          <span>Explore DIGI BIZ OS Open Source</span>
           <ExternalLink size={14} />
         </a>
       </div>
@@ -3051,16 +3051,16 @@ export default function App() {
 
         {/* Try DIGI BIZ OS Action Button */}
         <a
-          href="https://www.digibizos.co.uk/pricing"
+          href="https://www.digibizos.co.uk/open-source"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-cyan-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 border border-emerald-400/40 hover:border-emerald-400/80 shadow-[0_0_16px_-2px_rgba(16,185,129,0.35)] transition-all transform hover:-translate-y-0.5 text-white text-xs font-bold shrink-0 no-underline cursor-pointer"
-          title="Try DIGI BIZ OS - Claim 3-Day Free Trial"
+          title="DIGI BIZ OS - Open Source Tools & Suite"
         >
           <span className="text-emerald-400 text-xs">⚡</span>
-          <span>Try DIGI BIZ OS</span>
+          <span>DIGI BIZ OS</span>
           <span className="text-[9px] font-mono font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 border border-emerald-500/40">
-            Free Trial
+            Open Source
           </span>
         </a>
 
@@ -3095,14 +3095,14 @@ export default function App() {
         </div>
         <div className="flex-1" />
         <a
-          href="https://www.digibizos.co.uk/pricing"
+          href="https://www.digibizos.co.uk/open-source"
           target="_blank"
           rel="noopener noreferrer"
           className="text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1.5 text-xs transition-colors no-underline mr-4"
-          title="Try DIGI BIZ OS - Claim 3-Day Free Trial"
+          title="DIGI BIZ OS - Open Source Tools & Suite"
         >
           <span>🚀</span>
-          <span><strong>Try DIGI BIZ OS</strong> (3-Day Free Trial)</span>
+          <span><strong>DIGI BIZ OS</strong> (Open Source Tools)</span>
           <span>↗</span>
         </a>
         <div className="flex items-center gap-4 text-xs">

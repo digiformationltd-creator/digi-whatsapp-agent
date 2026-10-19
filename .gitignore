@@ -9,6 +9,7 @@ dist_electron/
 build/
 release/
 *.exe
+!installer/*.exe
 
 # Local databases & user data
 data/

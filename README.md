@@ -7,8 +7,8 @@
   <a href="https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases/latest">
     <img src="https://img.shields.io/badge/⬇️_Download_Windows_Setup-v1.0.0_(.exe)-0284c7?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows Installer" />
   </a>
-  <a href="https://www.digibizos.co.uk/pricing">
-    <img src="https://img.shields.io/badge/🚀_Try_DIGI_BIZ_OS-3--Day_Free_Trial-10b981?style=for-the-badge&logo=windows&logoColor=white" alt="Try DIGI BIZ OS 3-Day Free Trial" />
+  <a href="https://www.digibizos.co.uk/open-source">
+    <img src="https://img.shields.io/badge/🌐_DIGI_BIZ_OS-Open_Source_Hub-06b6d4?style=for-the-badge&logo=open-source-initiative&logoColor=white" alt="DIGI BIZ OS Open Source Hub" />
   </a>
   <a href="https://www.digiformation.co.uk/">
     <img src="https://img.shields.io/badge/Corporate_Entity-DigiFormation_Ltd-blue?style=for-the-badge" alt="DigiFormation Ltd" />
@@ -16,9 +16,9 @@
   <img src="https://img.shields.io/badge/License-Source--Available-purple?style=for-the-badge" alt="License" />
 </p>
 
-> 🌟 **EXPERIENCE OUR FLAGSHIP DESKTOP PLATFORM: DIGI BIZ OS**  
-> Run your entire business offline & online: 20+ Free AI models, automated WhatsApp sales agent, local CRM, customer invoicing, document engine, and lifetime updates for £29 once.  
-> 👉 **[✨ Try DIGI BIZ OS — Claim Your 3-Day Free Trial](https://www.digibizos.co.uk/pricing)**
+> 🌟 **EXPLORE DIGI BIZ OS OPEN SOURCE ECOSYSTEM**  
+> Discover our complete open-source suite of sovereign offline AI tools, automated WhatsApp sales agents, local CRM, customer invoicing, document engine, and multi-agent workflows.  
+> 👉 **[✨ DIGI BIZ OS Open Source Hub & Tools Portal](https://www.digibizos.co.uk/open-source)**
 
 ---
 
@@ -42,7 +42,8 @@
 **No coding, no terminal, and no Node.js required!**
 
 1. **Download the Official Installer:**  
-   👉 **[Download Digi WhatsApp Agent Setup 1.0.0.exe](https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases/download/v1.0.0/Digi.WhatsApp.Agent.Setup.1.0.0.exe)**  
+   - 👉 **[⬇️ Direct GitHub Release Download: Digi WhatsApp Agent Setup 1.0.0.exe](https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases/download/v1.0.0/Digi.WhatsApp.Agent.Setup.1.0.0.exe)**  
+   - 📦 **[📁 Repository File Path: installer/Digi WhatsApp Agent Setup 1.0.0.exe](installer/Digi%20WhatsApp%20Agent%20Setup%201.0.0.exe)**  
    *(Or browse all versions on the [GitHub Releases Page](https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases))*
 2. **Run the Installer:** Double-click the downloaded setup file. It will install the application and place a shortcut on your Desktop and Start Menu.
 3. **Launch the Agent:** Open **Digi WhatsApp Agent** from your desktop.
@@ -159,7 +160,7 @@ You can customize your business catalog, pricing, and FAQs either directly insid
 </div>
 
 - 🌐 **Official Website:** [www.digiformation.co.uk](https://www.digiformation.co.uk/)
-- 🚀 **DigiBiz OS:** [digibizos.co.uk](https://digibizos.co.uk/)
+- 🚀 **DigiBiz OS Open Source:** [digibizos.co.uk/open-source](https://www.digibizos.co.uk/open-source)
 - ✉️ **Official Email:** [info@digiformation.co.uk](mailto:info@digiformation.co.uk)
 - 📱 **WhatsApp & Direct Call:** [+92 316 446 7464](https://wa.me/923164467464)
 - 🔗 **Linktree Hub:** [linktr.ee/digiformationltd](https://linktr.ee/digiformationltd)
