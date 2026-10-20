@@ -985,7 +985,7 @@ function WhatsAppChannel({ accountId = "0" }: { accountId?: string }) {
             target="_blank"
             rel="noopener noreferrer"
             className="block p-3.5 rounded-2xl bg-gradient-to-r from-blue-950/40 via-indigo-950/30 to-slate-900 border border-blue-500/30 hover:border-blue-400/60 shadow-lg transition-all group no-underline"
-            title="Try Digi biz OS (3-Day Free Trial)"
+            title="Try DigiBizOS (3-Day Free Trial)"
           >
             <div className="flex items-center justify-between gap-3">
               <div className="space-y-0.5">
@@ -3098,7 +3098,7 @@ export default function App() {
           title="Try Digi biz OS (3-Day Free Trial) - All-in-One AI Business Operating System"
         >
           <Zap size={13} className="text-blue-400 shrink-0" />
-          <span className="font-bold tracking-tight text-white">Try Digi biz OS</span>
+          <span className="font-bold tracking-tight text-white">Try DigiBizOS</span>
           <span className="text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm">
             3-Day Free Trial
           </span>
