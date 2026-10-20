@@ -981,24 +981,25 @@ function WhatsAppChannel({ accountId = "0" }: { accountId?: string }) {
 
           {/* Try DIGI BIZ OS Flagship Promo Card */}
           <a
-            href="https://www.digibizos.co.uk/open-source"
+            href="https://www.digibizos.co.uk/pricing"
             target="_blank"
             rel="noopener noreferrer"
-            className="block p-3.5 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-teal-950/30 to-slate-900 border border-emerald-500/30 hover:border-emerald-400/60 shadow-lg transition-all group no-underline"
-            title="DIGI BIZ OS - Open Source Tools & Suite"
+            className="block p-3.5 rounded-2xl bg-gradient-to-r from-blue-950/40 via-indigo-950/30 to-slate-900 border border-blue-500/30 hover:border-blue-400/60 shadow-lg transition-all group no-underline"
+            title="Try Digi biz OS (3-Day Free Trial)"
           >
             <div className="flex items-center justify-between gap-3">
               <div className="space-y-0.5">
-                <div className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <span>⚡ Flagship Platform</span>
-                  <span className="px-1.5 py-0.2 rounded-full bg-emerald-500/20 text-emerald-300 text-[8px] border border-emerald-500/30">3-Day Free Trial</span>
+                <div className="text-[10px] font-mono font-bold text-blue-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <Zap size={11} className="text-blue-400" />
+                  <span>Flagship Platform</span>
+                  <span className="px-1.5 py-0.2 rounded-full bg-blue-500/20 text-blue-300 text-[8px] border border-blue-500/30 font-bold">3-Day Free Trial</span>
                 </div>
-                <div className="text-xs font-bold text-white group-hover:text-emerald-300 transition">Try DIGI BIZ OS</div>
+                <div className="text-xs font-bold text-white group-hover:text-blue-300 transition">Try DIGI BIZ OS</div>
                 <div className="text-[10px] text-slate-400">All-in-One Business Suite &bull; Local CRM &bull; Offline Tools</div>
               </div>
-              <span className="px-2.5 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 text-[10px] font-bold border border-emerald-500/30 group-hover:bg-emerald-500/30 group-hover:scale-105 transition shrink-0 flex items-center gap-1">
-                <span>Explore</span>
-                <ExternalLink size={10} />
+              <span className="px-2.5 py-1.5 rounded-lg bg-blue-500/20 text-blue-300 text-[10px] font-bold border border-blue-500/30 group-hover:bg-blue-500/30 group-hover:scale-105 transition shrink-0 flex items-center gap-1">
+                <span>Try Free</span>
+                <span>↗</span>
               </span>
             </div>
           </a>
@@ -2629,7 +2630,7 @@ function SettingsPanel() {
                 </div>
               </div>
               <a
-                href="https://www.digibizos.co.uk/open-source"
+                href="https://www.digibizos.co.uk/pricing"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-bold shadow transition shrink-0"
@@ -2986,7 +2987,7 @@ function AboutPanel() {
           className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:brightness-110 text-white font-bold text-xs shadow-lg shadow-emerald-950/50 hover:shadow-emerald-500/20 transition-all shrink-0 hover:scale-105 no-underline"
         >
           <span>🚀</span>
-          <span>Explore DIGI BIZ OS Open Source</span>
+          <span>Try DIGI BIZ OS (3-Day Free Trial)</span>
           <ExternalLink size={14} />
         </a>
       </div>
@@ -3088,18 +3089,18 @@ export default function App() {
           </button>
         </nav>
 
-        {/* Try DIGI BIZ OS Action Button */}
+        {/* Try DIGI BIZ OS (3-Day Free Trial) Header CTA Button */}
         <a
-          href="https://www.digibizos.co.uk/open-source"
+          href="https://www.digibizos.co.uk/pricing"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-cyan-500/20 hover:from-emerald-500/30 hover:to-teal-500/30 border border-emerald-400/40 hover:border-emerald-400/80 shadow-[0_0_16px_-2px_rgba(16,185,129,0.35)] transition-all transform hover:-translate-y-0.5 text-white text-xs font-bold shrink-0 no-underline cursor-pointer"
-          title="DIGI BIZ OS - Open Source Tools & Suite"
+          className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/15 hover:bg-blue-500/25 border border-blue-400/40 hover:border-blue-400/80 shadow-[0_2px_14px_rgba(59,130,246,0.3)] transition-all transform hover:-translate-y-0.5 text-white text-xs font-semibold shrink-0 no-underline cursor-pointer"
+          title="Try Digi biz OS (3-Day Free Trial) - All-in-One AI Business Operating System"
         >
-          <span className="text-emerald-400 text-xs">⚡</span>
-          <span>DIGI BIZ OS</span>
-          <span className="text-[9px] font-mono font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-emerald-500/25 text-emerald-300 border border-emerald-500/40">
-            Open Source
+          <Zap size={13} className="text-blue-400 shrink-0" />
+          <span className="font-bold tracking-tight text-white">Try Digi biz OS</span>
+          <span className="text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-sm">
+            3-Day Free Trial
           </span>
         </a>
 
@@ -3123,33 +3124,6 @@ export default function App() {
           <AboutPanel />
         )}
       </main>
-
-      {/* ── Persistent Rounded App Foot ── */}
-      <footer className="appfoot">
-        <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-          <span className="text-white font-bold">Digi WhatsApp Agent</span>
-          <span className="opacity-40">·</span>
-          <span className="text-slate-400">by DigiFormation Ltd (UK #16994903)</span>
-        </div>
-        <div className="flex-1" />
-        <a
-          href="https://www.digibizos.co.uk/open-source"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1.5 text-xs transition-colors no-underline mr-4"
-          title="DIGI BIZ OS - Open Source Tools & Suite"
-        >
-          <span>🚀</span>
-          <span><strong>DIGI BIZ OS</strong> (Open Source Tools)</span>
-          <span>↗</span>
-        </a>
-        <div className="flex items-center gap-4 text-xs">
-          <a href="https://www.digiformation.co.uk/" target="_blank" rel="noreferrer">Website</a>
-          <a href="https://linktr.ee/digiformationltd" target="_blank" rel="noreferrer">Portals</a>
-          <span className="text-slate-500 font-mono">v2.0 PRO</span>
-        </div>
-      </footer>
     </div>
   );
 }
