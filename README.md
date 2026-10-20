@@ -16,6 +16,11 @@
   <img src="https://img.shields.io/badge/License-Source--Available-purple?style=for-the-badge" alt="License" />
 </p>
 
+<p align="center">
+  <img src="assets/digi-whatsapp-agent-qr-pairing.png" alt="Digi WhatsApp Agent - WhatsApp Mobile Pairing and Knowledge Base Studio" width="100%" style="border-radius: 12px; box-shadow: 0 12px 36px rgba(0,0,0,0.4); border: 1px solid rgba(16, 185, 129, 0.3);" />
+</p>
+
+
 > 🌟 **EXPLORE DIGI BIZ OS OPEN SOURCE ECOSYSTEM**  
 > Discover our complete open-source suite of sovereign offline AI tools, automated WhatsApp sales agents, local CRM, customer invoicing, document engine, and multi-agent workflows.  
 > 👉 **[✨ DIGI BIZ OS Open Source Hub & Tools Portal](https://www.digibizos.co.uk/open-source)**
