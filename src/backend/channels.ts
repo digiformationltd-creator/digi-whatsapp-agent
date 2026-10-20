@@ -293,7 +293,13 @@ export async function generateSalesReply(framedPrompt: string): Promise<string> 
 
   // 2) Groq Ultra-Fast Cloud Models (~300ms, max_tokens: 450)
   if (groqKey) {
-    const groqModels = ["qwen/qwen3.8-27b", "openai/gpt-oss-120b", "openai/gpt-oss-20b", "allam-2-7b"];
+    const groqModels = [
+      process.env.GROQ_MODEL,
+      "llama-3.3-70b-versatile",
+      "llama-3.1-8b-instant",
+      "mixtral-8x7b-32768",
+      "qwen-2.5-32b",
+    ].filter(Boolean) as string[];
     for (const model of groqModels) {
       try {
         const r = await fetch("https://api.groq.com/openai/v1/chat/completions", {
@@ -795,15 +801,6 @@ export async function whatsappConnect(id: string = "0"): Promise<ChannelStatusTy
             if (!reply) {
               const framed = frameSalesPrompt(text, mem, id, jid);
               reply = await generateSalesReply(framed);
-            }
-
-            // 4. Resilient Knowledge Base Section Matching Fallback
-            if (!reply && kbContent) {
-              const matchedSec = matchSectionFromKb(text, kbContent);
-              if (matchedSec) {
-                console.log(`[WhatsApp] Matched section from Knowledge Base directly`);
-                reply = sanitizeWhatsAppReply(matchedSec);
-              }
             }
             
             const fellBack = !reply;

@@ -112,13 +112,6 @@ export function getDeterministicReply(customerText: string, customKb?: string): 
   const t = (customerText || "").toLowerCase().trim();
   if (!t) return null;
 
-  if (customKb) {
-    const customSec = matchSectionFromKb(t, customKb);
-    if (customSec) {
-      return sanitizeWhatsAppReply(customSec);
-    }
-  }
-
   const profile = MarkdownKnowledgeLoader.getBusinessProfile();
 
   // ---------------------------------------------------------------------------
@@ -220,108 +213,7 @@ export function getDeterministicReply(customerText: string, customKb?: string): 
   // ---------------------------------------------------------------------------
   // 4. Dynamic Pricing / Packages / Menu / Products Table Matching
   // ---------------------------------------------------------------------------
-  const allKnowledgeFiles = MarkdownKnowledgeLoader.listKnowledgeFiles();
-  
-  for (const filename of allKnowledgeFiles) {
-    const mdContent = MarkdownKnowledgeLoader.readDomainFile(filename);
-    if (!mdContent || !mdContent.includes("|")) continue;
-
-    const rows = parseMarkdownTables(mdContent);
-    if (rows.length === 0) continue;
-
-    // Check for specific item name in query
-    for (const row of rows) {
-      const keys = Object.keys(row);
-      const itemName = (row[keys[0]] || "").trim();
-      const price = row["price"] || row["official price"] || row["fee tier"] || row[keys[1]] || "";
-      const timeline = row["timeline"] || row["delivery"] || "";
-      const inclusions = row["inclusions"] || row["features & notes"] || row["notes"] || row["setup coverage"] || "";
-      const isPopular = (row["most popular"] || "").includes("✓");
-
-      if (itemName && itemName.length >= 3 && price) {
-        // Skip SaaS comparison competitor items like Salesforce, Zapier, Canva unless explicitly queried
-        const isComparison = /salesforce|hubspot|zapier|make|canva|hootsuite|chatgpt/i.test(itemName);
-        if (isComparison && !t.includes(itemName.toLowerCase())) continue;
-
-        const cleanItem = itemName.replace(/[^\w\s-]/g, "").toLowerCase().trim();
-        const itemWords = cleanItem.split(/\s+/).filter(w => w.length > 2 && !/^(the|and|for|with|you|normally|buy|tier|package|tool|cost|module)$/i.test(w));
-
-        const fullMatch = t.includes(cleanItem);
-        const significantMatch = itemWords.length > 0 && itemWords.some(w => {
-          return /lifetime|whitelabel|white-label|agency|starter|silver|gold|platinum|enterprise/i.test(w) && t.includes(w);
-        });
-        const matchesItem = fullMatch || significantMatch || (itemWords.length >= 2 && itemWords.filter(w => t.includes(w)).length >= 2);
-        const asksForPrice = /price|cost|charges|rate|kitne|kitna|fee|pricing|package/i.test(t);
-
-        if (matchesItem && asksForPrice && !/how to buy|order kaise|tarika|khareedna/i.test(t)) {
-          return sanitizeWhatsAppReply(
-            `${itemName} ka price ${price} hai${timeline ? ` (${timeline})` : ""}${isPopular ? " — Most Popular option" : ""}.\n\n` +
-            (inclusions ? `Is mein yeh shamil hai:\n• ${inclusions.replace(/,/g, "\n•")}\n\n` : "\n") +
-            `Kya aap is ke sath proceed karna chahenge?`
-          );
-        }
-      }
-    }
-
-    // Check for general packages/pricing list query
-    if (/\b(packages|packages list|all packages|kon kon se package|packages aur price|pricing list|rate list|menu|rates|kya packages hain|charges kya hain)\b/i.test(t)) {
-      const summary = rows.slice(0, 6).map(r => {
-        const keys = Object.keys(r);
-        const name = r[keys[0]];
-        const price = r["price"] || r["official price"] || r["fee tier"] || r[keys[1]] || "";
-        const pop = (r["most popular"] || "").includes("✓") ? " (Most Popular)" : "";
-        return `• ${name}: ${price}${pop}`;
-      }).join("\n");
-
-      if (summary) {
-        return sanitizeWhatsAppReply(
-          `Hamari primary pricing aur options yeh hain:\n\n` +
-          `${summary}\n\n` +
-          `Aap kaun sa package ya option select karna chahenge?`
-        );
-      }
-    }
-  }
-
-  // ---------------------------------------------------------------------------
-  // 5. Dynamic Services Overview
-  // ---------------------------------------------------------------------------
-  if (/\b(what services do you offer|what do you offer|services overview|kya services hain|aap kya karte ho|kya kam karte ho|services kya hain)\b/i.test(t)) {
-    const srvMd = MarkdownKnowledgeLoader.readDomainFile("services.md") || MarkdownKnowledgeLoader.readDomainFile("menu.md");
-    if (srvMd) {
-      const items = srvMd.split("\n")
-        .map(l => l.trim())
-        .filter(l => /^(?:\d+[\.\)]|[-*])\s+/.test(l))
-        .map(l => "• " + l.replace(/^(?:\d+[\.\)]|[-*])\s+/, ""));
-
-      if (items.length > 0) {
-        return sanitizeWhatsAppReply(
-          `${profile.name || "Hamari"} core services:\n\n` +
-          items.join("\n") + "\n\n" +
-          `Main aap ki kis service me madad kar sakta hu?`
-        );
-      }
-    }
-  }
-
-  // ---------------------------------------------------------------------------
-  // 6. Dynamic FAQ Matching
-  // ---------------------------------------------------------------------------
-  const faqMd = MarkdownKnowledgeLoader.readDomainFile("faq.md");
-  if (faqMd) {
-    const faqs = parseFAQEntries(faqMd);
-    for (const faq of faqs) {
-      const qWords = faq.question.toLowerCase().split(/\s+/).filter(w => w.length > 3);
-      const matchCount = qWords.filter(w => t.includes(w)).length;
-
-      if (matchCount >= 2 || (qWords.length === 1 && matchCount === 1)) {
-        return sanitizeWhatsAppReply(faq.answer);
-      }
-    }
-  }
-
-  // ---------------------------------------------------------------------------
-  // 7. Trust & Legitimacy Verification
+  // 4. Trust & Legitimacy Verification
   // ---------------------------------------------------------------------------
   if (/\b(are you real|registered company|legitimate|fake to nahi|proof do|trust|safe hai)\b/i.test(t)) {
     const highlights = profile.highlights.length > 0 ? profile.highlights.map(h => `• ${h}`).join("\n") : "";
@@ -334,18 +226,7 @@ export function getDeterministicReply(customerText: string, customKb?: string): 
     );
   }
 
-  // ---------------------------------------------------------------------------
-  // 8. General Knowledge Markdown Section Matching (LANGHRAF reference engine)
-  // ---------------------------------------------------------------------------
-  const allFiles = MarkdownKnowledgeLoader.readAllFiles();
-  const allKb = allFiles.map(f => f.content).join("\n\n");
-  if (allKb && t.length >= 4) {
-    const sectionReply = matchSectionFromKb(t, allKb);
-    if (sectionReply) {
-      return sanitizeWhatsAppReply(sectionReply);
-    }
-  }
-
+  // All product, pricing, feature, open source, and general queries pass to AI Reasoning Models
   return null;
 }
 
@@ -386,7 +267,7 @@ export function matchSectionFromKb(customerQuery: string, kbText: string): strin
 
   const flush = () => {
     const body = buf.join("\n").trim();
-    if (heading && body && !/instructions?|rules?|system prompt/i.test(heading)) {
+    if (heading && body && !/instructions?|rules?|system prompt|knowledge base|sales assistant/i.test(heading)) {
       sections.push({
         heading,
         body,
@@ -425,8 +306,9 @@ export function matchSectionFromKb(customerQuery: string, kbText: string): strin
   }
 
   if (best && best.body) {
-    const out = `${best.heading}\n${best.body}`;
-    return out.length > 600 ? out.slice(0, 580) + "…" : out;
+    // Only return clean body text without raw heading
+    const out = best.body.trim();
+    return out.length > 500 ? out.slice(0, 480) + "…" : out;
   }
   return null;
 }

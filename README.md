@@ -1,25 +1,15 @@
-# 🚀 Digi WhatsApp Agent
+# 🚀 Digi WhatsApp Agent — 24/7 Autonomous AI Sales Representative
 
-> **An autonomous, production-ready AI Sales Agent & Conversational Engine for WhatsApp by DigiFormation Ltd.**  
-> Powered by Baileys WhatsApp Web protocol, local SQLite memory, deterministic Finite State Machines, and 7-Tier Free AI Orchestration (Google Gemini #1, Groq LPU, Cloudflare Workers AI, Mistral AI, GitHub Models, SambaNova Cloud & Together AI).
-
-<p align="center">
-  <a href="https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases/latest">
-    <img src="https://img.shields.io/badge/⬇️_Download_Windows_Setup-v1.0.0_(.exe)-0284c7?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows Installer" />
-  </a>
-  <a href="https://www.digibizos.co.uk/open-source">
-    <img src="https://img.shields.io/badge/🌐_DIGI_BIZ_OS-Open_Source_Hub-06b6d4?style=for-the-badge&logo=open-source-initiative&logoColor=white" alt="DIGI BIZ OS Open Source Hub" />
-  </a>
-  <a href="https://www.digiformation.co.uk/">
-    <img src="https://img.shields.io/badge/Corporate_Entity-DigiFormation_Ltd-blue?style=for-the-badge" alt="DigiFormation Ltd" />
-  </a>
-  <img src="https://img.shields.io/badge/License-Source--Available-purple?style=for-the-badge" alt="License" />
-</p>
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010%20|%2011%20(.exe)-0078D6?style=for-the-badge&logo=windows)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)
+[![Protocol](https://img.shields.io/badge/Protocol-Baileys%20WhatsApp%20Web-25D366?style=for-the-badge&logo=whatsapp)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)
+[![AI Engine](https://img.shields.io/badge/AI%20Cascade-7--Tier%20Free%20Reasoning-purple?style=for-the-badge)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)
+[![License](https://img.shields.io/badge/License-MIT%20/%20Fair--Source-success?style=for-the-badge)](LICENSE)
+[![Company](https://img.shields.io/badge/Official%20Product-DIGIFORMATION%20LTD%20(UK%20%2316994903)-blue?style=for-the-badge)](https://www.digiformation.co.uk/)
+[![Trial](https://img.shields.io/badge/DIGI%20BIZ%20OS-3--Day%20Free%20Trial-orange?style=for-the-badge)](https://www.digibizos.co.uk/pricing)
 
 <p align="center">
   <img src="assets/digi-whatsapp-agent-qr-pairing.png" alt="Digi WhatsApp Agent - WhatsApp Mobile Pairing and Knowledge Base Studio" width="100%" style="border-radius: 12px; box-shadow: 0 12px 36px rgba(0,0,0,0.4); border: 1px solid rgba(16, 185, 129, 0.3);" />
 </p>
-
 
 > 🌟 **EXPLORE DIGI BIZ OS OPEN SOURCE ECOSYSTEM**  
 > Discover our complete open-source suite of sovereign offline AI tools, automated WhatsApp sales agents, local CRM, customer invoicing, document engine, and multi-agent workflows.  
@@ -27,165 +17,147 @@
 
 ---
 
-## 🌟 Key Features
+**Digi WhatsApp Agent** is an autonomous, production-ready AI Sales Agent and Conversational Engine built specifically for modern businesses, e-commerce stores, and digital agencies by **DIGIFORMATION LTD** (UK Companies House #16994903).
 
-* **📱 Multi-Account WhatsApp Pairing:** Connect multiple WhatsApp accounts simultaneously using direct QR code pairing via `@whiskeysockets/baileys` without paying expensive Business API per-conversation fees.
-* **🧠 7-Tier Free AI Cascading:** 100% Free Quotas cascading through Google Gemini 2.5 Flash (#1 Primary) ➔ Groq LPU (12ms) ➔ Cloudflare Workers AI ➔ Mistral AI ➔ GitHub Models ➔ SambaNova Cloud ➔ Together AI.
-* **⚡ 0ms Deterministic Response Layer:** Instant Zero-AI fallback for standard inquiries (office hours, verification links, package lists). If external AI models go offline, the agent continues serving customers seamlessly.
-* **🎙️ Voice Note Transcription (Whisper STT):** Inbound voice messages are automatically transcribed via Groq Whisper and answered in clean, authentic Pakistani Roman Urdu or English.
-* **📊 8-Stage Sales Pipeline State Machine:** Deterministic Finite State Machine (`NEW` ➔ `GREETED` ➔ `QUALIFIED` ➔ `PACKAGE_SELECTED` ➔ `ORDER_INITIATED` ➔ `DOCUMENTS_PENDING` ➔ `COMPLETED`) ensuring structured sales conversations and Next-Best-Action (NBA) directives.
-* **💾 Local SQLite Memory & Fact Extraction:** Automatically remembers customer names, locations, selected packages, and order references across sessions in a native zero-dependency SQLite database.
-* **🛡️ Zero Hallucination & Discount Protection:** Strict pricing integrity rules enforce exact listed package prices and polite negotiation defense.
-* **👨‍💼 Human Escalation & Follow-up Scheduler:** Automatically routes complex high-value deals to human managers and identifies stale leads for 24-hour follow-up messages.
-* **💻 Modern Real-time Dashboard:** Built with React 19, TailwindCSS, Lucide icons, and live WebSocket event streams (`/ws/events`).
+It pairs directly with your WhatsApp phone number via QR code, eliminates expensive per-message Meta Cloud API fees, stores client memory locally in SQLite, and negotiates sales 24/7 in authentic Roman Urdu, Urdu script, English, or Hindi using a 7-Tier resilient free AI reasoning cascade.
 
 ---
 
-## 🚀 Installation & Quick Start Guide
+## 📥 Downloads & Official Releases
 
-### ⚡ Method 1: 1-Click Official Windows Installer (Recommended)
-**No coding, no terminal, and no Node.js required!**
+All verified production installers are distributed via the official DIGI BIZ OS Open-Source Portal:
 
-1. **Download the Official Installer:**  
-   - 👉 **[⬇️ Direct GitHub Release Download: Digi WhatsApp Agent Setup 1.0.0.exe](https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases/download/v1.0.0/Digi.WhatsApp.Agent.Setup.1.0.0.exe)**  
-   - 📦 **[📁 Repository File Path: installer/Digi WhatsApp Agent Setup 1.0.0.exe](installer/Digi%20WhatsApp%20Agent%20Setup%201.0.0.exe)**  
-   *(Or browse all versions on the [GitHub Releases Page](https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases))*
-2. **Run the Installer:** Double-click the downloaded setup file. It will install the application and place a shortcut on your Desktop and Start Menu.
-3. **Launch the Agent:** Open **Digi WhatsApp Agent** from your desktop.
-4. **Enter Free AI Keys & Connect WhatsApp:**
-   - In the **Settings & API Keys** panel, paste your free Google Gemini, Groq, or Cloudflare key (direct "Get Key" buttons are provided on every card).
-   - In the WhatsApp panel, click **Connect** and scan the QR code with your phone (WhatsApp ➔ Linked Devices ➔ Link a Device).
-   - The agent is now live and working 24/7!
+### ⚡ 1-Click Official Windows Installer (Recommended)
+👉 **[🚀 Download Digi WhatsApp Agent Setup (.exe)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)** — Standalone 1-click Windows installer with embedded SQLite database, zero dependencies, and automatic desktop shortcuts.
+
+🌐 **[Explore all Open-Source Tools on DIGI BIZ OS](https://www.digibizos.co.uk/open-source)**
 
 ---
 
-### 🛠️ Method 2: Developer Setup (Run from Source)
+## 📸 Real-World Interface & Visual Showcase
 
-#### Prerequisites
-- [Node.js](https://nodejs.org/) v20.x or v22.x+ (Recommended: Node v22 LTS with built-in `node:sqlite`)
-- A smartphone with WhatsApp installed for QR pairing
+### 1. WhatsApp Mobile Pairing & Knowledge Base Studio
+Direct QR code pairing powered by the `@whiskeysockets/baileys` WebSocket protocol alongside a real-time Markdown knowledge base editor for instant business facts, catalog prices, and company policies.
 
-#### Step 1: Clone the Repository
+<p align="center">
+  <img src="assets/digi-whatsapp-agent-qr-pairing.png" alt="Digi WhatsApp Agent - WhatsApp Mobile Pairing & Knowledge Base Studio" width="100%" style="border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.3);" />
+</p>
+
+---
+
+### 2. Live Chat & Autonomous Sales Negotiation
+Real-time client conversations handled autonomously by the LangGraph AI agent. Tracks deal stages (`Engaged`, `Qualified`, `Order Initiated`), extracts customer details, and protects pricing rules.
+
+<p align="center">
+  <img src="assets/screenshot-chat.jpg" alt="Digi WhatsApp Agent Live Chat & Autonomous Sales Negotiation" width="100%" />
+</p>
+
+---
+
+### 3. 7-Tier Resilient Free AI Reasoning Cascade
+Zero API downtime. Requests seamlessly cascade through free tiers: **Google Gemini 2.5 Flash** (#1 Primary) ➔ **Groq LPU** (12ms) ➔ **Cloudflare Workers AI** ➔ **Mistral AI** ➔ **GitHub Models** ➔ **SambaNova Cloud** ➔ **Together AI**. If all external APIs fail, deterministic local SQLite rules handle the customer with 0ms latency.
+
+<p align="center">
+  <img src="assets/screenshot-ai-cascade.jpg" alt="7-Tier Resilient Free AI Reasoning Cascade" width="100%" />
+</p>
+
+---
+
+### 4. Real-Time Live Activity Stream & Audit Logs
+Complete visibility into every incoming WhatsApp message, transcription event, AI reasoning trace, and outbound response with millisecond precision.
+
+<p align="center">
+  <img src="assets/screenshot-live-logs.jpg" alt="Real-Time Live Activity Stream & Audit Logs" width="100%" />
+</p>
+
+---
+
+## 🛠️ Simple Step-by-Step Installation Guide (Single EXE Setup)
+
+Installing and running Digi WhatsApp Agent takes less than 60 seconds:
+
+### Step 1: Download the 1-Click Installer
+Visit the official download portal at **[https://www.digibizos.co.uk/open-source/digi-whatsapp-agent](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)** and click **Download Windows Setup (.exe)**.
+
+### Step 2: Run the Installer
+Double-click `Digi.WhatsApp.Agent.Setup.1.0.0.exe`. The setup wizard will:
+* Install the native desktop application into your Windows system.
+* Place a launch shortcut on your **Desktop** and in your **Start Menu**.
+* Set up the local SQLite database directory automatically.
+
+### Step 3: Launch & Enter Your Free AI Key
+1. Open **Digi WhatsApp Agent** from your desktop shortcut.
+2. Navigate to the **AI Engine** tab.
+3. Paste a free API key for **Google Gemini** (15 RPM free) or **Groq Cloud** (12ms LPU). Convenient "GET KEY" shortcuts are provided right on the cards.
+
+### Step 4: Scan QR Code & Go Live!
+1. Under the **WhatsApp Agent** tab, click **Connect**.
+2. A secure QR code will appear on screen.
+3. On your phone, open WhatsApp ➔ **Settings** ➔ **Linked Devices** ➔ **Link a Device**, and scan the QR code.
+4. Toggle **Auto-Reply** to **ON**.
+
+🎉 **Your autonomous sales agent is now live 24/7!** It will automatically greet incoming leads, answer product inquiries, schedule meetings, and close deals without manual intervention.
+
+---
+
+## ⚡ Core Capabilities & Features
+
+* **📱 Direct QR Pairing (Baileys Protocol):** Zero Meta Cloud API fees, zero per-conversation SaaS tolls (saves $100–$300/mo vs WATI / ManyChat).
+* **🧠 7-Tier Free AI Cascade:** Google Gemini 2.5 Flash, Groq LPU, Cloudflare AI, Mistral, GitHub Models, SambaNova, Together AI with 0ms automatic failover.
+* **🎙️ Voice Note Transcription (Whisper STT):** Inbound WhatsApp voice notes are transcribed via Groq Whisper and answered naturally in customer's language.
+* **🌐 Multilingual Fluency:** Authentic Roman Urdu, Urdu script, English, and Hindi.
+* **💾 Local SQLite Memory (Zero Cloud Telemetry):** All conversations, customer contact details, and deal history remain 100% private on your own PC (`data/agent_memory.db`).
+* **🛡️ Zero Hallucination & Discount Defense:** Enforces strict fixed package prices and polite anti-discount negotiation defense.
+* **👨‍💼 Human Handoff & Escalation:** Flags complex or high-priority inquiries for human staff review.
+
+---
+
+## 💻 Developer Setup (Running from Source)
+
+If you prefer building from source rather than using the 1-click Windows installer:
+
 ```bash
+# 1. Clone the repository
 git clone https://github.com/digiformationltd-creator/digi-whatsapp-agent.git
 cd digi-whatsapp-agent
-```
 
-#### Step 2: Install Dependencies
-```bash
+# 2. Install dependencies
 npm install
-```
 
-#### Step 3: Environment Setup
-Copy the example environment file:
-```bash
+# 3. Configure environment
 cp .env.example .env
-```
-*(Optional)* Add your free API keys in `.env` (or add them later directly in the Web UI):
-```env
-PORT=9010
-GEMINI_API_KEY=your_gemini_api_key_here
-GROQ_API_KEY=gsk_your_groq_key_here
-CLOUDFLARE_API_KEY=your_cloudflare_workers_ai_key_here
-```
+# Enter your free keys in .env or configure them via GUI
 
-#### Step 4: Launch the Agent
-```bash
-# Development Mode (Hot Reloading)
+# 4. Start in development mode
 npm run dev
 
-# OR Production Mode (Compiled High Performance)
-npm run build && npm start
-```
-Open **[http://localhost:9010](http://localhost:9010)** in your browser.
-
----
-
-### 🤖 Method 3: Automatic 1-Prompt Setup (For Antigravity & AI Assistants)
-
-If you are using **Google Antigravity**, **Cursor**, **Windsurf**, or **Claude Code**, you don't even need to touch the terminal! 
-
-Simply download & unzip the repository, open this folder in your AI editor, and **copy & paste this prompt** into the chat:
-
-```text
-Please setup and launch this WhatsApp AI Sales Agent project for me:
-1. Check that Node.js is installed on my system.
-2. Run 'npm install' to install all dependencies.
-3. If .env does not exist, copy .env.example to .env.
-4. Run 'npm run build' to compile the backend and frontend.
-5. Start the server on port 9010 (node dist/backend/server.cjs) in the background.
-6. Verify that http://localhost:9010/api/health is responding with {"ok": true}.
-7. Open http://localhost:9010 in my default browser.
-8. Guide me on how to enter my free Groq API key and customize my business knowledge base in the UI!
+# 5. Build production executable
+npm run dist:win
 ```
 
 ---
 
-## 📁 Customizing for Your Business
+## 🏢 DIGI BIZ OS Ecosystem Integration
 
-You can customize your business catalog, pricing, and FAQs either directly inside the **Knowledge Base Studio** on the Web UI, or by editing the Markdown files in the `knowledge/` folder:
+Digi WhatsApp Agent is an official open-source tool created by **DIGIFORMATION LTD** (UK Registered Company #16994903).
 
-| Knowledge File | Purpose & Contents |
-| :--- | :--- |
-| **`knowledge/company-profile.md`** | Business name, official address, operating hours, and contact details |
-| **`knowledge/packages-pricing.md`** | Products & services pricing table, tiers, inclusions, and timelines |
-| **`knowledge/services.md`** | Overview of all business offerings, packages, and specialties |
-| **`knowledge/faq.md`** | Common customer questions and verified factual answers |
-| **`knowledge/documents-kyc.md`** | Order requirements, delivery specifications, and onboarding checklist |
+Looking for the complete all-in-one business operating system for Windows featuring:
+* 🤖 Integrated 24/7 WhatsApp AI Sales Pipeline
+* 🎙️ Voice JARVIS Desktop Control (<200ms latency)
+* 💼 DigiOffice Suite (Docs, Sheets, Slides, PDF with Rust calculation engine)
+* 📈 Local CRM & Automated Invoicing
+* 🎯 Autonomous B2B Lead Hunting Engine
 
----
+👉 **[Claim Your DIGI BIZ OS 3-Day Free Trial (£29 Lifetime License)](https://www.digibizos.co.uk/pricing)**
 
-## 🛠️ Available NPM Scripts
-
-- `npm run dev` — Starts the backend server and Vite frontend in development mode.
-- `npm run build` — Compiles frontend and backend bundles for production (`dist/`).
-- `npm start` — Starts the production server.
-- `npm run test` — Executes the 16-point automated architectural verification test suite.
+Explore all official open-source releases:
+* 🌐 **Open-Source Hub**: [https://www.digibizos.co.uk/open-source](https://www.digibizos.co.uk/open-source)
+* 📱 **Digi WhatsApp Agent Subpage**: [https://www.digibizos.co.uk/open-source/digi-whatsapp-agent](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)
+* 🎧 **DIGI Labs Audio Workstation**: [https://www.digibizos.co.uk/open-source/digi-labs](https://www.digibizos.co.uk/open-source/digi-labs)
+* 💼 **DigiOffice Suite**: [https://www.digibizos.co.uk/open-source/digioffice](https://www.digibizos.co.uk/open-source/digioffice)
 
 ---
 
-## 🔒 Security & Privacy
+## 📄 License
 
-- **No Remote Database Leakage:** All customer conversation memory and state transitions are stored locally on your server in SQLite (`data/agent_memory.db`).
-- **Private Conversations Only:** Built-in safeguards automatically ignore and block WhatsApp group chats.
-- **Data Protection:** No credentials, sessions, or private databases are committed to version control.
-
----
-
-## 🏢 Owner & Company Information
-
-<div align="center">
-  <a href="https://www.digiformation.co.uk/" target="_blank">
-    <img src="public/digiformation_logo.png" alt="Digiformation Ltd Logo" width="130" height="130" style="border-radius: 50%; box-shadow: 0 8px 24px rgba(0,0,0,0.3); margin-bottom: 12px; object-fit: contain;" />
-  </a>
-  <p><strong>Developed & Maintained by Digiformation Ltd</strong><br />
-  <em>Official UK Company Registration # 16994903 • Incorporated in England & Wales</em><br />
-  🏛️ <strong>Companies House (GOV.UK):</strong> <a href="https://find-and-update.company-information.service.gov.uk/company/16994903" target="_blank">Company #16994903 Verification</a><br />
-  📍 <strong>Registered Corporate Office:</strong> Office 1006, 85 Dunstall Hill, Wolverhampton, United Kingdom</p>
-</div>
-
-- 🌐 **Official Website:** [www.digiformation.co.uk](https://www.digiformation.co.uk/)
-- 🚀 **DigiBiz OS Open Source:** [digibizos.co.uk/open-source](https://www.digibizos.co.uk/open-source)
-- ✉️ **Official Email:** [info@digiformation.co.uk](mailto:info@digiformation.co.uk)
-- 📱 **WhatsApp & Direct Call:** [+92 316 446 7464](https://wa.me/923164467464)
-- 🔗 **Linktree Hub:** [linktr.ee/digiformationltd](https://linktr.ee/digiformationltd)
-
-- 👥 **LinkedIn:** [Muhammad Haroon (Founder)](https://www.linkedin.com/in/muhammad-haroon-9a9945366)
-- 📘 **Facebook:** [Digiformation Ltd](https://www.facebook.com/share/1D676UBQw5/)
-- 📸 **Instagram:** [@digiformationltd](https://www.instagram.com/digiformationltd)
-- 🎥 **YouTube:** [@digiformationltd](https://www.youtube.com/@digiformationltd)
-- 🐦 **X (Twitter):** [@Digiformation00](https://x.com/Digiformation00)
-- 🧵 **Threads:** [@digiformationltd](https://www.threads.com/@digiformationltd)
-- 📌 **Pinterest:** [digiformation](https://pin.it/27w3dT5lp)
-
----
-
-## 📄 License & Fair-Use Terms
-
-This project is licensed under the **Digiformation & DigiBiz OS Fair-Source License** (Strict Attribution & Non-Rebranding Edition).
-
-* ✅ **Free Self-Hosting:** You are free to download, self-host, and use this software for your own business or personal use.
-* ❌ **Strict No Rebranding:** You may NOT remove, alter, or obscure any logos, branding, or copyright attributions of **Digiformation Ltd** or **DigiBiz OS** in the UI, headers, footers, or code.
-* ❌ **No White-Label Resale:** You may NOT resell, re-package, or distribute this software as your own commercial SaaS without written authorization.
-
-Please refer to the full [LICENSE](LICENSE) file for complete legal terms.
+Licensed under the MIT License. Copyright © 2026 DIGIFORMATION LTD. All rights reserved.
