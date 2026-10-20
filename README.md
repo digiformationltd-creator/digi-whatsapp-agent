@@ -72,31 +72,43 @@ Complete visibility into every incoming WhatsApp message, transcription event, A
 
 ---
 
-## 🛠️ Simple Step-by-Step Installation Guide (Single EXE Setup)
+## 🛠️ Sab Se Aasaan Tareeqa (Step-by-Step 1-Minute Setup Guide)
 
-Installing and running Digi WhatsApp Agent takes less than 60 seconds:
+Digi WhatsApp Agent ko chalana intehai aasaan hai — yeh 100% Free hai aur sirf 1 minute mein live ho jata hai!
 
-### Step 1: Download the 1-Click Installer
-Visit the official download portal at **[https://www.digibizos.co.uk/open-source/digi-whatsapp-agent](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)** and click **Download Windows Setup (.exe)**.
+---
 
-### Step 2: Run the Installer
-Double-click `Digi.WhatsApp.Agent.Setup.1.0.0.exe`. The setup wizard will:
-* Install the native desktop application into your Windows system.
-* Place a launch shortcut on your **Desktop** and in your **Start Menu**.
-* Set up the local SQLite database directory automatically.
+### ⚡ Step 1: 1-Click Installer Download Karein
+Official download portal se verified single-exe setup download karein:
+👉 **[Download Digi WhatsApp Agent (.exe)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)**
 
-### Step 3: Launch & Enter Your Free AI Key
-1. Open **Digi WhatsApp Agent** from your desktop shortcut.
-2. Navigate to the **AI Engine** tab.
-3. Paste a free API key for **Google Gemini** (15 RPM free) or **Groq Cloud** (12ms LPU). Convenient "GET KEY" shortcuts are provided right on the cards.
+### ⚡ Step 2: Installer Run Karein
+Download kiye gaye `Digi.WhatsApp.Agent.Setup.1.0.0.exe` par double click karein.
+* Yeh khud-ba-khud aapke PC mein install ho jayega.
+* Desktop aur Start Menu par instant launch icon ban jayega.
+* Koi extra software ya Node.js install karne ki bilkul zaroorat nahi hai.
 
-### Step 4: Scan QR Code & Go Live!
-1. Under the **WhatsApp Agent** tab, click **Connect**.
-2. A secure QR code will appear on screen.
-3. On your phone, open WhatsApp ➔ **Settings** ➔ **Linked Devices** ➔ **Link a Device**, and scan the QR code.
-4. Toggle **Auto-Reply** to **ON**.
+### ⚡ Step 3: Dono 100% Free API Keys Lagayein (Hawa Mein Teer Jaisi Superfast Speed! 🚀)
+Desktop icon se software open karein aur top menu mein **"AI Engine"** par click karein. Yahan sirf yeh do keys paste karein:
 
-🎉 **Your autonomous sales agent is now live 24/7!** It will automatically greet incoming leads, answer product inquiries, schedule meetings, and close deals without manual intervention.
+1. **Google Gemini (100% Free API Key)**:
+   * **[Google AI Studio se Free Key Lein (1-Click)](https://aistudio.google.com/app/apikey)**
+   * Yeh deep reasoning, sales negotiation, aur smart customer conversation ke liye primary brain hai.
+2. **Groq Cloud (100% Free Ultra-Fast LPU Key)**:
+   * **[Groq Cloud Console se Free Key Lein (1-Click)](https://console.groq.com/keys)**
+   * Groq ka hardware LPU sirf **12 milliseconds** mein response process karta hai aur customer ke audio voice notes ko instant text mein convert karta hai.
+
+> 💡 **Yeh Dono Keys Kyun Zaroori Hain?**  
+> Dono keys **100% lifetime FREE** hain. Jab aap Gemini aur Groq dono keys enter karte hain, to aapka agent **"hawa mein teer jaisi superfast speed"** pakad leta hai! Inbound message aate hi millisecond mein smart reply generate ho jata hai, aur agar ek service busy ho to doosri foran backup handle kar leti hai (Zero Downtime).
+
+### ⚡ Step 4: WhatsApp QR Code Scan Karein & Go Live!
+1. Top bar se **"WhatsApp Agent"** tab par click karein aur **"Connect"** dabayein.
+2. Screen par WhatsApp Web ka QR code display hoga.
+3. Apne mobile phone mein WhatsApp kholein: **Settings (3 dots) ➔ Linked Devices ➔ Link a Device** par click karke camera se QR code scan karein.
+4. **Auto-Reply** button ko **ON** kar dein.
+
+🎉 **Mubarak ho! Aapka 24/7 Autonomous WhatsApp AI Sales Agent live ho chuka hai!**  
+Yeh aapke ghair-hazri mein bhi har customer ko foran greet karega, packages aur price list batayega, aur deal close karega.
 
 ---
 
