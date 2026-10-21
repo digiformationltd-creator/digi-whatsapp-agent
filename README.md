@@ -1,6 +1,7 @@
 # 🚀 Digi WhatsApp Agent — 24/7 Autonomous AI Sales Representative
 
-[![Platform](https://img.shields.io/badge/Platform-Windows%2010%20|%2011%20(.exe)-0078D6?style=for-the-badge&logo=windows)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)
+[![Download](https://img.shields.io/badge/Download-Windows%20Setup%20(.exe)-success?style=for-the-badge&logo=windows)](https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases/download/v1.0.0/Digi.WhatsApp.Agent.Setup.1.0.0.exe)
+[![Official Showcase](https://img.shields.io/badge/DIGI%20BIZ%20OS-Official%20Showcase-0078D6?style=for-the-badge&logo=googlechrome)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)
 [![Protocol](https://img.shields.io/badge/Protocol-Baileys%20WhatsApp%20Web-25D366?style=for-the-badge&logo=whatsapp)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)
 [![AI Engine](https://img.shields.io/badge/AI%20Cascade-7--Tier%20Free%20Reasoning-purple?style=for-the-badge)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)
 [![License](https://img.shields.io/badge/License-MIT%20/%20Fair--Source-success?style=for-the-badge)](LICENSE)
@@ -13,7 +14,8 @@
 
 > 🌟 **EXPLORE DIGI BIZ OS OPEN SOURCE ECOSYSTEM**  
 > Discover our complete open-source suite of sovereign offline AI tools, automated WhatsApp sales agents, local CRM, customer invoicing, document engine, and multi-agent workflows.  
-> 👉 **[✨ DIGI BIZ OS Open Source Hub & Tools Portal](https://www.digibizos.co.uk/open-source)**
+> 👉 **[✨ DIGI BIZ OS Open Source Hub & Tools Portal](https://www.digibizos.co.uk/open-source)**  
+> 🌐 **[✨ Digi WhatsApp Agent Official Showcase & Full Docs](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)**
 
 ---
 
@@ -25,10 +27,12 @@ It pairs directly with your WhatsApp phone number via QR code, eliminates expens
 
 ## 📥 Downloads & Official Releases
 
-All verified production installers are distributed via the official DIGI BIZ OS Open-Source Portal:
+All verified production installers are distributed via the official GitHub Releases and the DIGI BIZ OS Open-Source Portal:
 
-### ⚡ 1-Click Official Windows Installer (Recommended)
-👉 **[🚀 Download Digi WhatsApp Agent Setup (.exe)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)** — Standalone 1-click Windows installer with embedded SQLite database, zero dependencies, and automatic desktop shortcuts.
+### ⚡ 1-Click Official Windows Installer (Direct Download)
+👉 **[🚀 Download Digi WhatsApp Agent Setup (.exe 116MB)](https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases/download/v1.0.0/Digi.WhatsApp.Agent.Setup.1.0.0.exe)** — Standalone 1-click Windows installer with embedded SQLite database, zero dependencies, and automatic desktop shortcuts.
+
+🌐 **[Official Web Showcase, Live Demos & Specifications on DIGI BIZ OS](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)**
 
 🌐 **[Explore all Open-Source Tools on DIGI BIZ OS](https://www.digibizos.co.uk/open-source)**
 
@@ -79,8 +83,9 @@ Digi WhatsApp Agent ko chalana intehai aasaan hai — yeh 100% Free hai aur sirf
 ---
 
 ### ⚡ Step 1: 1-Click Installer Download Karein
-Official download portal se verified single-exe setup download karein:
-👉 **[Download Digi WhatsApp Agent (.exe)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)**
+Official verified single-exe setup direct download karein:  
+👉 **[🚀 Download Digi WhatsApp Agent Setup (.exe 116MB)](https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases/download/v1.0.0/Digi.WhatsApp.Agent.Setup.1.0.0.exe)**  
+🌐 **[DIGI BIZ OS Official Showcase & Specs](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)**
 
 ### ⚡ Step 2: Installer Run Karein
 Download kiye gaye `Digi.WhatsApp.Agent.Setup.1.0.0.exe` par double click karein.
@@ -103,73 +108,30 @@ Desktop icon se software open karein aur top menu mein **"AI Engine"** par click
 
 ### ⚡ Step 4: WhatsApp QR Code Scan Karein & Go Live!
 1. Top bar se **"WhatsApp Agent"** tab par click karein aur **"Connect"** dabayein.
-2. Screen par WhatsApp Web ka QR code display hoga.
-3. Apne mobile phone mein WhatsApp kholein: **Settings (3 dots) ➔ Linked Devices ➔ Link a Device** par click karke camera se QR code scan karein.
-4. **Auto-Reply** button ko **ON** kar dein.
-
-🎉 **Mubarak ho! Aapka 24/7 Autonomous WhatsApp AI Sales Agent live ho chuka hai!**  
-Yeh aapke ghair-hazri mein bhi har customer ko foran greet karega, packages aur price list batayega, aur deal close karega.
+2. Apne mobile WhatsApp se **Linked Devices ➔ Link a Device** kholen aur screen par aane wala QR code scan karein.
+3. Connected! Ab aapka AI sales agent 24/7 har customer ko instantly reply kare ga, voice notes sune ga, aur deals close kare ga.
 
 ---
 
-## ⚡ Core Capabilities & Features
+## 🌟 Sovereign Desktop Architecture vs Cloud SaaS
 
-* **📱 Direct QR Pairing (Baileys Protocol):** Zero Meta Cloud API fees, zero per-conversation SaaS tolls (saves $100–$300/mo vs WATI / ManyChat).
-* **🧠 7-Tier Free AI Cascade:** Google Gemini 2.5 Flash, Groq LPU, Cloudflare AI, Mistral, GitHub Models, SambaNova, Together AI with 0ms automatic failover.
-* **🎙️ Voice Note Transcription (Whisper STT):** Inbound WhatsApp voice notes are transcribed via Groq Whisper and answered naturally in customer's language.
-* **🌐 Multilingual Fluency:** Authentic Roman Urdu, Urdu script, English, and Hindi.
-* **💾 Local SQLite Memory (Zero Cloud Telemetry):** All conversations, customer contact details, and deal history remain 100% private on your own PC (`data/agent_memory.db`).
-* **🛡️ Zero Hallucination & Discount Defense:** Enforces strict fixed package prices and polite anti-discount negotiation defense.
-* **👨‍💼 Human Handoff & Escalation:** Flags complex or high-priority inquiries for human staff review.
-
----
-
-## 💻 Developer Setup (Running from Source)
-
-If you prefer building from source rather than using the 1-click Windows installer:
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/digiformationltd-creator/digi-whatsapp-agent.git
-cd digi-whatsapp-agent
-
-# 2. Install dependencies
-npm install
-
-# 3. Configure environment
-cp .env.example .env
-# Enter your free keys in .env or configure them via GUI
-
-# 4. Start in development mode
-npm run dev
-
-# 5. Build production executable
-npm run dist:win
-```
+| Metric / Feature | DIGI WhatsApp Agent (This App) | Wati / Interakt / Respond.io |
+| :--- | :--- | :--- |
+| **Monthly Subscription** | **£0 / mo (100% Free)** | $49 – $299 / month |
+| **Meta Per-Message Fees** | **£0 (Zero Cloud API Charges)** | $0.03 – $0.08 per template message |
+| **Phone Number Pairing** | **1-Click QR Scan (Any Number)** | Strict Meta Business Verification |
+| **AI Reasoning Model** | **7-Tier Free Multi-Model Cascade** | Fixed basic bot (charge per credit) |
+| **Voice Note Handling** | **Groq Whisper LPU (Roman Urdu / English)** | Not supported or expensive add-on |
+| **Data Privacy & Storage** | **100% Local SQLite (`agent_memory.db`)** | Stored on third-party SaaS cloud |
+| **Offline Safety** | **Deterministic local rule fallback** | Down when SaaS servers fail |
 
 ---
 
-## 🏢 DIGI BIZ OS Ecosystem Integration
+## 🏢 Engineered by DIGIFORMATION LTD
 
-Digi WhatsApp Agent is an official open-source tool created by **DIGIFORMATION LTD** (UK Registered Company #16994903).
+Digi WhatsApp Agent is developed with pride by **DIGIFORMATION LTD** (UK Registered Company #16994903) as part of the sovereign desktop automation tools collection for [DIGI BIZ OS](https://www.digibizos.co.uk/).
 
-Looking for the complete all-in-one business operating system for Windows featuring:
-* 🤖 Integrated 24/7 WhatsApp AI Sales Pipeline
-* 🎙️ Voice JARVIS Desktop Control (<200ms latency)
-* 💼 DigiOffice Suite (Docs, Sheets, Slides, PDF with Rust calculation engine)
-* 📈 Local CRM & Automated Invoicing
-* 🎯 Autonomous B2B Lead Hunting Engine
-
-👉 **[Claim Your DIGI BIZ OS 3-Day Free Trial (£29 Lifetime License)](https://www.digibizos.co.uk/pricing)**
-
-Explore all official open-source releases:
-* 🌐 **Open-Source Hub**: [https://www.digibizos.co.uk/open-source](https://www.digibizos.co.uk/open-source)
-* 📱 **Digi WhatsApp Agent Subpage**: [https://www.digibizos.co.uk/open-source/digi-whatsapp-agent](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)
-* 🎧 **DIGI Labs Audio Workstation**: [https://www.digibizos.co.uk/open-source/digi-labs](https://www.digibizos.co.uk/open-source/digi-labs)
-* 💼 **DigiOffice Suite**: [https://www.digibizos.co.uk/open-source/digioffice](https://www.digibizos.co.uk/open-source/digioffice)
-
----
-
-## 📄 License
-
-Licensed under the MIT License. Copyright © 2026 DIGIFORMATION LTD. All rights reserved.
+* 🌐 **Official Website**: [https://www.digibizos.co.uk/](https://www.digibizos.co.uk/)
+* 📦 **Open Source Ecosystem**: [https://www.digibizos.co.uk/open-source](https://www.digibizos.co.uk/open-source)
+* 🚀 **Digi WhatsApp Agent Showcase**: [https://www.digibizos.co.uk/open-source/digi-whatsapp-agent](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)
+* 💼 **Company Registration**: UK Companies House #16994903
