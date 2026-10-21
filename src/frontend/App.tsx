@@ -927,33 +927,39 @@ function WhatsAppChannel({ accountId = "0" }: { accountId?: string }) {
   if (!connected) {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 h-full min-h-0 overflow-hidden">
-        {/* Left Column: QR Pairing Card */}
-        <div className="lg:col-span-5 flex flex-col gap-3 h-full min-h-0 overflow-y-auto pr-0.5">
-          <div className="glass-card rounded-2xl p-4 border border-white/10 space-y-3.5 shadow-xl">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
-                <QrCode size={18} />
+        {/* Left Column: QR Pairing Card (Still Screen Fit, Zero Scroller) */}
+        <div className="lg:col-span-5 flex flex-col justify-between gap-2.5 h-full min-h-0 overflow-hidden">
+          <div className="glass-card rounded-2xl p-3.5 border border-white/10 flex flex-col justify-between flex-1 min-h-0 shadow-xl overflow-hidden">
+            {/* Header */}
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400">
+                  <QrCode size={16} />
+                </div>
+                <div>
+                  <h3 className="text-xs font-bold text-white">WhatsApp Mobile Pairing</h3>
+                  <p className="text-[10px] text-slate-400">Scan QR from WhatsApp &gt; Linked Devices</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-sm font-bold text-white">WhatsApp Mobile Pairing</h3>
-                <p className="text-[11px] text-slate-400">Scan QR code from your phone's WhatsApp</p>
-              </div>
+              <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[9px] font-mono font-bold">
+                STANDALONE
+              </span>
             </div>
 
-            {/* QR box */}
-            <div className="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-900/60 border border-white/5 space-y-3">
+            {/* QR box (Compact & centered) */}
+            <div className="flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900/60 border border-white/5 my-auto">
               {qr ? (
-                <div className="p-2 bg-white rounded-xl shadow-2xl border-2 border-emerald-500/40">
-                  <img src={qr} alt="WhatsApp QR Code" className="w-44 h-44 rounded" />
+                <div className="p-2 bg-white rounded-xl shadow-xl border-2 border-emerald-500/40">
+                  <img src={qr} alt="WhatsApp QR Code" className="w-36 h-36 rounded" />
                 </div>
               ) : (
-                <div className="py-7 flex flex-col items-center text-center space-y-2">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-                    <Smartphone size={24} />
+                <div className="py-4 flex flex-col items-center text-center space-y-1.5">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                    <Smartphone size={20} />
                   </div>
                   <div className="text-xs font-bold text-slate-200">Ready to Pair Device</div>
-                  <div className="text-[11px] text-slate-500 max-w-xs">
-                    Click the button below to generate a pairing QR code for your WhatsApp number.
+                  <div className="text-[10.5px] text-slate-500 max-w-xs">
+                    Click the button below to generate a pairing QR code.
                   </div>
                 </div>
               )}
@@ -961,64 +967,46 @@ function WhatsAppChannel({ accountId = "0" }: { accountId?: string }) {
               <button
                 onClick={connect}
                 disabled={busy || connecting || state === "qr_ready"}
-                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:brightness-110 disabled:opacity-50 text-white text-xs font-bold shadow-lg transition"
+                className="w-full mt-3 flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:brightness-110 disabled:opacity-50 text-white text-xs font-bold shadow-md transition cursor-pointer"
               >
-                {busy || connecting ? <Loader2 size={14} className="animate-spin" /> : <QrCode size={14} />}
+                {busy || connecting ? <Loader2 size={13} className="animate-spin" /> : <QrCode size={13} />}
                 {qr ? "Regenerate QR Code" : "Start & Connect WhatsApp"}
               </button>
             </div>
 
             {/* Instructions */}
-            <div className="p-3 rounded-xl bg-slate-900/40 border border-white/5 space-y-1.5 text-xs text-slate-400">
-              <div className="font-bold text-slate-200">How to link your WhatsApp:</div>
-              <ol className="list-decimal list-inside space-y-1 text-[11px] text-slate-400">
-                <li>Open WhatsApp on your mobile phone</li>
-                <li>Tap <strong className="text-slate-300">Settings</strong> (or 3 dots) → <strong className="text-slate-300">Linked Devices</strong></li>
-                <li>Tap <strong className="text-emerald-400">Link a Device</strong> and point your camera here</li>
-              </ol>
+            <div className="p-2.5 rounded-xl bg-slate-900/40 border border-white/5 space-y-1 text-[11px] text-slate-400">
+              <div className="font-bold text-slate-200 text-[10.5px]">How to link your WhatsApp:</div>
+              <div className="space-y-0.5 text-[10px] text-slate-400">
+                <div>1. Open WhatsApp &rarr; <strong className="text-slate-300">Settings</strong> (or ⋮) &rarr; <strong className="text-slate-300">Linked Devices</strong></div>
+                <div>2. Tap <strong className="text-emerald-400">Link a Device</strong> and point your camera here</div>
+              </div>
             </div>
           </div>
 
-          {/* Try DIGI BIZ OS Flagship Promo Card */}
-          <a
-            href="https://www.digibizos.co.uk/pricing"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block p-3.5 rounded-2xl bg-gradient-to-r from-blue-950/40 via-indigo-950/30 to-slate-900 border border-blue-500/30 hover:border-blue-400/60 shadow-lg transition-all group no-underline"
-            title="Try DigiBizOS (3-Day Free Trial)"
-          >
-            <div className="flex items-center justify-between gap-3">
-              <div className="space-y-0.5">
-                <div className="text-[10px] font-mono font-bold text-blue-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Zap size={11} className="text-blue-400" />
-                  <span>Flagship Platform</span>
-                  <span className="px-1.5 py-0.2 rounded-full bg-blue-500/20 text-blue-300 text-[8px] border border-blue-500/30 font-bold">3-Day Free Trial</span>
-                </div>
-                <div className="text-xs font-bold text-white group-hover:text-blue-300 transition">Try DIGI BIZ OS</div>
-                <div className="text-[10px] text-slate-400">All-in-One Business Suite &bull; Local CRM &bull; Offline Tools</div>
+          {/* Bottom Bar: Promo & Engine SLA */}
+          <div className="grid grid-cols-2 gap-2 shrink-0">
+            <a
+              href="https://www.digibizos.co.uk/pricing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-xl bg-gradient-to-r from-blue-950/40 to-indigo-950/30 border border-blue-500/30 hover:border-blue-400/60 shadow transition-all group no-underline flex flex-col justify-between"
+              title="Try DigiBizOS (3-Day Free Trial)"
+            >
+              <div className="flex items-center gap-1 text-[9px] font-mono font-bold text-blue-400 uppercase">
+                <Zap size={10} className="text-blue-400" />
+                <span>DIGI BIZ OS</span>
+                <span className="px-1 py-0.2 rounded bg-blue-500/20 text-blue-300 text-[7px] font-bold">Trial</span>
               </div>
-              <span className="px-2.5 py-1.5 rounded-lg bg-blue-500/20 text-blue-300 text-[10px] font-bold border border-blue-500/30 group-hover:bg-blue-500/30 group-hover:scale-105 transition shrink-0 flex items-center gap-1">
-                <span>Try Free</span>
-                <span>↗</span>
-              </span>
-            </div>
-          </a>
+              <div className="text-[11px] font-bold text-white group-hover:text-blue-300 truncate">Sovereign AI Suite ↗</div>
+            </a>
 
-          {/* Engine Highlights */}
-          <div className="glass-card rounded-2xl p-3 border border-white/10 space-y-2 shadow-xl">
-            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-200 uppercase tracking-wider">
-              <Zap size={13} className="text-emerald-400" />
-              <span>Universal Sales Engine</span>
-            </div>
-            <div className="grid grid-cols-2 gap-1.5 text-[11px]">
-              <div className="p-2 rounded-lg bg-slate-900/60 border border-white/5 space-y-0.5">
-                <div className="text-slate-400 text-[10px]">Zero-AI Fallback</div>
-                <div className="text-emerald-400 font-bold font-mono text-[11px]">0ms Active</div>
+            <div className="p-2.5 rounded-xl bg-slate-900/60 border border-white/5 flex flex-col justify-between">
+              <div className="flex items-center justify-between text-[9px] font-mono text-slate-400">
+                <span>Universal SLA</span>
+                <span className="text-emerald-400 font-bold">0ms Active</span>
               </div>
-              <div className="p-2 rounded-lg bg-slate-900/60 border border-white/5 space-y-0.5">
-                <div className="text-slate-400 text-[10px]">Language Mode</div>
-                <div className="text-teal-300 font-bold font-mono text-[11px]">Roman Urdu / EN</div>
-              </div>
+              <div className="text-[10px] text-teal-300 font-mono font-bold truncate">Roman Urdu / English &bull; SQLite</div>
             </div>
           </div>
         </div>
@@ -1142,7 +1130,7 @@ function WhatsAppChannel({ accountId = "0" }: { accountId?: string }) {
         ) : view === "kb" ? (
           <KnowledgeBase accountId={accountId} />
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 h-full min-h-0 overflow-y-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 h-full min-h-0 overflow-hidden">
             <BlocklistCard accountId={accountId} />
             <div className="glass-card rounded-2xl p-4 border border-white/10 space-y-3">
               <div className="flex items-center gap-2 text-xs font-bold text-white uppercase tracking-wider">
@@ -1574,8 +1562,8 @@ function LogsPanel() {
   };
 
   return (
-    <div className="glass-card rounded-2xl p-5 border border-white/10 space-y-4 shadow-xl">
-      <div className="flex items-center justify-between gap-3 flex-wrap">
+    <div className="glass-card rounded-2xl p-3 sm:p-3.5 border border-white/10 flex flex-col h-full min-h-0 overflow-hidden shadow-xl gap-2.5">
+      <div className="flex items-center justify-between gap-3 flex-wrap shrink-0">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400">
             <Radio size={16} className="animate-pulse" />
@@ -1608,7 +1596,7 @@ function LogsPanel() {
       </div>
 
       {/* Filters Bar */}
-      <div className="flex items-center gap-2 flex-wrap">
+      <div className="flex items-center gap-2 flex-wrap shrink-0">
         <div className="relative flex-1 min-w-[180px]">
           <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
           <input
@@ -1638,7 +1626,7 @@ function LogsPanel() {
       </div>
 
       {/* Logs Viewport */}
-      <div className="h-[360px] overflow-y-auto rounded-xl border border-white/10 bg-[#06090D] p-3 space-y-2 font-mono text-xs">
+      <div className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-white/10 bg-[#06090D] p-2.5 space-y-1.5 font-mono text-xs">
         {filteredEvents.length === 0 && (
           <div className="h-full flex flex-col items-center justify-center text-slate-600 space-y-2">
             <Activity size={24} className="opacity-40" />
@@ -2019,7 +2007,7 @@ function SettingsPanel() {
   };
 
   return (
-    <div className="h-full overflow-y-auto pr-1 pb-16 space-y-2.5">
+    <div className="h-full min-h-0 overflow-hidden flex flex-col justify-between gap-1.5 p-0.5">
       {/* Slim Cascade Overview Banner */}
       <div className="py-2 px-3 rounded-xl bg-gradient-to-r from-blue-950/50 via-purple-950/40 to-emerald-950/40 border border-blue-500/25 shadow flex items-center justify-between gap-2 flex-wrap">
         <div className="flex items-center gap-2">
@@ -2832,174 +2820,203 @@ const SOCIAL_CHANNELS = [
 /* ────────────────────────────────────────────────────────────────────────── */
 function AboutPanel() {
   return (
-    <div className="h-full overflow-y-auto pr-1.5 pb-8 space-y-5">
-      {/* Brand Hero Card */}
-      <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900/90 to-[#00A884]/15 border border-white/10 shadow-xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-[#00A884]/10 rounded-full blur-3xl pointer-events-none" />
+    <div className="h-full min-h-0 overflow-hidden flex flex-col justify-between gap-2.5 p-1 select-none">
+      {/* ── Top Bar: Company Identity & Direct Contacts ── */}
+      <div className="p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/95 to-[#00A884]/15 border border-white/10 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-48 h-48 bg-[#00A884]/10 rounded-full blur-2xl pointer-events-none" />
         
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
-          <div className="flex items-center gap-4">
-            <a href="https://www.digiformation.co.uk/" target="_blank" rel="noreferrer" title="Digiformation Ltd">
-              <img
-                src={digiformationLogo}
-                alt="Digi WhatsApp Agent"
-                className="w-16 h-16 rounded-2xl object-contain bg-[#020a05] p-1 border-2 border-emerald-500/40 shadow-xl shadow-emerald-500/20 hover:scale-105 transition shrink-0"
-              />
-            </a>
-            <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-xl font-extrabold text-white tracking-tight">Digiformation Ltd</h2>
-                <span className="px-2.5 py-0.5 text-[10px] font-bold rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                  Official UK Entity
-                </span>
-              </div>
-              <p className="text-xs text-slate-400 mt-0.5">
-                UK Company Formation • Corporate Compliance • AI Automation &amp; Custom Software
-              </p>
+        {/* Brand identity */}
+        <div className="flex items-center gap-3 min-w-0">
+          <a href="https://www.digiformation.co.uk/" target="_blank" rel="noreferrer" title="Digiformation Ltd">
+            <img
+              src={digiformationLogo}
+              alt="Digi WhatsApp Agent"
+              className="w-11 h-11 rounded-xl object-contain bg-[#020a05] p-1 border border-emerald-500/40 shadow-md shadow-emerald-500/20 hover:scale-105 transition shrink-0"
+            />
+          </a>
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 flex-wrap shrink-0">
+              <h2 className="text-base font-extrabold text-white tracking-tight">Digiformation Ltd</h2>
+              <span className="px-2 py-0.5 text-[9px] font-bold rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono">
+                Official UK Entity # 16994903
+              </span>
+              <span className="text-[10px] text-emerald-400 font-mono hidden md:inline">
+                Wolverhampton, United Kingdom
+              </span>
             </div>
-          </div>
-
-          <div className="text-left sm:text-right">
-            <div className="text-[11px] font-mono text-slate-400">Company Reg # 16994903</div>
-            <div className="text-[11px] font-mono text-emerald-400">Wolverhampton, United Kingdom</div>
+            <p className="text-[11px] text-slate-400 truncate mt-0.5">
+              UK Company Formation • Corporate Compliance • AI Automation &amp; Sovereign Software
+            </p>
           </div>
         </div>
 
-        {/* Primary Contact Details */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-6 pb-2">
+        {/* 3 Quick Contact Badges */}
+        <div className="flex items-center gap-2 shrink-0 flex-wrap">
           <a
             href="https://www.digiformation.co.uk/"
             target="_blank"
             rel="noreferrer"
-            className="p-3.5 rounded-xl bg-slate-950/60 hover:bg-slate-800/80 border border-white/10 hover:border-emerald-500/40 transition flex items-center justify-between group shadow"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-950/70 hover:bg-slate-800/80 border border-white/10 hover:border-emerald-500/40 text-xs transition text-white group shadow-sm no-underline"
           >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition">
-                <Globe size={16} />
-              </div>
-              <div>
-                <div className="text-xs font-bold text-white group-hover:text-emerald-300">Official Website</div>
-                <div className="text-[10px] text-slate-400 font-mono">www.digiformation.co.uk</div>
-              </div>
-            </div>
-            <ExternalLink size={13} className="text-slate-500 group-hover:text-emerald-400" />
+            <Globe size={13} className="text-emerald-400" />
+            <span className="font-semibold text-[11px] group-hover:text-emerald-300">digiformation.co.uk</span>
+            <ExternalLink size={10} className="text-slate-500" />
           </a>
 
           <a
             href="mailto:info@digiformation.co.uk"
-            className="p-3.5 rounded-xl bg-slate-950/60 hover:bg-slate-800/80 border border-white/10 hover:border-teal-500/40 transition flex items-center justify-between group shadow"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-950/70 hover:bg-slate-800/80 border border-white/10 hover:border-teal-500/40 text-xs transition text-white group shadow-sm no-underline"
           >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-teal-500/10 text-teal-400 flex items-center justify-center group-hover:scale-110 transition">
-                <Mail size={16} />
-              </div>
-              <div>
-                <div className="text-xs font-bold text-white group-hover:text-teal-300">Official Email</div>
-                <div className="text-[10px] text-slate-400 font-mono">info@digiformation.co.uk</div>
-              </div>
-            </div>
-            <ExternalLink size={13} className="text-slate-500 group-hover:text-teal-400" />
+            <Mail size={13} className="text-teal-400" />
+            <span className="font-semibold text-[11px] group-hover:text-teal-300">Email Us</span>
+            <ExternalLink size={10} className="text-slate-500" />
           </a>
 
           <a
             href="https://wa.me/923164467464"
             target="_blank"
             rel="noreferrer"
-            className="p-3.5 rounded-xl bg-slate-950/60 hover:bg-slate-800/80 border border-white/10 hover:border-emerald-500/40 transition flex items-center justify-between group shadow"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-xs transition text-white group shadow-sm no-underline"
           >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition">
-                <Phone size={16} />
-              </div>
-              <div>
-                <div className="text-xs font-bold text-white group-hover:text-emerald-300">WhatsApp / Call</div>
-                <div className="text-[10px] text-slate-400 font-mono">+92 316 446 7464</div>
-              </div>
-            </div>
-            <ExternalLink size={13} className="text-slate-500 group-hover:text-emerald-400" />
+            <Phone size={13} className="text-emerald-400" />
+            <span className="font-semibold text-[11px] text-emerald-300">+92 316 446 7464</span>
+            <ExternalLink size={10} className="text-slate-500" />
           </a>
         </div>
       </div>
 
-      {/* Complete Social Media & Linktree Network */}
-      <div className="p-6 rounded-2xl bg-slate-900/70 border border-white/10 space-y-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Share2 size={16} className="text-emerald-400" />
-            <h3 className="text-sm font-bold text-white">Social Media &amp; Verified Portals</h3>
+      {/* ── Middle Grid: Flagship DIGI BIZ OS & Trust Architecture (Side-by-Side) ── */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 flex-1 min-h-0">
+        {/* Left: Flagship Ecosystem Platform */}
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-br from-emerald-950/40 via-teal-950/30 to-slate-900 border border-emerald-500/30 shadow-xl flex flex-col justify-between relative overflow-hidden">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 flex-wrap shrink-0">
+              <span className="px-2 py-0.5 text-[9px] font-mono font-bold uppercase rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                ⚡ Flagship Business Operating System
+              </span>
+              <span className="px-2 py-0.5 text-[9px] font-mono font-semibold rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                3-Day Free Trial
+              </span>
+            </div>
+            <h3 className="text-sm sm:text-base font-extrabold text-white tracking-tight">
+              DIGI BIZ OS — Sovereign AI Business Platform
+            </h3>
+            <p className="text-[11px] text-slate-300 leading-relaxed">
+              Run your complete business offline and online: 20+ Free AI models, automated WhatsApp sales agent, local CRM, customer invoicing, document engine, and lifetime updates for £29 once.
+            </p>
+            <div className="grid grid-cols-2 gap-1.5 pt-1 text-[10px] font-mono">
+              <div className="p-1.5 rounded-lg bg-black/30 border border-white/5 text-slate-300 flex items-center gap-1.5">
+                <span className="text-emerald-400">✓</span> 20+ Free AI Models
+              </div>
+              <div className="p-1.5 rounded-lg bg-black/30 border border-white/5 text-slate-300 flex items-center gap-1.5">
+                <span className="text-emerald-400">✓</span> Local CRM &amp; Leads
+              </div>
+              <div className="p-1.5 rounded-lg bg-black/30 border border-white/5 text-slate-300 flex items-center gap-1.5">
+                <span className="text-emerald-400">✓</span> Invoicing &amp; Office
+              </div>
+              <div className="p-1.5 rounded-lg bg-black/30 border border-white/5 text-slate-300 flex items-center gap-1.5">
+                <span className="text-emerald-400">✓</span> Zero Monthly Fees
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-2.5 mt-2 border-t border-white/5 flex items-center justify-between gap-3">
+            <span className="text-[10px] font-mono text-emerald-400 font-semibold">
+              Save $3,600+/yr vs SaaS Subscriptions
+            </span>
+            <a
+              href="https://www.digibizos.co.uk/pricing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:brightness-110 text-white font-bold text-xs shadow-md shadow-emerald-950/50 hover:shadow-emerald-500/20 transition-all shrink-0 hover:scale-105 no-underline cursor-pointer"
+            >
+              <span>🚀 Try DIGI BIZ OS (Free Trial)</span>
+              <ExternalLink size={12} />
+            </a>
+          </div>
+        </div>
+
+        {/* Right: Corporate Headquarters & Trust */}
+        <div className="p-3.5 sm:p-4 rounded-2xl bg-slate-900/70 border border-white/10 shadow-xl flex flex-col justify-between">
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <h3 className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
+                <ShieldCheck size={16} className="text-emerald-400" /> Corporate Headquarters &amp; Trust
+              </h3>
+              <span className="px-2 py-0.5 text-[9px] font-mono font-bold rounded bg-amber-500/10 text-amber-300 border border-amber-500/25">
+                COMPANIES HOUSE
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-300 leading-relaxed">
+              Digiformation Ltd is an official UK-registered corporate advisory and technology firm (Company # 16994903) based at Office 1006, 85 Dunstall Hill, Wolverhampton, United Kingdom.
+            </p>
+            <div className="p-2.5 rounded-xl bg-black/30 border border-white/5 space-y-1 text-[11px] text-slate-300">
+              <div className="text-[10px] font-mono text-slate-400 font-bold uppercase tracking-wider">Core Practice Areas:</div>
+              <div className="grid grid-cols-2 gap-1 text-[10.5px] text-slate-400">
+                <div>• UK Company Formations</div>
+                <div>• US LLC Structures</div>
+                <div>• Corporate Compliance</div>
+                <div>• Business Banking Setup</div>
+                <div>• Autonomous AI Agents</div>
+                <div>• Custom Enterprise Tech</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-2.5 mt-2 border-t border-white/5 flex items-center justify-between gap-2">
+            <div className="text-[10px] font-mono text-slate-400 truncate">
+              Reg # <strong className="text-white">16994903</strong> • England &amp; Wales
+            </div>
+            <a
+              href="https://find-and-update.company-information.service.gov.uk/company/16994903"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-300 text-[10px] font-bold font-mono transition shrink-0 no-underline"
+            >
+              <span>GOV.UK Verified</span>
+              <ExternalLink size={10} />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Bottom Strip: Complete Social Media & Linktree Network ── */}
+      <div className="p-2 sm:p-2.5 rounded-2xl bg-slate-900/60 border border-white/10 shadow-lg space-y-1.5 shrink-0">
+        <div className="flex items-center justify-between px-1">
+          <div className="flex items-center gap-1.5">
+            <Share2 size={13} className="text-emerald-400" />
+            <h4 className="text-[11px] font-bold text-white uppercase tracking-wider">Official Channels &amp; Verified Portals</h4>
           </div>
           <a
             href="https://linktr.ee/digiformationltd"
             target="_blank"
             rel="noreferrer"
-            className="text-[11px] font-mono text-emerald-400 hover:underline flex items-center gap-1"
+            className="text-[10px] font-mono text-emerald-400 hover:underline flex items-center gap-1"
           >
             <span>linktr.ee/digiformationltd</span>
-            <ExternalLink size={11} />
+            <ExternalLink size={10} />
           </a>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-1.5">
           {SOCIAL_CHANNELS.map((ch) => (
             <a
               key={ch.name}
               href={ch.url}
               target="_blank"
               rel="noreferrer"
-              className={`p-3 rounded-xl bg-slate-950/70 border border-white/5 ${ch.bgHover} transition-all flex items-center justify-between group shadow-sm`}
+              className={`p-1.5 rounded-lg bg-slate-950/70 border border-white/5 ${ch.bgHover} transition-all flex items-center justify-center gap-1.5 group shadow-sm no-underline`}
+              title={`${ch.name}: ${ch.label}`}
             >
-              <div className="flex items-center gap-2.5 overflow-hidden">
-                <div className="shrink-0 p-1.5 rounded-lg bg-white/5 group-hover:scale-110 transition">
-                  {ch.icon}
-                </div>
-                <div className="truncate">
-                  <div className="text-xs font-bold text-slate-200 group-hover:text-white truncate">{ch.name}</div>
-                  <div className="text-[10px] text-slate-400 font-mono truncate">{ch.label}</div>
-                </div>
+              <div className="shrink-0 group-hover:scale-110 transition">
+                {ch.icon}
               </div>
-              <ExternalLink size={12} className="text-slate-500 group-hover:text-slate-200 shrink-0 ml-1" />
+              <span className="text-[10px] font-bold text-slate-300 group-hover:text-white truncate">
+                {ch.name}
+              </span>
             </a>
           ))}
         </div>
-      </div>
-
-      {/* Flagship Ecosystem Platform: DIGI BIZ OS */}
-      <div className="p-6 rounded-2xl bg-gradient-to-r from-emerald-950/40 via-teal-950/30 to-slate-900 border border-emerald-500/30 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold uppercase rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-              ⚡ Flagship Business Operating System
-            </span>
-            <span className="px-2.5 py-0.5 text-[10px] font-mono font-semibold rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
-              3-Day Free Trial
-            </span>
-          </div>
-          <h3 className="text-lg font-extrabold text-white">DIGI BIZ OS — Sovereign AI Business Platform</h3>
-          <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
-            Run your complete business offline and online: 20+ Free AI models, automated WhatsApp sales agent, local CRM, customer invoicing, document engine, and lifetime updates for £29 once.
-          </p>
-        </div>
-
-        <a
-          href="https://www.digibizos.co.uk/open-source"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:brightness-110 text-white font-bold text-xs shadow-lg shadow-emerald-950/50 hover:shadow-emerald-500/20 transition-all shrink-0 hover:scale-105 no-underline"
-        >
-          <span>🚀</span>
-          <span>Try DIGI BIZ OS (3-Day Free Trial)</span>
-          <ExternalLink size={14} />
-        </a>
-      </div>
-
-      {/* Trust & Company Summary */}
-      <div className="p-5 rounded-2xl bg-slate-900/60 border border-white/10 space-y-3">
-        <h3 className="text-sm font-bold text-white flex items-center gap-2">
-          <ShieldCheck size={16} className="text-emerald-400" /> Corporate Headquarters &amp; Trust
-        </h3>
-        <p className="text-xs text-slate-300 leading-relaxed">
-          Digiformation Ltd is an official UK-registered corporate advisory and technology firm (Company # 16994903) based at Office 1006, 85 Dunstall Hill, Wolverhampton, United Kingdom. We specialize in UK company formation, US LLC structures, corporate compliance, business banking setups, and custom AI automated sales software.
-        </p>
       </div>
     </div>
   );
