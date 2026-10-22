@@ -1,6 +1,6 @@
 # 🚀 Digi WhatsApp Agent — 24/7 Autonomous AI Sales Representative
 
-[![Download](https://img.shields.io/badge/Download-Windows%20Setup%20(.exe)-success?style=for-the-badge&logo=windows)](https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases/download/v1.0.0/Digi.WhatsApp.Agent.Setup.1.0.0.exe)
+[![Download](https://img.shields.io/badge/Download-Windows%20Setup%20(.exe)-success?style=for-the-badge&logo=windows)](https://www.digibizos.co.uk/open-source)
 [![Official Showcase](https://img.shields.io/badge/DIGI%20BIZ%20OS-Official%20Showcase-0078D6?style=for-the-badge&logo=googlechrome)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)
 [![Protocol](https://img.shields.io/badge/Protocol-Baileys%20WhatsApp%20Web-25D366?style=for-the-badge&logo=whatsapp)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)
 [![AI Engine](https://img.shields.io/badge/AI%20Cascade-7--Tier%20Free%20Reasoning-purple?style=for-the-badge)](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)
@@ -30,7 +30,7 @@ It pairs directly with your WhatsApp phone number via QR code, eliminates expens
 All verified production installers are distributed via the official GitHub Releases and the DIGI BIZ OS Open-Source Portal:
 
 ### ⚡ 1-Click Official Windows Installer (Direct Download)
-👉 **[🚀 Download Digi WhatsApp Agent Setup (.exe 116MB)](https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases/download/v1.0.0/Digi.WhatsApp.Agent.Setup.1.0.0.exe)** — Standalone 1-click Windows installer with embedded SQLite database, zero dependencies, and automatic desktop shortcuts.
+👉 **[🚀 Download Digi WhatsApp Agent Setup (.exe 116MB)](https://www.digibizos.co.uk/open-source)** — Standalone 1-click Windows installer with embedded SQLite database, zero dependencies, and automatic desktop shortcuts.
 
 🌐 **[Official Web Showcase, Live Demos & Specifications on DIGI BIZ OS](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)**
 
@@ -84,7 +84,7 @@ Digi WhatsApp Agent ko chalana intehai aasaan hai — yeh 100% Free hai aur sirf
 
 ### ⚡ Step 1: 1-Click Installer Download Karein
 Official verified single-exe setup direct download karein:  
-👉 **[🚀 Download Digi WhatsApp Agent Setup (.exe 116MB)](https://github.com/digiformationltd-creator/digi-whatsapp-agent/releases/download/v1.0.0/Digi.WhatsApp.Agent.Setup.1.0.0.exe)**  
+👉 **[🚀 Download Digi WhatsApp Agent Setup (.exe 116MB)](https://www.digibizos.co.uk/open-source)**  
 🌐 **[DIGI BIZ OS Official Showcase & Specs](https://www.digibizos.co.uk/open-source/digi-whatsapp-agent)**
 
 ### ⚡ Step 2: Installer Run Karein
